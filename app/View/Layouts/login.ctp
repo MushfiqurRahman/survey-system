@@ -27,17 +27,17 @@
 	<div id="container">
 
 		<?php
-			if($settings_var['logo_file']!=''):
+			//if($settings_var['logo_file']!=''):
 		?>
 		<div class="logoBox">
-			<img src="<?php echo Router::url('/',true);?>/img/<?php echo $settings_var['logo_file'];?>" alt="<?php echo $settings_var['app_name'];?>" />
+			<img src="<?php echo Router::url('/',true);?>/img/<?php //echo $settings_var['logo_file'];?>" alt="<?php //echo $settings_var['app_name'];?>" />
 		</div>
 		<?php
-			else:
+			//else:
 		?>	
-		<p id="hal"><?php echo $settings_var['app_name'];?></p>
+		<p id="hal"><?php //echo $settings_var['app_name'];?></p>
 		<?php
-			endif;			
+			//endif;			
 		?>
 
 		<div style="padding: 15px; font-size: 12px">

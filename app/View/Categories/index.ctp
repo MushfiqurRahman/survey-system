@@ -13,7 +13,8 @@
 	<?php foreach ($categories as $category): ?>
 	<tr>
 		<td><?php echo h($category['Category']['id']); ?>&nbsp;</td>
-		<td><?php echo h($category['Category']['title']); ?>&nbsp;</td>
+		<td><?php echo $this->Html->link(h($category['Category']['title']), 
+                        array('controller' => 'categories', 'action' => 'view', $category['Category']['id'])); ?>&nbsp;</td>
 		<td><?php echo h($category['Category']['sub_title']); ?>&nbsp;</td>
 		<td><?php echo h($category['Category']['descr']); ?>&nbsp;</td>
 		<td><?php echo h($category['Category']['code']); ?>&nbsp;</td>

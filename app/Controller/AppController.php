@@ -34,7 +34,7 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
     
     var $components = array('Session', 'Auth' => array(
-        'loginRedirect' => 'surveys/index',
+        'loginRedirect' => array('controller' => 'users', 'action' => 'index'),
         'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
     ));
     

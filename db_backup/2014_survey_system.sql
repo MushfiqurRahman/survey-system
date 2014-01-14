@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 14, 2014 at 05:02 PM
+-- Generation Time: Jan 14, 2014 at 11:17 PM
 -- Server version: 5.1.39-community
 -- PHP Version: 5.3.27
 
@@ -48,7 +48,14 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `code` varchar(15) NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Various survey categories' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Various survey categories' AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `title`, `sub_title`, `descr`, `code`, `created`) VALUES
+(1, 'UNG', '', 'UNG Type Survey', 'UNG', '2014-01-14 22:45:48');
 
 -- --------------------------------------------------------
 
@@ -112,7 +119,17 @@ CREATE TABLE IF NOT EXISTS `questions` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `questions`
+--
+
+INSERT INTO `questions` (`id`, `category_id`, `subcategory_id`, `title`, `code`, `is_optional`, `created`, `modified`) VALUES
+(1, 1, 1, 'Wheel Laundry Soap 130g', '201', 0, '2014-01-14 22:58:50', '2014-01-14 22:58:50'),
+(2, 1, 1, 'Wheel washing powder 500g', '202', 0, '2014-01-14 22:59:13', '2014-01-14 22:59:13'),
+(3, 1, 1, 'Wheel washing powder 200g', '203', 0, '2014-01-14 22:59:31', '2014-01-14 22:59:31'),
+(4, 1, 1, 'Wheel washing powder 30g', '204', 0, '2014-01-14 22:59:54', '2014-01-14 22:59:54');
 
 -- --------------------------------------------------------
 
@@ -196,7 +213,16 @@ CREATE TABLE IF NOT EXISTS `subcategories` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `subcategories`
+--
+
+INSERT INTO `subcategories` (`id`, `category_id`, `title`, `subtitle_or_code`, `descr`, `is_optional`, `status`, `created`, `modified`) VALUES
+(1, 1, 'Part 1:  On Shelf Availability', 'UNG - MUST HAVE SKU', 'Q2. Please count and record the Unilever SKU below:', 0, 1, '2014-01-14 22:57:52', '2014-01-14 22:57:52'),
+(2, 1, 'Part 2: Fixed Display - Plan-o-gram and Quantity', 'Set 1:', 'Q3.a Please fill up the grid below as per the Plan-o-gram for the following Unilever brands/SKUs. (For Availability and Sequence, if yes, encircle Y; if no, encircle N).', 1, 1, '2014-01-14 23:14:29', '2014-01-14 23:14:29'),
+(3, 1, 'Part 2: Fixed Display - Plan-o-gram and Quantity', 'Set 2:', 'Q3.b Please fill up the grid below as per the Plan-o-gram for the following Unilever brands/SKUs. (For Availability and Sequence, if yes, encircle Y; if no, encircle N).', 1, 1, '2014-01-14 23:15:48', '2014-01-14 23:15:48');
 
 -- --------------------------------------------------------
 
@@ -272,16 +298,23 @@ CREATE TABLE IF NOT EXISTS `towns` (
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(6) DEFAULT NULL,
-  `category_id` int(6) NOT NULL,
+  `category_id` int(6) DEFAULT NULL,
   `is_surveyor` tinyint(1) NOT NULL DEFAULT '0',
-  `town_id` int(11) NOT NULL DEFAULT '0',
+  `town_id` int(11) DEFAULT '0',
   `name` varchar(50) NOT NULL,
   `email` varchar(128) NOT NULL,
   `password` varchar(50) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='For various users, like Admin, Staff, Members etc' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='For various users, like Admin, Staff, Members etc' AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `role_id`, `category_id`, `is_surveyor`, `town_id`, `name`, `email`, `password`, `created`, `modified`) VALUES
+(1, 1, NULL, 0, 0, 'Mushfiqur Rahman', 'mushfique@codetrio.com', '98b1047581990052900897caf62daccf14464354', '2014-01-14 22:33:39', '2014-01-14 22:33:39');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

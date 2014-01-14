@@ -17,15 +17,26 @@ class UsersController extends AppController {
         
         public function beforeFilter() {
             parent::beforeFilter();
-            $this->Auth->allow(array('login','add'));
+            $this->Auth->allow(array('login'));
         }
         
         public function login(){
+            $this->layout = 'login';
+            $this->set('title_for_layout', "Login");
+            if( $this->request->is('post') && !empty($this->data) ){//pr($this->data);
+
+                if ($this->Auth->login($this->request->data['User'])) {
+                    return $this->redirect($this->Auth->redirect());
+                } else {
+                    $this->Session->setFlash(__('Username or password is incorrect'), 'default', array(), 'auth');
+                }
             
+		} else if (empty($this->request->data)) {
+            }
         }
         
         public function logout(){
-            
+            $this->redirect($this->Auth->logout());
         }
 
 /**
