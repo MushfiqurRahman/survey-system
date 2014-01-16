@@ -1,38 +1,8 @@
 <div class="categories view">
-<h2><?php echo __('Category'); ?></h2>
-	<dl>
-		<dt><?php echo __('Title'); ?></dt>
-		<dd>
-			<?php echo h($category['Category']['title']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Sub Title'); ?></dt>
-		<dd>
-			<?php echo h($category['Category']['sub_title']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Descr'); ?></dt>
-		<dd>
-			<?php echo h($category['Category']['descr']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Code'); ?></dt>
-		<dd>
-			<?php echo h($category['Category']['code']); ?>
-			&nbsp;
-		</dd>
-	</dl>
+<h2><?php echo h($category['Category']['title']).' ('.h($category['Category']['code']).')'; ?></h2>
+<?php echo h($category['Category']['descr']);?>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('List Categories'), array('action' => 'index')); ?> </li>		
-		<li><?php echo $this->Html->link(__('List Questions'), array('controller' => 'questions', 'action' => 'index')); ?> </li>		
-		<li><?php echo $this->Html->link(__('List Subcategories'), array('controller' => 'subcategories', 'action' => 'index')); ?> </li>		
-		
-		
-	</ul>
-</div>
+
 <div class="related">
 	<h3><?php echo __('Related Subcategories'); ?></h3>
 	<?php if (!empty($category['Subcategory'])): ?>
