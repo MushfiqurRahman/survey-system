@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 3.1.3.1
+-- version 4.0.9
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 19, 2014 at 06:37 PM
--- Server version: 5.1.33
--- PHP Version: 5.2.9
+-- Generation Time: Jan 14, 2014 at 11:17 PM
+-- Server version: 5.1.39-community
+-- PHP Version: 5.3.27
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -18,6 +19,43 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `2014_survey_system`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `answer_types`
+--
+
+CREATE TABLE IF NOT EXISTS `answer_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(30) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `title` varchar(128) NOT NULL,
+  `sub_title` varchar(128) DEFAULT NULL,
+  `descr` varchar(128) NOT NULL,
+  `code` varchar(15) NOT NULL,
+  `created` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Various survey categories' AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `title`, `sub_title`, `descr`, `code`, `created`) VALUES
+(1, 'UNG', '', 'UNG Type Survey', 'UNG', '2014-01-14 22:45:48');
 
 -- --------------------------------------------------------
 
@@ -40,11 +78,6 @@ CREATE TABLE IF NOT EXISTS `outlets` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Of which survey will be happened' AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `outlets`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -55,11 +88,6 @@ CREATE TABLE IF NOT EXISTS `outlets_users` (
   `outlet_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `outlets_users`
---
-
 
 -- --------------------------------------------------------
 
@@ -74,98 +102,6 @@ CREATE TABLE IF NOT EXISTS `outlet_types` (
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Type of objects' AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `outlet_types`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `parts`
---
-
-CREATE TABLE IF NOT EXISTS `parts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(128) NOT NULL,
-  `descr` varchar(256) DEFAULT NULL,
-  `is_optional` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'Whether this part is optional for the survey or not',
-  `task_join_type` enum('And','Or') NOT NULL DEFAULT 'And',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Various parts of a survey' AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `parts`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `parts_survey_types`
---
-
-CREATE TABLE IF NOT EXISTS `parts_survey_types` (
-  `survey_type_id` int(11) NOT NULL,
-  `part_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `parts_survey_types`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `parts_tasks`
---
-
-CREATE TABLE IF NOT EXISTS `parts_tasks` (
-  `part_id` int(11) NOT NULL,
-  `task_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `parts_tasks`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `products`
---
-
-CREATE TABLE IF NOT EXISTS `products` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(128) NOT NULL,
-  `descr` varchar(256) NOT NULL,
-  `sku` varchar(15) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `products`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `products_tasks`
---
-
-CREATE TABLE IF NOT EXISTS `products_tasks` (
-  `task_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `products_tasks`
---
-
 
 -- --------------------------------------------------------
 
@@ -210,11 +146,6 @@ CREATE TABLE IF NOT EXISTS `question_details` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `question_details`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -227,11 +158,6 @@ CREATE TABLE IF NOT EXISTS `regions` (
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `regions`
---
-
 
 -- --------------------------------------------------------
 
@@ -269,11 +195,6 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `value` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `settings`
---
-
 
 -- --------------------------------------------------------
 
@@ -326,29 +247,6 @@ CREATE TABLE IF NOT EXISTS `surveys` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `surveys`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `survey_attributes`
---
-
-CREATE TABLE IF NOT EXISTS `survey_attributes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(30) NOT NULL,
-  `type` enum('numeric','boolean','text') NOT NULL DEFAULT 'text',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `survey_attributes`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -362,53 +260,6 @@ CREATE TABLE IF NOT EXISTS `survey_details` (
   `answer` varchar(256) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `survey_details`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `survey_types`
---
-
-CREATE TABLE IF NOT EXISTS `survey_types` (
-  `id` int(6) NOT NULL AUTO_INCREMENT,
-  `title` varchar(128) NOT NULL,
-  `descr` varchar(128) NOT NULL,
-  `code` varchar(15) NOT NULL,
-  `created` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='Various survey categories' AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `survey_types`
---
-
-INSERT INTO `survey_types` (`id`, `title`, `descr`, `code`, `created`) VALUES
-(1, 'UNG', 'PERFECT STORE â€“ Questionnaire (UNG)', 'UNG', '2014-01-14 22:45:48');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tasks`
---
-
-CREATE TABLE IF NOT EXISTS `tasks` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(128) NOT NULL,
-  `descr` varchar(256) DEFAULT NULL,
-  `surv_attr_ids` varchar(100) NOT NULL,
-  `guide_lines` text,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Represents the Each Form/Table of questions for survey' AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `tasks`
---
-
 
 -- --------------------------------------------------------
 
@@ -424,11 +275,6 @@ CREATE TABLE IF NOT EXISTS `territories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Dumping data for table `territories`
---
-
-
 -- --------------------------------------------------------
 
 --
@@ -442,11 +288,6 @@ CREATE TABLE IF NOT EXISTS `towns` (
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `towns`
---
-
 
 -- --------------------------------------------------------
 
@@ -474,3 +315,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `role_id`, `category_id`, `is_surveyor`, `town_id`, `name`, `email`, `password`, `created`, `modified`) VALUES
 (1, 1, NULL, 0, 0, 'Mushfiqur Rahman', 'mushfique@codetrio.com', '98b1047581990052900897caf62daccf14464354', '2014-01-14 22:33:39', '2014-01-14 22:33:39');
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
