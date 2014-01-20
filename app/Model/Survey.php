@@ -24,7 +24,7 @@ class Survey extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'category_id' => array(
+		'survey_type_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',

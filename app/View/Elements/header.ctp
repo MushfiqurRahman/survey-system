@@ -9,7 +9,8 @@
 
                        <div class="collapse nav-collapse" >
                            <ul class="nav pull-right">
-                               <li class="active"><?php echo $this->Html->link('Category', array('controller' => 'categories','action' => 'index'));?></li>
+                               <li class="active"><?php echo $this->Html->link('Settings', array('controller' => 'Settings','action' => 'index'));?></li>
+                               <li class="active"><?php echo $this->Html->link('Survey Type', array('controller' => 'SurveyTypes','action' => 'index'));?></li>
                                <li><?php //echo $this->Html->link('User Info',array('controller' => 'users', 'action' => 'index'));?></li>
                                <li><?php echo $this->Html->link('Logout',array('controller' => 'users', 'action' => 'logout'));?></li>
                            </ul>

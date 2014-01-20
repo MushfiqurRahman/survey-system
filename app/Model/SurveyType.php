@@ -1,13 +1,14 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Subcategory Model
+ * Category Model
  *
- * @property Category $Category
  * @property Question $Question
+ * @property Subcategory $Subcategory
  * @property Survey $Survey
+ * @property User $User
  */
-class Subcategory extends AppModel {
+class SurveyType extends AppModel {
 
 /**
  * Display field
@@ -22,16 +23,6 @@ class Subcategory extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'category_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 		'title' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -52,19 +43,9 @@ class Subcategory extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'is_optional' => array(
-			'boolean' => array(
-				'rule' => array('boolean'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'status' => array(
-			'boolean' => array(
-				'rule' => array('boolean'),
+		'code' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -77,21 +58,6 @@ class Subcategory extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
- * belongsTo associations
- *
- * @var array
- */
-	public $belongsTo = array(
-		'Category' => array(
-			'className' => 'Category',
-			'foreignKey' => 'category_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-	);
-
-/**
  * hasMany associations
  *
  * @var array
@@ -99,7 +65,7 @@ class Subcategory extends AppModel {
 	public $hasMany = array(
 		'Question' => array(
 			'className' => 'Question',
-			'foreignKey' => 'subcategory_id',
+			'foreignKey' => 'category_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
@@ -110,9 +76,35 @@ class Subcategory extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+//		'Subcategory' => array(
+//			'className' => 'Subcategory',
+//			'foreignKey' => 'category_id',
+//			'dependent' => false,
+//			'conditions' => '',
+//			'fields' => '',
+//			'order' => '',
+//			'limit' => '',
+//			'offset' => '',
+//			'exclusive' => '',
+//			'finderQuery' => '',
+//			'counterQuery' => ''
+//		),
 		'Survey' => array(
 			'className' => 'Survey',
-			'foreignKey' => 'subcategory_id',
+			'foreignKey' => 'category_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'category_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',

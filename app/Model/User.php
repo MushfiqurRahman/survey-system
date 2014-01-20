@@ -24,7 +24,7 @@ class User extends AppModel {
  * @var array
  */
 	public $validate = array(
-		'category_id' => array(
+		'survey_type_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -91,9 +91,9 @@ class User extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Category' => array(
-			'className' => 'Category',
-			'foreignKey' => 'category_id',
+		'SurveyType' => array(
+			'className' => 'SurveyType',
+			'foreignKey' => 'survey_type_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

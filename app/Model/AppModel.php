@@ -32,4 +32,13 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+    
+    /**
+     * Return the Survey Attributes list
+     * @return type 
+     */
+    public function getSurveyAttribs(){
+        $surveyAttrib = ClassRegistry::init('SurveyAttribute');
+        return $surveyAttrib->find('list');
+    }
 }

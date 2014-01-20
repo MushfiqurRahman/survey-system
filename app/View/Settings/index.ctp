@@ -1,3 +1,11 @@
+<div>
+    <ul>
+        <li><?php echo $this->Html->link('Products', array('controller' => 'Products', 'action' => 'index'));?></li>
+        <li><?php echo $this->Html->link('Survey Attributes', array('controller' => 'SurveyAttributes', 'action' => 'index'));?></li>
+        <li><?php echo $this->Html->link('Tasks', array('controller' => 'Tasks', 'action' => 'index'));?></li>
+        <li><?php echo $this->Html->link('Parts', array('controller' => 'Parts', 'action' => 'index'));?></li>        
+     </ul>
+</div>
 <div class="settings index">
 	<h2><?php echo __('Settings'); ?></h2>
 	<table cellpadding="0" cellspacing="0">

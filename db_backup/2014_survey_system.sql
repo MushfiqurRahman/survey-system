@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 19, 2014 at 06:37 PM
+-- Generation Time: Jan 20, 2014 at 11:37 AM
 -- Server version: 5.1.33
 -- PHP Version: 5.2.9
 
@@ -143,13 +143,28 @@ CREATE TABLE IF NOT EXISTS `products` (
   `title` varchar(128) NOT NULL,
   `descr` varchar(256) NOT NULL,
   `sku` varchar(15) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `sku` (`sku`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `products`
 --
 
+INSERT INTO `products` (`id`, `title`, `descr`, `sku`) VALUES
+(1, 'Wheel Laundry Soap 130g', '', '201'),
+(2, 'Wheel washing powder 500g', '', '202'),
+(3, 'Wheel washing powder 200g', '', '203'),
+(4, 'Wheel washing powder 30g', '', '204'),
+(5, 'Rin power white 450g', '', '205'),
+(6, 'Rin power white 180g', '', '206'),
+(7, 'Rin power white 25g', '', '207'),
+(8, 'Surf excel 500g', '', '208'),
+(9, 'Surf excel 20g', '', '209'),
+(10, 'Vim Bar 325g', '', '210'),
+(11, 'Vim Bar 125', '', '211'),
+(12, 'Close Up 145g (Green)', '', '212'),
+(13, 'Close Up 50g Green', '', '213');
 
 -- --------------------------------------------------------
 
@@ -166,6 +181,20 @@ CREATE TABLE IF NOT EXISTS `products_tasks` (
 -- Dumping data for table `products_tasks`
 --
 
+INSERT INTO `products_tasks` (`task_id`, `product_id`) VALUES
+(1, 1),
+(1, 2),
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 6),
+(1, 7),
+(1, 8),
+(1, 9),
+(1, 10),
+(1, 11),
+(1, 12),
+(1, 13);
 
 -- --------------------------------------------------------
 
@@ -268,12 +297,15 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `variable_label` varchar(64) NOT NULL,
   `value` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `settings`
 --
 
+INSERT INTO `settings` (`id`, `variable_name`, `variable_label`, `value`) VALUES
+(1, 'company_name', 'Company Name', 'Neilson'),
+(2, 'company_address', 'Company Address', 'Dhaka, Bangladesh');
 
 -- --------------------------------------------------------
 
@@ -311,7 +343,7 @@ INSERT INTO `subcategories` (`id`, `category_id`, `title`, `subtitle_or_code`, `
 
 CREATE TABLE IF NOT EXISTS `surveys` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category_id` int(11) NOT NULL,
+  `survey_type_id` int(11) NOT NULL,
   `subcategory_id` int(11) DEFAULT NULL,
   `outlet_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -339,15 +371,24 @@ CREATE TABLE IF NOT EXISTS `surveys` (
 
 CREATE TABLE IF NOT EXISTS `survey_attributes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(30) NOT NULL,
+  `title` varchar(50) NOT NULL,
   `type` enum('numeric','boolean','text') NOT NULL DEFAULT 'text',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `title` (`title`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `survey_attributes`
 --
 
+INSERT INTO `survey_attributes` (`id`, `title`, `type`) VALUES
+(1, 'SKU Count', 'numeric'),
+(2, 'Availability', 'boolean'),
+(3, 'Total Displayed Count', 'numeric'),
+(4, 'Face Up Count (As per definition)', 'numeric'),
+(5, 'Sequence', 'boolean'),
+(6, 'Compliance', 'boolean'),
+(7, 'Quantity', 'numeric');
 
 -- --------------------------------------------------------
 
@@ -403,12 +444,14 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `surv_attr_ids` varchar(100) NOT NULL,
   `guide_lines` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Represents the Each Form/Table of questions for survey' AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='Represents the Each Form/Table of questions for survey' AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tasks`
 --
 
+INSERT INTO `tasks` (`id`, `title`, `descr`, `surv_attr_ids`, `guide_lines`) VALUES
+(1, 'UNG - MUST HAVE SKU', 'Q2. Please count and record the Unilever SKU below:', 'a:1:{i:0;s:1:"1";}', '');
 
 -- --------------------------------------------------------
 
@@ -457,7 +500,7 @@ CREATE TABLE IF NOT EXISTS `towns` (
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(6) DEFAULT NULL,
-  `category_id` int(6) DEFAULT NULL,
+  `survey_type_id` int(6) DEFAULT NULL,
   `is_surveyor` tinyint(1) NOT NULL DEFAULT '0',
   `town_id` int(11) DEFAULT '0',
   `name` varchar(50) NOT NULL,
@@ -472,5 +515,5 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `role_id`, `category_id`, `is_surveyor`, `town_id`, `name`, `email`, `password`, `created`, `modified`) VALUES
+INSERT INTO `users` (`id`, `role_id`, `survey_type_id`, `is_surveyor`, `town_id`, `name`, `email`, `password`, `created`, `modified`) VALUES
 (1, 1, NULL, 0, 0, 'Mushfiqur Rahman', 'mushfique@codetrio.com', '98b1047581990052900897caf62daccf14464354', '2014-01-14 22:33:39', '2014-01-14 22:33:39');
