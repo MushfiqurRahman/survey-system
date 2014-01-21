@@ -47,6 +47,7 @@ class PartsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+                    //pr($this->data);exit;
 			$this->Part->create();
 			if ($this->Part->save($this->request->data)) {
 				$this->Session->setFlash(__('The part has been saved'));
@@ -55,7 +56,7 @@ class PartsController extends AppController {
 				$this->Session->setFlash(__('The part could not be saved. Please, try again.'));
 			}
 		}
-		$surveyTypes = $this->Part->SurveyType->find('list');
+		//$surveyTypes = $this->Part->SurveyType->find('list');
 		$tasks = $this->Part->Task->find('list');
 		$this->set(compact('surveyTypes', 'tasks'));
 	}

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 20, 2014 at 11:37 AM
+-- Generation Time: Jan 21, 2014 at 11:37 AM
 -- Server version: 5.1.33
 -- PHP Version: 5.2.9
 
@@ -90,15 +90,17 @@ CREATE TABLE IF NOT EXISTS `parts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(128) NOT NULL,
   `descr` varchar(256) DEFAULT NULL,
-  `is_optional` tinyint(1) NOT NULL DEFAULT '1' COMMENT 'Whether this part is optional for the survey or not',
+  `is_optional` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Whether this part is optional for the survey or not',
   `task_join_type` enum('And','Or') NOT NULL DEFAULT 'And',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Various parts of a survey' AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COMMENT='Various parts of a survey' AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `parts`
 --
 
+INSERT INTO `parts` (`id`, `title`, `descr`, `is_optional`, `task_join_type`) VALUES
+(1, 'Part 1:  On Shelf Availability', '', 0, 'And');
 
 -- --------------------------------------------------------
 
@@ -115,6 +117,8 @@ CREATE TABLE IF NOT EXISTS `parts_survey_types` (
 -- Dumping data for table `parts_survey_types`
 --
 
+INSERT INTO `parts_survey_types` (`survey_type_id`, `part_id`) VALUES
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -131,6 +135,8 @@ CREATE TABLE IF NOT EXISTS `parts_tasks` (
 -- Dumping data for table `parts_tasks`
 --
 
+INSERT INTO `parts_tasks` (`part_id`, `task_id`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -145,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `sku` varchar(15) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `sku` (`sku`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `products`
@@ -164,7 +170,10 @@ INSERT INTO `products` (`id`, `title`, `descr`, `sku`) VALUES
 (10, 'Vim Bar 325g', '', '210'),
 (11, 'Vim Bar 125', '', '211'),
 (12, 'Close Up 145g (Green)', '', '212'),
-(13, 'Close Up 50g Green', '', '213');
+(13, 'Close Up 50g Green', '', '213'),
+(14, 'Pepsodent 200g (GC)', '', '214'),
+(15, 'Lux 150g (Pink)', '', '215'),
+(16, 'Lux 100g (Pink)', '', '216');
 
 -- --------------------------------------------------------
 
@@ -344,7 +353,6 @@ INSERT INTO `subcategories` (`id`, `category_id`, `title`, `subtitle_or_code`, `
 CREATE TABLE IF NOT EXISTS `surveys` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `survey_type_id` int(11) NOT NULL,
-  `subcategory_id` int(11) DEFAULT NULL,
   `outlet_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `responder_name` varchar(40) NOT NULL,
@@ -422,14 +430,14 @@ CREATE TABLE IF NOT EXISTS `survey_types` (
   `code` varchar(15) NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='Various survey categories' AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='Various survey categories' AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `survey_types`
 --
 
 INSERT INTO `survey_types` (`id`, `title`, `descr`, `code`, `created`) VALUES
-(1, 'UNG', 'PERFECT STORE â€“ Questionnaire (UNG)', 'UNG', '2014-01-14 22:45:48');
+(2, 'PERFECT STORE â€“ Questionnaire (UNG)', '', 'UNG', '2014-01-21 06:53:56');
 
 -- --------------------------------------------------------
 

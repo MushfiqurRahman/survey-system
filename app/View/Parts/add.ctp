@@ -6,8 +6,9 @@
 		echo $this->Form->input('title');
 		echo $this->Form->input('descr');
 		echo $this->Form->input('is_optional');
-		echo $this->Form->input('task_join_type');
-		echo $this->Form->input('SurveyType');
+		echo $this->Form->input('task_join_type', array('type' => 'select',
+                    'options' => array('and' => 'And', 'or' => 'Or')));
+		
 		echo $this->Form->input('Task');
 	?>
 	</fieldset>

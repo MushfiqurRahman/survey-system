@@ -7,7 +7,6 @@
 		echo $this->Form->input('title');
 		echo $this->Form->input('descr');
 		echo $this->Form->input('sku');
-		echo $this->Form->input('Task');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

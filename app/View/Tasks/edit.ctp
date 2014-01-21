@@ -3,13 +3,20 @@
 	<fieldset>
 		<legend><?php echo __('Edit Task'); ?></legend>
 	<?php
+            
 		echo $this->Form->input('id');
 		echo $this->Form->input('title');
 		echo $this->Form->input('descr');
-		echo $this->Form->input('surv_attr_ids');
-		echo $this->Form->input('guide_lines');
-		echo $this->Form->input('Part');
-		echo $this->Form->input('Product');
+                echo $this->Form->input('guide_lines', array('rows' => 3));
+		//echo $this->Form->input('surv_attr_ids');
+                
+                echo $this->Form->input('surv_attr_ids', array('type' => 'select', 
+                    'label' => __('Survey Attributes'),
+                    'multiple' => 'checkbox', 'options' => $surveyAttribs,
+                    'required' => false,
+                    'selected' => unserialize($this->request->data['Task']['surv_attr_ids'])));
+		
+		echo $this->Form->input('Product', array('size' => 20));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

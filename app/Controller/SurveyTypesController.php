@@ -33,10 +33,18 @@ class SurveyTypesController extends AppController {
  * @return void
  */
 	public function view($id = null) {
+            
+            //have to use here the Containable
+            
 		if (!$this->SurveyType->exists($id)) {
 			throw new NotFoundException(__('Invalid SurveyType'));
 		}
-		$options = array('conditions' => array('SurveyType.' . $this->SurveyType->primaryKey => $id));
+                $this->SurveyType->Behaviors->load('Containable');
+//		$options = array('conditions' => array('SurveyType.' . $this->SurveyType->primaryKey => $id),
+//                    'recursive' => 2);
+                $options = array('conditions' => array('SurveyType.' . $this->SurveyType->primaryKey => $id),
+                    'contain' => $this->SurveyType->getContainableFields());
+                pr($this->SurveyType->find('first', $options));exit;
 		$this->set('surveyTypes', $this->SurveyType->find('first', $options));
 	}
 
@@ -47,6 +55,7 @@ class SurveyTypesController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+                    //pr($this->data);exit;
 			$this->SurveyType->create();
 			if ($this->SurveyType->save($this->request->data)) {
 				$this->Session->setFlash(__('The Survey Type has been saved'));
@@ -55,6 +64,7 @@ class SurveyTypesController extends AppController {
 				$this->Session->setFlash(__('The Survey Type could not be saved. Please, try again.'));
 			}
 		}
+                $this->set('parts',$this->SurveyType->Part->find('list'));
 	}
 
 /**

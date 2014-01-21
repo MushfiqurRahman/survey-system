@@ -84,9 +84,9 @@ class TasksController extends AppController {
 			$options = array('conditions' => array('Task.' . $this->Task->primaryKey => $id));
 			$this->request->data = $this->Task->find('first', $options);
 		}
-		$parts = $this->Task->Part->find('list');
+		$surveyAttribs = $this->Task->getSurveyAttribs();
 		$products = $this->Task->Product->find('list');
-		$this->set(compact('parts', 'products'));
+		$this->set(compact('surveyAttribs', 'products'));
 	}
 
 /**

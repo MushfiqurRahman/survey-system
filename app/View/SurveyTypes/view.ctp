@@ -1,15 +1,15 @@
 <div class="categories view">
-<h2><?php echo h($category['Category']['title']).' ('.h($category['Category']['code']).')'; ?></h2>
-<?php echo h($category['Category']['descr']);?>
+<h2><?php echo h($category['SurveyType']['title']).' ('.h($category['SurveyType']['code']).')'; ?></h2>
+<?php echo h($category['SurveyType']['descr']);?>
 </div>
 
 <div class="related">
-	<h3><?php echo __('Related Subcategories'); ?></h3>
+	<h3><?php echo __('Related Parts'); ?></h3>
 	<?php if (!empty($category['Subcategory'])): ?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Category Id'); ?></th>
+		<th><?php echo __('SurveyType Id'); ?></th>
 		<th><?php echo __('Title'); ?></th>
 		<th><?php echo __('Subtitle Or Code'); ?></th>
 		<th><?php echo __('Descr'); ?></th>
@@ -45,7 +45,7 @@
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Category Id'); ?></th>
+		<th><?php echo __('SurveyType Id'); ?></th>
 		<th><?php echo __('Subcategory Id'); ?></th>
 		<th><?php echo __('Title'); ?></th>
 		<th><?php echo __('Code'); ?></th>

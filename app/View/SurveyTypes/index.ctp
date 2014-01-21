@@ -13,7 +13,7 @@
 	<tr>
 		<td><?php echo h($survey['SurveyType']['id']); ?>&nbsp;</td>
 		<td><?php echo $this->Html->link(h($survey['SurveyType']['title']), 
-                        array('controller' => 'categories', 'action' => 'view', $survey['SurveyType']['id'])); ?>&nbsp;</td>
+                        array('controller' => 'SurveyTypes', 'action' => 'view', $survey['SurveyType']['id'])); ?>&nbsp;</td>
 		
 		<td><?php echo h($survey['SurveyType']['descr']); ?>&nbsp;</td>
 		<td><?php echo h($survey['SurveyType']['code']); ?>&nbsp;</td>

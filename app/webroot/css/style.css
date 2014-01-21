@@ -1,0 +1,20 @@
+@charset "utf-8";
+/**
+ *
+ * @developer: Mushfiqur Rahman(mushfique.sust@gmail.com)
+ * @ shaiun.com
+ */
+  
+ div.add_prod_field{
+     float:left;
+     clear: none;
+     margin-right:15px;
+ }
+ 
+ input.code{
+     width: 100px;
+ }
+ 
+ input.descr{
+     width: 400px;
+ }

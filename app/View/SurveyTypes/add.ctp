@@ -4,8 +4,9 @@
 		<legend><?php echo __('Add Survey Type'); ?></legend>
 	<?php
 		echo $this->Form->input('title');		
-		echo $this->Form->input('descr');
+		echo $this->Form->input('descr', array('required' => false));
 		echo $this->Form->input('code');
+                echo $this->Form->input('Part', array('required' => true));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

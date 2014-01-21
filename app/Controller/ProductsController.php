@@ -47,8 +47,9 @@ class ProductsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+                    //pr($this->request->data);exit;
 			$this->Product->create();
-			if ($this->Product->save($this->request->data)) {
+			if ($this->Product->saveMany($this->request->data)) {
 				$this->Session->setFlash(__('The product has been saved'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
@@ -80,9 +81,7 @@ class ProductsController extends AppController {
 		} else {
 			$options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
 			$this->request->data = $this->Product->find('first', $options);
-		}
-		$tasks = $this->Product->Task->find('list');
-		$this->set(compact('tasks'));
+		}		
 	}
 
 /**

@@ -122,20 +122,13 @@ class Survey extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Category' => array(
-			'className' => 'Category',
-			'foreignKey' => 'category_id',
+		'SurveyType' => array(
+			'className' => 'SurveyType',
+			'foreignKey' => 'survey_type_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
-		'Subcategory' => array(
-			'className' => 'Subcategory',
-			'foreignKey' => 'subcategory_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
+		),		
 		'Outlet' => array(
 			'className' => 'Outlet',
 			'foreignKey' => 'outlet_id',
