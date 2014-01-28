@@ -60,7 +60,7 @@ class DATABASE_CONFIG {
 		'persistent' => false,
 		'host' => 'localhost',
 		'login' => 'root',
-		'password' => '',
+		'password' => '1111',
 		'database' => '2014_survey_system',
 		'prefix' => '',
 		//'encoding' => 'utf8',

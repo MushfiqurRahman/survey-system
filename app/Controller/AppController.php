@@ -45,5 +45,7 @@ class AppController extends Controller {
             AuthComponent::ALL => array('userModel' => 'User', 'scope' => array('User.status' => 1), 'contain' => array('Role')),
             'Form' => array('fields' => array('username' => 'email'))
         );
+        
+        //just going to see git command
     }
 }
