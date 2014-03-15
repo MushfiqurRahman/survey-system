@@ -101,4 +101,8 @@ class RegionsController extends AppController {
 		$this->Session->setFlash(__('Region was not deleted'));
 		return $this->redirect(array('action' => 'index'));
 	}
+        
+        public function import_universe(){
+            
+        }
 }

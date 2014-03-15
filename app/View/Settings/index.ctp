@@ -4,6 +4,7 @@
         <li><?php echo $this->Html->link('Survey Attributes', array('controller' => 'SurveyAttributes', 'action' => 'index'));?></li>
         <li><?php echo $this->Html->link('Tasks', array('controller' => 'Tasks', 'action' => 'index'));?></li>
         <li><?php echo $this->Html->link('Parts', array('controller' => 'Parts', 'action' => 'index'));?></li>        
+        <li><?php echo $this->Html->link('Import Universe', array('controller' => 'Regions', 'action' => 'import_universe'));?></li>
      </ul>
 </div>
 <div class="settings index">
