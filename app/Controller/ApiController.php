@@ -14,21 +14,31 @@ App::uses('AppController', 'Controller');
 class ApiController extends AppController {
     //put your code here
     
+    //Those outlets given at login time
+    var $loggedInOutlets = array();
+    
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $this->layout = $this->autoRender = false;
+        $this->Auth->allow('*');
+    }
+    
     public function login(){
+        //$this->layout = $this->autoRender = false;
+        $this->loggedInOutlets = array();
         $response = array();
         $response['success'] = true;
         if( $this->_is_valid_user_code() ){
             if( $this->_is_valid_outlet_codes() ){
-                
+                $response['outlets'] = $this->loggedInOutlets;
             }else{
                 $response['success'] = false;
                 $response['message'] = 'Invaid Outlet Code! Please insert valid outlet codes.';
             }
         }else{
             $response['success'] = false;
-            $response['message'] = 'Empty User Code is not allowed! Please give valid User Code';
+            $response['message'] = 'Invalid User code! Please give valid User Code';
         }
-        
         echo json_encode($response);
     }
     
@@ -52,9 +62,54 @@ class ApiController extends AppController {
      */
     protected function _is_valid_outlet_codes(){
         if( isset($this->request->data['outlet_codes']) && !empty($this->request->data['outlet_codes']) ){
-            //$outletCodes = explo
+            $outletCodes = explode(",", $this->request->data['outlet_codes']);
+            
+            $this->loadModel('Outlet');
+
+            $this->Outlet->Behaviors->load('Containable');
+            
+            foreach($outletCodes as $oC){
+                $outlet = $this->Outlet->find('first', array('contain' => array(
+                    'Town' => array(
+                        'fields' => array('id','territory_id','title'),
+                        'Territory' => array(
+                            'fields' => array('id','region_id','title'),
+                            'Region' => array('fields' => array('id','title')),
+                        )
+                    ),                
+                    'OutletType' => array('fields' => array('id','title')),
+                ),
+                'fields' => array('id','town_id','name','address','dms_code', 'class'),
+                'conditions' => array('Outlet.dms_code' => $oC),
+                'order' => array('Outlet.name' => 'ASC')));
+                
+                if( $outlet ){
+                    $this->_format_for_frontEnd($outlet);
+                }
+            }
+            if( empty($this->loggedInOutlets) ){
+                return false;
+            }else{
+                return true;
+            }
         }
         return false;
+    }
+    
+    /**
+     * 
+     * @param type $outlet
+     */
+    protected function _format_for_frontEnd($outlet){
+        $i = count($this->loggedInOutlets);
+        $this->loggedInOutlets[$i]['region'] = $outlet['Town']['Territory']['Region']['title'];
+        $this->loggedInOutlets[$i]['territory'] = $outlet['Town']['Territory']['title'];
+        $this->loggedInOutlets[$i]['town'] = $outlet['Town']['title'];
+        $this->loggedInOutlets[$i]['name'] = $outlet['Outlet']['name'];
+        $this->loggedInOutlets[$i]['address'] = $outlet['Outlet']['address'];
+        $this->loggedInOutlets[$i]['outlet_type'] = $outlet['OutletType']['title'];
+        $this->loggedInOutlets[$i]['dms_code'] = $outlet['Outlet']['dms_code'];
+        $this->loggedInOutlets[$i]['class'] = $outlet['Outlet']['class'];
     }
 
 
