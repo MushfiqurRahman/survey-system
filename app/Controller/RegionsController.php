@@ -117,6 +117,8 @@ class RegionsController extends AppController {
                         	
                             if( $this->_import($renamed_f_name) ){
                                 
+                                $this->log(print_r($this->outlets, true),'error');
+                                
                                 if( $this->Region->Territory->Town->Outlet->saveMany($this->outlets) ){
                                     $this->Session->setFlash(__('Data import successful.'));
                                 }else{
