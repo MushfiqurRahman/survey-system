@@ -51,7 +51,7 @@ class Outlet extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'outlet_code' => array(
+		'dms_code' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -171,5 +171,4 @@ class Outlet extends AppModel {
 			'insertQuery' => ''
 		)
 	);
-
 }

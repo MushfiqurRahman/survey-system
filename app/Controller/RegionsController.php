@@ -104,6 +104,9 @@ class RegionsController extends AppController {
 		return $this->redirect(array('action' => 'index'));
 	}
         
+        /**
+         * 
+         */
         public function import_universe(){
             if( $this->request->is('post') ){
                 if( !empty($this->request->data['Region']['xls_file']) ){
@@ -161,54 +164,54 @@ class RegionsController extends AppController {
             //echo $totalRow; exit;
             
             //for($i=2; $i<=$totalRow; $i++){                
-            for($i=5; $i<=$totalRow; $i++){    
+            for($i=6; $i<=$totalRow; $i++){    
                 
-                $this->outlets[$i-5]['Outlet'] = array();
+                $this->outlets[$i-6]['Outlet'] = array();
                 
                 for($j=1;$j<10;$j++){
                     
                     switch($j){
                         case 1:
-                            $regionId = $this->_save_region(strtolower(trim( $objWorksheet->getCellByColumnAndRow(1,$i)->getValue())));
+                            $regionId = $this->_save_region(strtolower(trim( $objWorksheet->getCellByColumnAndRow($j,$i)->getValue())));
                             break;
                         
                         case 2:
-                            $territoryId = $this->_save_territory(strtolower(trim( $objWorksheet->getCellByColumnAndRow(1,$i)->getValue())), $regionId);
+                            $territoryId = $this->_save_territory(strtolower(trim( $objWorksheet->getCellByColumnAndRow($j,$i)->getValue())), $regionId);
                             break;
                         
                         case 3:
-                            $this->outlets[$i-5]['Outlet']['town_id'] = 
-                                $this->_save_town(strtolower(trim( $objWorksheet->getCellByColumnAndRow(1,$i)->getValue())), $territoryId);
+                            $this->outlets[$i-6]['Outlet']['town_id'] = 
+                                $this->_save_town(strtolower(trim( $objWorksheet->getCellByColumnAndRow($j,$i)->getValue())), $territoryId);
                             break;
                         
                         case 4:
-                            $this->outlets[$i-5]['Outlet']['name'] = 
-                                strtolower(trim($objWorksheet->getCellByColumnAndRow(1,$i)->getValue()));
+                            $this->outlets[$i-6]['Outlet']['name'] = 
+                                strtolower(trim($objWorksheet->getCellByColumnAndRow($j,$i)->getValue()));
                             break;
                         
                         case 5:
-                            $this->outlets[$i-5]['Outlet']['address'] = 
-                                strtolower(trim($objWorksheet->getCellByColumnAndRow(1,$i)->getValue()));
+                            $this->outlets[$i-6]['Outlet']['address'] = 
+                                strtolower(trim($objWorksheet->getCellByColumnAndRow($j,$i)->getValue()));
                             break;
                         
                         case 6:
-                            $this->outlets[$i-5]['Outlet']['outlet_type_id'] = 
-                                $this->_outlet_type_id(strtolower(trim($objWorksheet->getCellByColumnAndRow(1,$i)->getValue())));
+                            $this->outlets[$i-6]['Outlet']['outlet_type_id'] = 
+                                $this->_save_outlet_type(strtolower(trim($objWorksheet->getCellByColumnAndRow($j,$i)->getValue())));
                             break;
                         
                         case 7:
-                            $this->outlets[$i-5]['Outlet']['phone'] = 
-                                strtolower(trim($objWorksheet->getCellByColumnAndRow(1,$i)->getValue()));
+                            $this->outlets[$i-6]['Outlet']['phone'] = 
+                                strtolower(trim($objWorksheet->getCellByColumnAndRow($j,$i)->getValue()));
                             break;
                         
                         case 8:
-                            $this->outlets[$i-5]['Outlet']['class'] = 
-                                strtolower(trim($objWorksheet->getCellByColumnAndRow(1,$i)->getValue()));
+                            $this->outlets[$i-6]['Outlet']['class'] = 
+                                strtolower(trim($objWorksheet->getCellByColumnAndRow($j,$i)->getValue()));
                             break;
                         
                         case 9:
-                            $this->outlets[$i-5]['Outlet']['dms_code'] = 
-                                strtolower(trim($objWorksheet->getCellByColumnAndRow(1,$i)->getValue()));
+                            $this->outlets[$i-6]['Outlet']['dms_code'] = 
+                                strtolower(trim($objWorksheet->getCellByColumnAndRow($j,$i)->getValue()));
                             break;
                     }
                 }             
@@ -225,16 +228,14 @@ class RegionsController extends AppController {
          * Enter description here ...
          * @param unknown_type $region
          */
-        protected function _save_region( $region ){            
-            foreach($this->regions as $rg){
-                if( $rg == $region ){
-                    return $this->regions[$region];//contains the region id
-                }
-            }            
-            $region['Region']['title'] = $region;
+        protected function _save_region( $regionTitle ){   
+            if( !empty($this->regions) && isset($this->regions[$regionTitle]) ){
+                return $this->regions[$regionTitle];
+            }
+            $region['Region']['title'] = $regionTitle;
             $this->Region->create();
             $this->Region->save($region);
-            $this->regions[$region] = $this->Region->id;
+            $this->regions[$regionTitle] = $this->Region->id;
             return $this->Region->id;
         }
         
@@ -244,12 +245,10 @@ class RegionsController extends AppController {
          * @param unknown_type $area
          */
 	protected function _save_territory( $territory, $regionId ){
-            foreach($this->territories as $tr){
-                if( $tr == $territory ){
-                    return $this->territories[$territory];//contains the territory id
-                }
-            }            
-            $Trtr['Territory']['title'] = $region;
+            if( !empty($this->territories) && isset($this->territories[$territory]) ){
+                return $this->territories[$territory];
+            }
+            $Trtr['Territory']['title'] = $territory;
             $Trtr['Territory']['region_id'] = $regionId;
             $this->Region->Territory->create();
             $this->Region->Territory->save($Trtr);
@@ -262,20 +261,30 @@ class RegionsController extends AppController {
          * Enter description here ...
          */
 	protected function _save_town( $town, $territoryId ){
-            foreach($this->towns as $tw){
-                if( $tw == $town ){
-                    return $this->towns[$tw];//contains the town id
-                }
-            }            
-            $Twn['Town']['title'] = $region;
-            $Twn['Town']['territory_id'] = $regionId;
+            if( !empty($this->towns) && isset($this->towns[$town])){
+                return $this->towns[$town];
+            }
+            $Twn['Town']['title'] = $town;
+            $Twn['Town']['territory_id'] = $territoryId;
             $this->Region->Territory->Town->create();
             $this->Region->Territory->Town->save($Twn);
             $this->towns[$town] = $this->Region->Territory->Town->id;
             return $this->Region->Territory->Town->id;
         }
         
+        /**
+         * 
+         * @param array $type
+         * @return type
+         */
         protected function _save_outlet_type($type){
-            
+            if( !empty($this->outletTypes) && isset($this->outletTypes[$type])){
+                return $this->outletTypes[$type];
+            }
+            $outType['OutletType']['title'] = $type;
+            $this->Region->Territory->Town->Outlet->OutletType->create();
+            $this->Region->Territory->Town->Outlet->OutletType->save($outType);
+            $this->outletTypes[$type] = $this->Region->Territory->Town->Outlet->OutletType->id;
+            return $this->Region->Territory->Town->Outlet->OutletType->id;
         }
 }
