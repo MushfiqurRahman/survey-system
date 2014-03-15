@@ -1,2 +1,2 @@
-1394856397
-a:2:{s:4:"name";a:8:{s:32:"456912b1df100d7edc5e25956424ac6f";s:20:"`2014_survey_system`";s:32:"45229ba2b78fa583316810af70b1ba8a";s:10:"`settings`";s:32:"d90a97712423d29de976586d60774df9";s:14:"`Setting`.`id`";s:32:"360d754600e8c156a04735c4f22d0b15";s:25:"`Setting`.`variable_name`";s:32:"427b41f760c13a1e3acd73eec76439f9";s:26:"`Setting`.`variable_label`";s:32:"820739db13161364ad7d6cdf080f838e";s:17:"`Setting`.`value`";s:32:"692079467ab98076f281b394f21d493e";s:9:"`Setting`";s:32:"47eb7bb09414c64f779510914712b6ee";s:7:"`count`";}s:6:"fields";a:2:{s:32:"b30e51c35027b6f85c0898031896873e";a:4:{i:0;s:14:"`Setting`.`id`";i:1;s:25:"`Setting`.`variable_name`";i:2;s:26:"`Setting`.`variable_label`";i:3;s:17:"`Setting`.`value`";}s:32:"c397ff4a6d58fef72d7f21cf4b0b2d16";a:1:{i:0;s:19:"COUNT(*) AS `count`";}}}
+1394883952
+a:1:{s:4:"name";a:2:{s:32:"456912b1df100d7edc5e25956424ac6f";s:20:"`2014_survey_system`";s:32:"976fd89e2c4c73a0e8f3638485c299c7";s:9:"`regions`";}}

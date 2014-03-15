@@ -48,3 +48,53 @@ Stack Trace:
 #14 /home/mushfique/public_html/survey-system/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(UsersController), Object(CakeRequest), Object(CakeResponse))
 #15 /home/mushfique/public_html/survey-system/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #16 {main}
+2014-03-15 07:46:37 Error: Fatal Error (1): Class 'ZipArchive' not found in [/home/mushfique/public_html/2014/survey-system/app/Vendor/PHPExcel/Classes/PHPExcel/Reader/Excel2007.php, line 497]
+2014-03-15 07:46:37 Error: [FatalErrorException] Class 'ZipArchive' not found
+Request URL: /mushfique/2014/survey-system/Regions/import_universe
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Class 'ZipArchi...', '/home/mushfique...', 497)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'ZipArchi...', '/home/mushfique...', 497, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 1, 'Class 'ZipArchi...', '/home/mushfique...', 497, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-03-15 10:11:35 Error: Fatal Error (1): Allowed memory size of 262144 bytes exhausted (tried to allocate 28672 bytes) in [/home/mushfique/public_html/2014/survey-system/app/Vendor/PHPExcel/Classes/PHPExcel/Reader/Excel2007.php, line 553]
+2014-03-15 10:11:35 Error: [FatalErrorException] Allowed memory size of 262144 bytes exhausted (tried to allocate 28672 bytes)
+Request URL: /mushfique/2014/survey-system/Regions/import_universe
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Allowed memory ...', '/home/mushfique...', 553)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', '/home/mushfique...', 553, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', '/home/mushfique...', 553, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-03-15 10:11:40 Error: Fatal Error (1): Allowed memory size of 262144 bytes exhausted (tried to allocate 28672 bytes) in [/home/mushfique/public_html/2014/survey-system/app/Vendor/PHPExcel/Classes/PHPExcel/Reader/Excel2007.php, line 553]
+2014-03-15 10:11:40 Error: [FatalErrorException] Allowed memory size of 262144 bytes exhausted (tried to allocate 28672 bytes)
+Request URL: /mushfique/2014/survey-system/Regions/import_universe
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Allowed memory ...', '/home/mushfique...', 553)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', '/home/mushfique...', 553, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', '/home/mushfique...', 553, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-03-15 10:11:48 Error: Fatal Error (1): Allowed memory size of 262144 bytes exhausted (tried to allocate 28672 bytes) in [/home/mushfique/public_html/2014/survey-system/app/Vendor/PHPExcel/Classes/PHPExcel/Reader/Excel2007.php, line 553]
+2014-03-15 10:11:48 Error: [FatalErrorException] Allowed memory size of 262144 bytes exhausted (tried to allocate 28672 bytes)
+Request URL: /mushfique/2014/survey-system/Regions/import_universe
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Allowed memory ...', '/home/mushfique...', 553)
+#1 [internal function]: ErrorHandler::handleError(1, 'Allowed memory ...', '/home/mushfique...', 553, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 1, 'Allowed memory ...', '/home/mushfique...', 553, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-03-15 12:22:31 Error: Fatal Error (1): Maximum execution time of 30 seconds exceeded in [/home/mushfique/public_html/2014/survey-system/app/Vendor/PHPExcel/Classes/PHPExcel/Cell.php, line 737]
+2014-03-15 12:22:31 Error: [FatalErrorException] Maximum execution time of 30 seconds exceeded
+Request URL: /mushfique/2014/survey-system/Regions/import_universe
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Maximum executi...', '/home/mushfique...', 737)
+#1 [internal function]: ErrorHandler::handleError(1, 'Maximum executi...', '/home/mushfique...', 737, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 1, 'Maximum executi...', '/home/mushfique...', 737, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
