@@ -16,6 +16,7 @@ class ApiController extends AppController {
     
     //Those outlets given at login time
     var $loggedInOutlets = array();
+    var $outletCounter = -1;
     
     public function beforeFilter() {
         parent::beforeFilter();
@@ -64,11 +65,15 @@ class ApiController extends AppController {
         if( isset($this->request->data['outlet_codes']) && !empty($this->request->data['outlet_codes']) ){
             $outletCodes = explode(",", $this->request->data['outlet_codes']);
             
+//            $this->log(print_r($outletCodes,true),'error');exit;         
+            
             $this->loadModel('Outlet');
 
             $this->Outlet->Behaviors->load('Containable');
             
             foreach($outletCodes as $oC){
+                
+                $oC = trim($oC);
                 $outlet = $this->Outlet->find('first', array('contain' => array(
                     'Town' => array(
                         'fields' => array('id','territory_id','title'),
@@ -101,15 +106,17 @@ class ApiController extends AppController {
      * @param type $outlet
      */
     protected function _format_for_frontEnd($outlet){
-        $i = count($this->loggedInOutlets);
-        $this->loggedInOutlets[$i]['region'] = $outlet['Town']['Territory']['Region']['title'];
-        $this->loggedInOutlets[$i]['territory'] = $outlet['Town']['Territory']['title'];
-        $this->loggedInOutlets[$i]['town'] = $outlet['Town']['title'];
-        $this->loggedInOutlets[$i]['name'] = $outlet['Outlet']['name'];
-        $this->loggedInOutlets[$i]['address'] = $outlet['Outlet']['address'];
-        $this->loggedInOutlets[$i]['outlet_type'] = $outlet['OutletType']['title'];
-        $this->loggedInOutlets[$i]['dms_code'] = $outlet['Outlet']['dms_code'];
-        $this->loggedInOutlets[$i]['class'] = $outlet['Outlet']['class'];
+        
+        $this->outletCounter++;
+        $this->loggedInOutlets[$this->outletCounter]['id'] = $outlet['Outlet']['id'];
+        $this->loggedInOutlets[$this->outletCounter]['region'] = $outlet['Town']['Territory']['Region']['title'];
+        $this->loggedInOutlets[$this->outletCounter]['territory'] = $outlet['Town']['Territory']['title'];
+        $this->loggedInOutlets[$this->outletCounter]['town'] = $outlet['Town']['title'];
+        $this->loggedInOutlets[$this->outletCounter]['name'] = $outlet['Outlet']['name'];
+        $this->loggedInOutlets[$this->outletCounter]['address'] = $outlet['Outlet']['address'];
+        $this->loggedInOutlets[$this->outletCounter]['outlet_type'] = $outlet['OutletType']['title'];
+        $this->loggedInOutlets[$this->outletCounter]['dms_code'] = $outlet['Outlet']['dms_code'];
+        $this->loggedInOutlets[$this->outletCounter]['class'] = $outlet['Outlet']['class'];
     }
 
 

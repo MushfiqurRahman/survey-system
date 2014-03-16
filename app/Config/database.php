@@ -62,7 +62,14 @@ class DATABASE_CONFIG {
 		'login' => 'root',
 		'password' => '1111',
 		'database' => '2014_survey_system',
-		'prefix' => '',
+//                'login' => 'ferat11_survey',
+//		'password' => 'survey2014',
+//		'database' => 'ferat11_survey_system',
+            
+//                            'login' => 'eporasho_survey',
+//		'password' => 'survey2014',
+//		'database' => 'eporasho_survey_system',
+//		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
 
