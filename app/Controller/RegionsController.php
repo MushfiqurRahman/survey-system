@@ -16,6 +16,13 @@ class RegionsController extends AppController {
 	public $components = array('Paginator');
         
         var $regions, $territories, $towns, $outlets, $outletTypes;
+        
+        /*
+         * truncate towns;
+truncate territories;
+truncate regions;
+truncate outlets;
+         */
 
 /**
  * index method
@@ -117,13 +124,14 @@ class RegionsController extends AppController {
                         	
                             if( $this->_import($renamed_f_name) ){
                                 
-                                $this->log(print_r($this->outlets, true),'error');
+                                //$this->log(print_r($this->outlets, true),'error');
                                 
-                                if( $this->Region->Territory->Town->Outlet->saveMany($this->outlets) ){
+                                //if( $this->Region->Territory->Town->Outlet->saveMany($this->outlets) ){
                                     $this->Session->setFlash(__('Data import successful.'));
-                                }else{
-                                    $this->Session->setFlash(__('Data saving failed!'));
-                                }
+                                    $this->_unimported_outlets();
+//                                }else{
+//                                    $this->Session->setFlash(__('Data saving failed!'));
+//                                }
                             }else{
                                 $this->Session->setFlash(__('Data import failed!'));
                             }
@@ -137,6 +145,17 @@ class RegionsController extends AppController {
                     $this->Session->setFlash(__('You have not selected any file to upload.'));
                 }
             }
+        }
+        
+        protected function _unimported_outlets(){
+            echo 'The following outlets can not be imported';
+            echo '<pre>';
+            foreach($this->outlets as $outlet){
+                if( isset($outlet['Outlet']['save_failed']) ){
+                    print_r($outlet);
+                }
+            }
+            echo '</pre>';
         }
         
         /**
@@ -165,12 +184,9 @@ class RegionsController extends AppController {
             
             //echo $totalRow; exit;
             
-            //for($i=2; $i<=$totalRow; $i++){                
-            //for($i=7; $i<=$totalRow; $i++){    
-            for($i=7; $i<=17; $i++){    
+            for($i=7; $i<=$totalRow; $i++){    
                 
                 $this->outlets[$i-7]['Outlet'] = array();
-                
                 
                 for($j=1;$j<10;$j++){
                     
@@ -222,6 +238,11 @@ class RegionsController extends AppController {
                 
                 if( empty($this->outlets[$i-7]['Outlet']['town_id']) ){
                     unset($this->outlets[$i-7]);
+                }else{
+                    $this->Region->Territory->Town->Outlet->create();
+                    if( !$this->Region->Territory->Town->Outlet->save($this->outlets[$i-7]['Outlet']) ){
+                        $this->outlets[$i-7]['Outlet']['save_failed'] = true;
+                    }
                 }
             }
             $endTime = microtime(true);
@@ -241,6 +262,7 @@ class RegionsController extends AppController {
                     isset($this->regions[ strtolower($regionTitle) ])) ){
                 return $this->regions[$regionTitle];
             }
+            //before save we should check whether data is already saved in the previous months or not
             $region['Region']['title'] = $regionTitle;
             $this->Region->create();
             $this->Region->save($region);
@@ -258,6 +280,7 @@ class RegionsController extends AppController {
                     isset($this->territories[ strtolower($territory) ]) ) ){
                 return $this->territories[$territory];
             }
+            //before save we should check whether data is already saved in the previous months or not
             $Trtr['Territory']['title'] = $territory;
             $Trtr['Territory']['region_id'] = $regionId;
             $this->Region->Territory->create();
@@ -275,6 +298,7 @@ class RegionsController extends AppController {
                     isset($this->towns[ strtolower($town) ]) )){
                 return $this->towns[$town];
             }
+            //before save we should check whether data is already saved in the previous months or not
             $Twn['Town']['title'] = $town;
             $Twn['Town']['territory_id'] = $territoryId;
             $this->Region->Territory->Town->create();
@@ -293,6 +317,7 @@ class RegionsController extends AppController {
                     isset($this->outletTypes[ strtolower($type) ])) ){
                 return $this->outletTypes[$type];
             }
+            //before save we should check whether data is already saved in the previous months or not
             $outType['OutletType']['title'] = $type;
             $this->Region->Territory->Town->Outlet->OutletType->create();
             $this->Region->Territory->Town->Outlet->OutletType->save($outType);
