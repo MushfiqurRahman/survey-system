@@ -44,6 +44,17 @@ class Task extends AppModel {
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
+        
+        public $belongsTo = array(
+		'FrontEndMenu' => array(
+			'className' => 'FrontEndMenu',
+			'foreignKey' => 'front_end_menu_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+                        'dependent' => true
+		)
+	);
 
 /**
  * hasAndBelongsToMany associations
