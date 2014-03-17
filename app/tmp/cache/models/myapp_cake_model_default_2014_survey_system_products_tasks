@@ -1,2 +1,2 @@
-1390942729
+1395036087
 a:2:{s:7:"task_id";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";N;s:6:"length";i:11;}s:10:"product_id";a:4:{s:4:"type";s:7:"integer";s:4:"null";b:0;s:7:"default";N;s:6:"length";i:11;}}

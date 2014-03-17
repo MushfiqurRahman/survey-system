@@ -54,13 +54,13 @@ class SurveyDetail extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-		'Survey' => array(
-			'className' => 'Survey',
-			'foreignKey' => 'survey_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
+//		'Survey' => array(
+//			'className' => 'Survey',
+//			'foreignKey' => 'survey_id',
+//			'conditions' => '',
+//			'fields' => '',
+//			'order' => ''
+//		),
 		'QuestionDetail' => array(
 			'className' => 'QuestionDetail',
 			'foreignKey' => 'question_detail_id',

@@ -18,26 +18,28 @@ class ApiController extends AppController {
     var $loggedInOutlets = array();
     var $outletCounter = -1;
     
+    
+    
     public function beforeFilter() {
         parent::beforeFilter();
         $this->layout = $this->autoRender = false;
-        $this->Auth->allow('*');
+        $this->Auth->allow('api_login');
     }
     
-    public function login(){
-        //$this->layout = $this->autoRender = false;
+    public function api_login(){
+        $this->layout = $this->autoRender = false;
         $this->loggedInOutlets = array();
         $response = array();
-        $response['success'] = true;
+        $response['status'] = true;
         if( $this->_is_valid_user_code() ){
             if( $this->_is_valid_outlet_codes() ){
                 $response['outlets'] = $this->loggedInOutlets;
             }else{
-                $response['success'] = false;
+                $response['status'] = false;
                 $response['message'] = 'Invaid Outlet Code! Please insert valid outlet codes.';
             }
         }else{
-            $response['success'] = false;
+            $response['status'] = false;
             $response['message'] = 'Invalid User code! Please give valid User Code';
         }
         echo json_encode($response);

@@ -63,19 +63,19 @@ class SurveyType extends AppModel {
  * @var array
  */
 	public $hasMany = array(		
-		'Survey' => array(
-			'className' => 'Survey',
-			'foreignKey' => 'survey_type_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
+//		'Survey' => array(
+//			'className' => 'Survey',
+//			'foreignKey' => 'survey_type_id',
+//			'dependent' => false,
+//			'conditions' => '',
+//			'fields' => '',
+//			'order' => '',
+//			'limit' => '',
+//			'offset' => '',
+//			'exclusive' => '',
+//			'finderQuery' => '',
+//			'counterQuery' => ''
+//		),
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'survey_type_id',
