@@ -5,10 +5,11 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('title');
+                echo $this->Form->input('front_end_menu_id');
 		echo $this->Form->input('descr');
 		echo $this->Form->input('is_optional');
 		echo $this->Form->input('task_join_type');
-		echo $this->Form->input('SurveyType');
+		//echo $this->Form->input('SurveyType');
 		echo $this->Form->input('Task');
 	?>
 	</fieldset>

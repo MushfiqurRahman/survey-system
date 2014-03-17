@@ -4,6 +4,7 @@
 		<legend><?php echo __('Add Part'); ?></legend>
 	<?php
 		echo $this->Form->input('title');
+                echo $this->Form->input('front_end_menu_id');
 		echo $this->Form->input('descr');
 		echo $this->Form->input('is_optional');
 		echo $this->Form->input('task_join_type', array('type' => 'select',

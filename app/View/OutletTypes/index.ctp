@@ -4,7 +4,8 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('title'); ?></th>
-			<th><?php echo $this->Paginator->sort('descr'); ?></th>
+			<th><?php echo $this->Paginator->sort('class'); ?></th>
+                        <th><?php echo $this->Paginator->sort('descr'); ?></th>
 			<th><?php echo $this->Paginator->sort('created'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
@@ -12,6 +13,7 @@
 	<tr>
 		<td><?php echo h($outletType['OutletType']['id']); ?>&nbsp;</td>
 		<td><?php echo h($outletType['OutletType']['title']); ?>&nbsp;</td>
+                <td><?php echo h($outletType['OutletType']['class']); ?>&nbsp;</td>
 		<td><?php echo h($outletType['OutletType']['descr']); ?>&nbsp;</td>
 		<td><?php echo h($outletType['OutletType']['created']); ?>&nbsp;</td>
 		<td class="actions">

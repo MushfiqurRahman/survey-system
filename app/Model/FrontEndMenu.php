@@ -42,8 +42,15 @@ class FrontEndMenu extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'Task' => array(
-			'className' => 'Task',
+//		'Task' => array(
+//			'className' => 'Task',
+//			'foreignKey' => 'front_end_menu_id',
+//			'conditions' => '',
+//			'fields' => '',
+//			'order' => ''
+//		)
+            'Part' => array(
+			'className' => 'Part',
 			'foreignKey' => 'front_end_menu_id',
 			'conditions' => '',
 			'fields' => '',

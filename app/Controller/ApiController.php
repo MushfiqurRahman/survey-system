@@ -18,6 +18,8 @@ class ApiController extends AppController {
     var $loggedInOutlets = array();
     var $outletCounter = -1;
     
+    var $hardCodedFormData = array();
+    
     
     
     public function beforeFilter() {
@@ -118,12 +120,23 @@ class ApiController extends AppController {
         $this->loggedInOutlets[$this->outletCounter]['address'] = $outlet['Outlet']['address'];
         $this->loggedInOutlets[$this->outletCounter]['outlet_type'] = $outlet['OutletType']['title'];
         $this->loggedInOutlets[$this->outletCounter]['dms_code'] = $outlet['Outlet']['dms_code'];
-        $this->loggedInOutlets[$this->outletCounter]['class'] = $outlet['Outlet']['class'];
+        $this->loggedInOutlets[$this->outletCounter]['classType'] = $outlet['Outlet']['class'];
+    }
+        
+    protected function _get_must_sku(){
+        return array(
+            array(
+                'sku_title' => '',
+                'sku_code' => '',
+                'outlet_type' => '','is_new' => 0
+            ),
+            
+        );
     }
 
 
     public function fetch_data(){
-        
+        $this->hardCodedFormData['must_sku'] = array();
     }
     
     public function receive_survey_data(){

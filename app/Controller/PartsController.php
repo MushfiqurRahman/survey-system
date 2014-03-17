@@ -57,8 +57,10 @@ class PartsController extends AppController {
 			}
 		}
 		//$surveyTypes = $this->Part->SurveyType->find('list');
-		$tasks = $this->Part->Task->find('list');
-		$this->set(compact('surveyTypes', 'tasks'));
+		$tasks = $this->Part->Task->taskListWithOutletType();
+                $frontEndMenus = $this->Part->FrontEndMenu->find('list');
+                //pr($tasks);exit;
+		$this->set(compact('surveyTypes', 'tasks', 'frontEndMenus'));
 	}
 
 /**
@@ -83,9 +85,10 @@ class PartsController extends AppController {
 			$options = array('conditions' => array('Part.' . $this->Part->primaryKey => $id));
 			$this->request->data = $this->Part->find('first', $options);
 		}
-		$surveyTypes = $this->Part->SurveyType->find('list');
-		$tasks = $this->Part->Task->find('list');
-		$this->set(compact('surveyTypes', 'tasks'));
+		//$surveyTypes = $this->Part->SurveyType->find('list');
+		$tasks = $this->Part->Task->taskListWithOutletType();
+                $frontEndMenus = $this->Part->FrontEndMenu->find('list');
+		$this->set(compact('surveyTypes', 'tasks', 'frontEndMenus'));
 	}
 
 /**

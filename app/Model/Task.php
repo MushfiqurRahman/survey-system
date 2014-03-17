@@ -14,6 +14,8 @@ class Task extends AppModel {
  * @var string
  */
 	public $displayField = 'title';
+        
+        public $outletTypes = array();
 
 /**
  * Validation rules
@@ -46,9 +48,17 @@ class Task extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
         
         public $belongsTo = array(
-		'FrontEndMenu' => array(
-			'className' => 'FrontEndMenu',
-			'foreignKey' => 'front_end_menu_id',
+//		'FrontEndMenu' => array(
+//			'className' => 'FrontEndMenu',
+//			'foreignKey' => 'front_end_menu_id',
+//			'conditions' => '',
+//			'fields' => '',
+//			'order' => '',
+//                        'dependent' => true
+//		),
+                'OutletType' => array(
+			'className' => 'OutletType',
+			'foreignKey' => 'outlet_type_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -102,6 +112,36 @@ class Task extends AppModel {
             }else{
                 return false;
             }
+        }
+        
+        protected function _get_outlet_type( $outletTypeId ){
+            foreach($this->outletTypes as $outletType){
+                if( $outletType['OutletType']['id'] == $outletTypeId ){
+                    if( $outletType['OutletType']['class'] ){
+                        return $outletType['OutletType']['title'].'_'.$outletType['OutletType']['class'];
+                    }else{
+                        return $outletType['OutletType']['title'];
+                    }
+                }
+            }
+        }
+
+
+        public function taskListWithOutletType(){
+            $this->outletTypes = $this->OutletType->find('all', array('fields' => array(
+                'id','title','class'), 'recursive' => -1));
+            
+            $taskWithOutletType = array();
+            
+            $tasks = $this->find('all', array('fields' => array('id','title','outlet_type_id'),
+                'recursive' => -1));
+            
+            foreach($tasks as $task){
+                $taskWithOutletType[ $task['Task']['id'] ] = $task['Task']['title'] .' --> '.
+                        $this->_get_outlet_type($task['Task']['outlet_type_id']);
+            }
+            
+            return $taskWithOutletType;
         }
 
 }

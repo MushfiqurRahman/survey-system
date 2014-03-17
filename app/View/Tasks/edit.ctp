@@ -6,6 +6,8 @@
             
 		echo $this->Form->input('id');
 		echo $this->Form->input('title');
+                echo $this->Form->input('outlet_type_id');
+//                echo $this->Form->input('front_end_menu_id');
 		echo $this->Form->input('descr');
                 echo $this->Form->input('guide_lines', array('rows' => 3));
 		//echo $this->Form->input('surv_attr_ids');

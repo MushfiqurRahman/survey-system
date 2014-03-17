@@ -52,7 +52,35 @@ class OutletType extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		)
+		),
+            'Task' => array(
+                'className' => 'Task',
+                'foreignKey' => 'outlet_type_id',
+                'dependent' => false,
+                'conditions' => '',
+                'fields' => '',
+                'order' => '',
+                'limit' => '',
+                'offset' => '',
+                'exclusive' => '',
+                'finderQuery' => '',
+                'counterQuery' => ''
+            )
 	);
+        
+        public function getOutletTypes(){
+            $outletTypes = array();
+            $types = $this->find('all', array('fields' => array('id','title','class'),
+                'recursive' => -1));
+            
+            foreach($types as $type){
+                if( $type['OutletType']['class'] ){
+                    $outletTypes[ $type['OutletType']['id'] ] = $type['OutletType']['title'].'_'.$type['OutletType']['class'];
+                }else{
+                    $outletTypes[ $type['OutletType']['id'] ] = $type['OutletType']['title'];
+                }
+            }
+            return $outletTypes;
+        }
 
 }

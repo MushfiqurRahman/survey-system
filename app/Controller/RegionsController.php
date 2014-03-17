@@ -16,12 +16,14 @@ class RegionsController extends AppController {
 	public $components = array('Paginator');
         
         var $regions, $territories, $towns, $outlets, $outletTypes;
-        
+        var $outletTypeCount = -1;
         /*
-         * truncate towns;
-truncate territories;
-truncate regions;
-truncate outlets;
+         * 
+         * truncate table outlet_types;
+truncate table outlets;
+truncate table regions;
+truncate table territories;
+truncate table towns;
          */
 
 /**
@@ -216,7 +218,9 @@ truncate outlets;
                         
                         case 6:
                             $this->outlets[$i-7]['Outlet']['outlet_type_id'] = 
-                                $this->_save_outlet_type(trim($objWorksheet->getCellByColumnAndRow($j,$i)->getValue()));
+                                $this->_save_outlet_type(
+                                        trim($objWorksheet->getCellByColumnAndRow($j,$i)->getValue()),
+                                        trim($objWorksheet->getCellByColumnAndRow($j+2,$i)->getValue()));
                             break;
                         
                         case 7:
@@ -312,16 +316,33 @@ truncate outlets;
          * @param array $type
          * @return type
          */
-        protected function _save_outlet_type($type){
-            if( !empty($this->outletTypes) && ( isset($this->outletTypes[$type]) ||
-                    isset($this->outletTypes[ strtolower($type) ])) ){
-                return $this->outletTypes[$type];
+        protected function _save_outlet_type($type, $class=''){
+//            if( !empty($this->outletTypes) && ( isset($this->outletTypes[$type]) ||
+//                    isset($this->outletTypes[ strtolower($type) ])) ){
+//                return $this->outletTypes[$type];
+//            }
+            $class = trim($class);
+            if( !empty($this->outletTypes) ){
+                foreach( $this->outletTypes as $outT){
+                    if( ($outT['type']==$type && $outT['class']==$class) || 
+                        ($outT['type']==strtolower($type) && strtolower($outT['class'])==$class) ){
+                        return $outT['id'];
+                    }
+                }
             }
-            //before save we should check whether data is already saved in the previous months or not
+            
+
+//before save we should check whether data is already saved in the previous months or not
             $outType['OutletType']['title'] = $type;
+            $outType['OutletType']['class'] = $class;
             $this->Region->Territory->Town->Outlet->OutletType->create();
             $this->Region->Territory->Town->Outlet->OutletType->save($outType);
-            $this->outletTypes[$type] = $this->Region->Territory->Town->Outlet->OutletType->id;
+            
+            $this->outletTypeCount++;
+            $this->outletTypes[$this->outletTypeCount]['id'] = $this->Region->Territory->Town->Outlet->OutletType->id;
+            $this->outletTypes[$this->outletTypeCount]['type'] = $type;
+            $this->outletTypes[$this->outletTypeCount]['class'] = $class;
+            
             return $this->Region->Territory->Town->Outlet->OutletType->id;
         }
 }

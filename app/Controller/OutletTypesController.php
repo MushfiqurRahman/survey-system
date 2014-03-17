@@ -22,6 +22,7 @@ class OutletTypesController extends AppController {
  */
 	public function index() {
 		$this->OutletType->recursive = 0;
+                $this->paginate = array('order' => array('OutletType.tytle' => 'ASC'));//not working
 		$this->set('outletTypes', $this->Paginator->paginate());
 	}
 

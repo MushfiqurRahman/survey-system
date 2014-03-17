@@ -58,8 +58,11 @@ class TasksController extends AppController {
 			}
 		}
                 $surveyAttribs = $this->Task->getSurveyAttribs();
-		$products = $this->Task->Product->find('list');
-		$this->set(compact('surveyAttribs', 'products'));
+		//$products = $this->Task->Product->find('list');
+                $products = $this->Task->Product->productsListWithSku();
+//                $frontEndMenus = $this->Task->FrontEndMenu->find('list');
+                $outletTypes = $this->Task->OutletType->getOutletTypes();
+		$this->set(compact('surveyAttribs', 'products', 'outletTypes'));
 	}
 
 /**
@@ -86,7 +89,9 @@ class TasksController extends AppController {
 		}
 		$surveyAttribs = $this->Task->getSurveyAttribs();
 		$products = $this->Task->Product->find('list');
-		$this->set(compact('surveyAttribs', 'products'));
+                $outletTypes = $this->Task->OutletType->getOutletTypes();
+//                $frontEndMenus = $this->Task->FrontEndMenu->find('list');
+		$this->set(compact('surveyAttribs', 'products', 'outletTypes'));
 	}
 
 /**

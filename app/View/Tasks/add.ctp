@@ -4,6 +4,8 @@
 		<legend><?php echo __('Add Task'); ?></legend>
 	<?php
 		echo $this->Form->input('title');
+                echo $this->Form->input('outlet_type_id');
+//                echo $this->Form->input('front_end_menu_id');
 		echo $this->Form->input('descr');
 		echo $this->Form->input('guide_lines', array('rows' => '3'));
                 

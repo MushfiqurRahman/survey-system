@@ -70,5 +70,15 @@ class Product extends AppModel {
 			'insertQuery' => ''
 		)
 	);
+        
+        public function productsListWithSku(){
+            $products = $this->find('all', array('fields' => array('id','title','sku'), 'recursive' => -1));
+            $productsList = array();
+            
+            foreach($products as $pd){
+                $productsList[ $pd['Product']['id'] ] = $pd['Product']['title'] . '---->' .$pd['Product']['sku'];
+            }
+            return $productsList;
+        }
 
 }
