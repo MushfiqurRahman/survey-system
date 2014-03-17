@@ -18,6 +18,9 @@ class ApiController extends AppController {
     var $loggedInOutlets = array();
     var $outletCounter = -1;
     
+    var $frontEndMenus;
+    var $dataForFrontEnd = array();
+    
     var $hardCodedFormData = array();
     
     
@@ -25,7 +28,7 @@ class ApiController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         $this->layout = $this->autoRender = false;
-        $this->Auth->allow('api_login');
+        $this->Auth->allow('api_login', 'get_form_data');
     }
     
     public function api_login(){
@@ -135,8 +138,28 @@ class ApiController extends AppController {
     }
 
 
-    public function fetch_data(){
-        $this->hardCodedFormData['must_sku'] = array();
+    public function get_form_data(){
+        $this->layout = $this->autoRender = false;
+        $this->loadModel('Part');
+        $this->Part->Behaviors->load('Containable');
+        $this->frontEndMenus = $this->Part->FrontEndMenu->find('list');
+        
+        foreach($this->frontEndMenus as $k => $menu){
+            //pr($this->Part->find('all',array('conditions' => array('Part.front_end_menu_id' => $k))));
+            
+            pr($this->Part->find('all', array('contain' => array(
+                
+                'Task' => array(
+                    'fields' => array('id','outlet_type_id',),
+                    'Product' => array('fields' => array(
+                        'id','title','sku'
+                     )),
+                    'fields' => array('id', 'outlet_type_id','title'),
+                ),
+                ),
+                'conditions' => array('Part.front_end_menu_id' => $k),)));
+        }
+        echo '<br/>---------------------------------<br/>';
     }
     
     public function receive_survey_data(){

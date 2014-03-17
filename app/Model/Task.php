@@ -104,7 +104,7 @@ class Task extends AppModel {
 		)
 	);
         
-        public function beforeSave(){
+        public function beforeSave($options = array()){
             if( !empty($this->data['Task']['surv_attr_ids']) ){
                 $this->data['Task']['surv_attr_ids'] = serialize($this->data['Task']['surv_attr_ids']);
                 
@@ -143,5 +143,4 @@ class Task extends AppModel {
             
             return $taskWithOutletType;
         }
-
 }
