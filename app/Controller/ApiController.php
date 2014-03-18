@@ -171,9 +171,9 @@ class ApiController extends AppController {
             if( !empty($menuData) ){
                 $this->_format_sku_for_front_end($menuData, $menu);
             }
-        }
-        
-        pr($this->dataForFrontEnd);
+        }        
+//        pr($this->dataForFrontEnd);
+        echo json_encode($this->dataForFrontEnd);
     }
     
     function _format_sku_for_front_end($menuData, $menu){
