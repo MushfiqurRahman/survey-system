@@ -12,7 +12,6 @@
 		<td><?php echo h($program['Program']['id']); ?>&nbsp;</td>
 		<td><?php echo h($program['Program']['title']); ?>&nbsp;</td>
 		<td><?php echo h($program['Program']['descr']); ?>&nbsp;</td>
-		<td><?php echo h($program['Program']['sku']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $program['Program']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $program['Program']['id'])); ?>

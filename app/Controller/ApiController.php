@@ -22,7 +22,7 @@ class ApiController extends AppController {
     var $dataForFrontEnd = array();
     
 //    var $menuItemCounter = array();
-    var $skuCounter = 0;
+    var $counter = array();
     
     var $hardCodedFormData = array();
     
@@ -131,11 +131,10 @@ class ApiController extends AppController {
     /**
      * 
      */
-//    protected function _initialize_counter(){
-//        foreach($this->frontEndMenus as $k => $v){
-//            $this->menuItemCounter[$v] = 0;
-//        }
-//    }
+    protected function _initialize_counter(){
+        $this->counter['sku_counter'] = $this->counter['trade_promotion_counter'] = 0;
+        $this->counter['pop_items_counter'] = $this->counter['hot_spot_counter'] = 0;
+    }
 
 
     public function get_form_data(){
@@ -144,7 +143,9 @@ class ApiController extends AppController {
         $this->Part->Behaviors->load('Containable');
         $this->frontEndMenus = $this->Part->FrontEndMenu->find('list', array('fields' => array('id','menu_code')));
         
-//        $this->_initialize_counter();
+        $this->_initialize_counter();
+        
+        $this->_get_trade_promotions();exit;
         
         foreach($this->frontEndMenus as $k => $menu){
             //pr($this->Part->find('all',array('conditions' => array('Part.front_end_menu_id' => $k))));
@@ -179,20 +180,39 @@ class ApiController extends AppController {
                 
                 if( isset($task['Product']) && count($task['Product'])>0 ){
                     foreach($task['Product'] as $product){                        
-                        $this->dataForFrontEnd['Sku'][ $this->skuCounter ]['id'] = $product['id'];
-                        $this->dataForFrontEnd['Sku'][ $this->skuCounter ]['sku_title'] = $product['title'];
-                        $this->dataForFrontEnd['Sku'][ $this->skuCounter ]['sku_code'] = $product['sku'];
-                        $this->dataForFrontEnd['Sku'][ $this->skuCounter ]['outlet_type'] = $task['OutletType']['title'];
-                        $this->dataForFrontEnd['Sku'][ $this->skuCounter ]['front_end_menu'] = $menu;
-                        $this->dataForFrontEnd['Sku'][ $this->skuCounter ]['group_id'] = $groupId;//for set purpose
+                        $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['id'] = $product['id'];
+                        $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['sku_title'] = $product['title'];
+                        $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['sku_code'] = $product['sku'];
+                        $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['outlet_type'] = $task['OutletType']['title'];
+                        $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['front_end_menu'] = $menu;
+                        $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['group_id'] = $groupId;//for set purpose
                         //$this->menuItemCounter[$menu]++;
-                        $this->skuCounter++;
+                        $this->counter['sku_counter']++;
                     }
                 }
             }
         }
-        
     }
+    
+    protected function _get_trade_promotions(){
+        $this->loadModel('Program');
+        $tradePromotionItems = $this->Program->find('all');
+        foreach( $tradePromotionItems as $promoItem){
+            $this->dataForFrontEnd['TradePromotion'][ $this->counter['trade_promotion_counter'] ]['program_name'] = $promoItem['Program']['title'];
+            $this->counter['trade_promotion_counter']++;
+        }
+    }
+    
+//    protected function _get_pop_items(){
+//        Near/In front of Entrance
+//        Beside/Adjacent Cash Counter
+//        Eye Level of Consumers
+//        Clearly Visible/No obstacle in front of the shelf
+//    }
+//    
+//    protected function _get_hot_spots(){
+//        $this->dataForFrontEnd['TradePromotion'] = array();
+//    }
     
 //    protected function _get_outlet_type( $outletTypeId ){
 //        
