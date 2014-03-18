@@ -5,10 +5,9 @@
         <group>
             <file>file:/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php</file>
             <file>file:/home/mushfique/public_html/2014/survey-system/app/Controller/RegionsController.php</file>
-            <file>file:/home/mushfique/public_html/2014/survey-system/index.php</file>
+            <file>file:/home/mushfique/public_html/2014/survey-system/app/View/Programs/index.ctp</file>
             <file>file:/home/mushfique/public_html/2014/survey-system/app/Controller/ApiController.php</file>
             <file>file:/home/mushfique/public_html/2014/survey-system/app/tmp/logs/error.log</file>
-            <file>file:/home/mushfique/public_html/2014/survey-system/app/View/Settings/index.ctp</file>
         </group>
     </open-files>
 </project-private>

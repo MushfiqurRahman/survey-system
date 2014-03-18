@@ -1,0 +1,9 @@
+2014-03-18 10:12:15 Error: [MissingControllerException] Controller class HotSpotsController could not be found.
+Exception Attributes: array (
+  'class' => 'HotSpotsController',
+  'plugin' => NULL,
+)
+Request URL: /mushfique/2014/survey-system/HotSpots
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

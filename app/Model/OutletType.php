@@ -68,6 +68,40 @@ class OutletType extends AppModel {
             )
 	);
         
+        public $hasAndBelongsToMany = array(
+		'HotSpot' => array(
+			'className' => 'HotSpot',
+			'joinTable' => 'hot_spots_outlet_types',
+			'foreignKey' => 'outlet_type_id',
+			'associationForeignKey' => 'hot_spot_id',
+			'unique' => 'keepExisting',
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		),
+		'PopItem' => array(
+			'className' => 'PopItem',
+			'joinTable' => 'outlet_types_pop_items',
+			'foreignKey' => 'outlet_type_id',
+			'associationForeignKey' => 'pop_item_id',
+			'unique' => 'keepExisting',
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		),	
+		
+	);
+        
         public function getOutletTypes(){
             $outletTypes = array();
             $types = $this->find('all', array('fields' => array('id','title','class'),
