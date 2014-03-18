@@ -21,9 +21,10 @@ class ApiController extends AppController {
     var $frontEndMenus;
     var $dataForFrontEnd = array();
     
+//    var $menuItemCounter = array();
+    var $skuCounter = 0;
+    
     var $hardCodedFormData = array();
-    
-    
     
     public function beforeFilter() {
         parent::beforeFilter();
@@ -65,6 +66,7 @@ class ApiController extends AppController {
     }
     
     /**
+     * @used: in api_login method of this controller
      * 
      * @return boolean
      */
@@ -96,7 +98,7 @@ class ApiController extends AppController {
                 'order' => array('Outlet.name' => 'ASC')));
                 
                 if( $outlet ){
-                    $this->_format_for_frontEnd($outlet);
+                    $this->_format_outlets_for_frontEnd($outlet);
                 }
             }
             if( empty($this->loggedInOutlets) ){
@@ -112,7 +114,7 @@ class ApiController extends AppController {
      * 
      * @param type $outlet
      */
-    protected function _format_for_frontEnd($outlet){
+    protected function _format_outlets_for_frontEnd($outlet){
         
         $this->outletCounter++;
         $this->loggedInOutlets[$this->outletCounter]['id'] = $outlet['Outlet']['id'];
@@ -125,43 +127,82 @@ class ApiController extends AppController {
         $this->loggedInOutlets[$this->outletCounter]['dms_code'] = $outlet['Outlet']['dms_code'];
         $this->loggedInOutlets[$this->outletCounter]['classType'] = $outlet['Outlet']['class'];
     }
-        
-    protected function _get_must_sku(){
-        return array(
-            array(
-                'sku_title' => '',
-                'sku_code' => '',
-                'outlet_type' => '','is_new' => 0
-            ),
-            
-        );
-    }
+    
+    /**
+     * 
+     */
+//    protected function _initialize_counter(){
+//        foreach($this->frontEndMenus as $k => $v){
+//            $this->menuItemCounter[$v] = 0;
+//        }
+//    }
 
 
     public function get_form_data(){
         $this->layout = $this->autoRender = false;
         $this->loadModel('Part');
         $this->Part->Behaviors->load('Containable');
-        $this->frontEndMenus = $this->Part->FrontEndMenu->find('list');
+        $this->frontEndMenus = $this->Part->FrontEndMenu->find('list', array('fields' => array('id','menu_code')));
+        
+//        $this->_initialize_counter();
         
         foreach($this->frontEndMenus as $k => $menu){
             //pr($this->Part->find('all',array('conditions' => array('Part.front_end_menu_id' => $k))));
             
-            pr($this->Part->find('all', array('contain' => array(
-                
+            $menuData = $this->Part->find('all', array('contain' => array(
                 'Task' => array(
-                    'fields' => array('id','outlet_type_id',),
+                    'fields' => array('id', 'outlet_type_id','title'),
+//                    'fields' => array('id','outlet_type_id',),
                     'Product' => array('fields' => array(
                         'id','title','sku'
                      )),
-                    'fields' => array('id', 'outlet_type_id','title'),
+                    
+                    'OutletType' => array('fields' => array(
+                        'id','title'
+                    )),
                 ),
                 ),
-                'conditions' => array('Part.front_end_menu_id' => $k),)));
+                'conditions' => array('Part.front_end_menu_id' => $k),));
+            //pr($menuData);
+            
+            if( !empty($menuData) ){
+                $this->_format_sku_for_front_end($menuData, $menu);
+            }
         }
-        echo '<br/>---------------------------------<br/>';
+        
+        //pr($this->dataForFrontEnd);
     }
     
+    function _format_sku_for_front_end($menuData, $menu){
+        if( isset($menuData[0]['Task']) ){
+            foreach( $menuData[0]['Task'] as $groupId => $task ){
+                
+                if( isset($task['Product']) && count($task['Product'])>0 ){
+                    foreach($task['Product'] as $product){                        
+                        $this->dataForFrontEnd['Sku'][ $this->skuCounter ]['id'] = $product['id'];
+                        $this->dataForFrontEnd['Sku'][ $this->skuCounter ]['sku_title'] = $product['title'];
+                        $this->dataForFrontEnd['Sku'][ $this->skuCounter ]['sku_code'] = $product['sku'];
+                        $this->dataForFrontEnd['Sku'][ $this->skuCounter ]['outlet_type'] = $task['OutletType']['title'];
+                        $this->dataForFrontEnd['Sku'][ $this->skuCounter ]['front_end_menu'] = $menu;
+                        $this->dataForFrontEnd['Sku'][ $this->skuCounter ]['group_id'] = $groupId;//for set purpose
+                        //$this->menuItemCounter[$menu]++;
+                        $this->skuCounter++;
+                    }
+                }
+            }
+        }
+        
+    }
+    
+//    protected function _get_outlet_type( $outletTypeId ){
+//        
+//    }
+
+
+
+
+
+
     public function receive_survey_data(){
         
     }
