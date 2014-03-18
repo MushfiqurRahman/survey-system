@@ -133,7 +133,7 @@ class ApiController extends AppController {
      */
     protected function _initialize_counter(){
         $this->counter['sku_counter'] = $this->counter['trade_promotion_counter'] = 0;
-        $this->counter['pop_items_counter'] = $this->counter['hot_spot_counter'] = 0;
+        $this->counter['pop_item_counter'] = $this->counter['hot_spot_counter'] = 0;
     }
 
 
@@ -145,7 +145,9 @@ class ApiController extends AppController {
         
         $this->_initialize_counter();
         
-        $this->_get_trade_promotions();exit;
+        $this->_get_trade_promotions();
+        $this->_get_pop_items();
+        $this->_get_hot_spots();
         
         foreach($this->frontEndMenus as $k => $menu){
             //pr($this->Part->find('all',array('conditions' => array('Part.front_end_menu_id' => $k))));
@@ -171,7 +173,7 @@ class ApiController extends AppController {
             }
         }
         
-        //pr($this->dataForFrontEnd);
+        pr($this->dataForFrontEnd);
     }
     
     function _format_sku_for_front_end($menuData, $menu){
@@ -203,26 +205,56 @@ class ApiController extends AppController {
         }
     }
     
-//    protected function _get_pop_items(){
-//        Near/In front of Entrance
-//        Beside/Adjacent Cash Counter
-//        Eye Level of Consumers
-//        Clearly Visible/No obstacle in front of the shelf
-//    }
-//    
-//    protected function _get_hot_spots(){
-//        $this->dataForFrontEnd['TradePromotion'] = array();
-//    }
+    protected function _get_pop_items(){
+        $this->loadModel('PopItem');
+        $this->PopItem->Behaviors->load('Containable');
+        
+        $popItems = $this->PopItem->find('all', array('contain' => array(
+            'OutletType' => array(
+                'fields' => array('id','title'),
+            ),),
+            'fields' => array('id','head','descr'),));
+        
+        if( !empty($popItems) ){
+            foreach($popItems as $pItem){
+                foreach($pItem['OutletType'] as $outletType){
+                    $this->dataForFrontEnd['PopItem'][ $this->counter['pop_item_counter'] ]['head'] = $pItem['PopItem']['head'];
+                    $this->dataForFrontEnd['PopItem'][ $this->counter['pop_item_counter'] ]['descr'] = $pItem['PopItem']['descr'];
+                    $this->dataForFrontEnd['PopItem'][ $this->counter['pop_item_counter'] ]['outlet_type'] = $outletType['title'];
+                    $this->counter['pop_item_counter']++;
+                }
+            }
+        }
+    }
     
-//    protected function _get_outlet_type( $outletTypeId ){
-//        
-//    }
-
-
-
-
-
-
+    protected function _get_hot_spots(){
+        $this->loadModel('HotSpot');
+        $this->HotSpot->Behaviors->load('Containable');
+        
+        $hotSpots = $this->HotSpot->find('all', array('contain' => array(
+            'OutletType' => array(
+                'fields' => array('id','title'),
+            ),           
+            ),
+            'fields' => array('id','head','descr', 'first_compliance', 'second_compliance'),));
+        
+        if( !empty($hotSpots) ){
+            foreach($hotSpots as $hSpot){
+                foreach($hSpot['OutletType'] as $outletType){
+                    $this->dataForFrontEnd['HotSpot'][ $this->counter['hot_spot_counter'] ]['head'] = $hSpot['HotSpot']['head'];
+                    $this->dataForFrontEnd['HotSpot'][ $this->counter['hot_spot_counter'] ]['descr'] = $hSpot['HotSpot']['descr'];
+                    $this->dataForFrontEnd['HotSpot'][ $this->counter['hot_spot_counter'] ]['first_compliance'] = $hSpot['HotSpot']['first_compliance'];
+                    $this->dataForFrontEnd['HotSpot'][ $this->counter['hot_spot_counter'] ]['second_compliance'] = $hSpot['HotSpot']['second_compliance'];
+                    $this->dataForFrontEnd['HotSpot'][ $this->counter['hot_spot_counter'] ]['outlet_type'] = $outletType['title'];
+                    $this->counter['hot_spot_counter']++;
+                }
+            }
+        }
+    }
+    
+    /**
+     * 
+     */
     public function receive_survey_data(){
         
     }
