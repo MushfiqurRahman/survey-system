@@ -10,17 +10,35 @@
 	?>      
                 <div id="product_fields">
                     
-                    <div class="add_prod_field">
+<!--                    <div class="add_prod_field">
                         <label>Title</label>
-                        <input type="text" size="40" name="data[0][HotSpot][title]" required="required"/>
+                        <input type="text" size="40" name="data[0][HotSpot][head]" required="required"/>
                     </div>
 
                     <div class="add_prod_field">
                         <label>Description</label>
-                        <input type="text" class="descr" name="data[0][HotSpot][descr]"/>
+                        <input type="text" class="descr" required="required" name="data[0][HotSpot][descr]"/>
                     </div>
                     
-                    <?php echo $this->Form->input('OutletType', array('required' => true, 'size' => 13));?>
+                    <div class="add_prod_field">
+                        <label>First Comliance</label>
+                        <input type="text" class="first_compliance" size="30" name="data[0][HotSpot][first_compliance]" required="required"/>
+                    </div>
+                    
+                    <div class="add_prod_field">
+                        <label>Second Compliance</label>
+                        <input type="text" class="first_compliance" size="30"  name="data[0][HotSpot][second_compliance]"/>
+                    </div>-->
+                    
+                    <?php 
+                    
+                    echo $this->Form->input('head', array('required' => true, 'size' => '30'));
+                    echo $this->Form->input('descr', array('required' => true, 'size' => '30'));
+                    echo $this->Form->input('first_compliance', array('required' => true, 'size' => '30'));
+                    echo $this->Form->input('second_compliance', array('size' => '30'));
+                    
+                    echo $this->Form->input('OutletType', array('required' => true, 'size' => 13,
+                        'type' => 'select', 'options' => $OutletType, 'multiple' => true));?>
                     
                     
                 </div>

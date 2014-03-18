@@ -50,7 +50,7 @@ class PopItemsController extends AppController {
 		if ($this->request->is('post')) {
                     //pr($this->request->data);exit;
 			$this->PopItem->create();
-			if ($this->PopItem->saveMany($this->request->data)) {
+			if ($this->PopItem->save($this->request->data)) {
 				$this->Session->setFlash(__('The pop_item has been saved'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
@@ -82,6 +82,8 @@ class PopItemsController extends AppController {
 		} else {
 			$options = array('conditions' => array('PopItem.' . $this->PopItem->primaryKey => $id));
 			$this->request->data = $this->PopItem->find('first', $options);
+                        $outletTypes = $this->PopItem->OutletType->getOutletTypes();
+                $this->set('OutletType', $outletTypes);
 		}		
 	}
 

@@ -9,20 +9,11 @@
 //		echo $this->Form->input('sku', array('size' => 20));
 	?>      
                 <div id="product_fields">
-                    
-                    <div class="add_prod_field">
-                        <label>Title</label>
-                        <input type="text" size="40" name="data[0][PopItem][head]" required="required"/>
-                    </div>
-
-                    <div class="add_prod_field">
-                        <label>Description</label>
-                        <input type="text" class="descr" required="required" name="data[0][PopItem][descr]"/>
-                    </div>
-                </div>
-                
-                <div>
-                    <?php echo $this->Form->input('OutletType', array('required' => true, 'size' => 13));?>
+                    <?php
+                        echo $this->Form->input('head', array('required' => true));
+                        echo $this->Form->input('descr', array('required' => true));
+                        echo $this->Form->input('OutletType', array('required' => true, 'size' => 13,
+                        'type' => 'select', 'options' => $OutletType, 'multiple' => true));?>
                 </div>
                 
 <!--                <div>

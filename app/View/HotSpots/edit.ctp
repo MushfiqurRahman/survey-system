@@ -3,10 +3,14 @@
 	<fieldset>
 		<legend><?php echo __('Edit HotSpot'); ?></legend>
 	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('title');
-		echo $this->Form->input('descr');
-	?>
+            echo $this->Form->input('id');
+		echo $this->Form->input('head', array('required' => true, 'size' => '30'));
+                    echo $this->Form->input('descr', array('required' => true, 'size' => '30'));
+                    echo $this->Form->input('first_compliance', array('required' => true, 'size' => '30'));
+                    echo $this->Form->input('second_compliance', array('size' => '30'));
+                    
+                    echo $this->Form->input('OutletType', array('required' => true, 'size' => 13,
+                        'type' => 'select', 'options' => $OutletType, 'multiple' => true));?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
 </div>

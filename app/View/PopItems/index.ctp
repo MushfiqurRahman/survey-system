@@ -3,14 +3,14 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('title'); ?></th>
+			<th><?php echo $this->Paginator->sort('head'); ?></th>
 			<th><?php echo $this->Paginator->sort('descr'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
 	<?php foreach ($pop_items as $pop_item): ?>
 	<tr>
 		<td><?php echo h($pop_item['PopItem']['id']); ?>&nbsp;</td>
-		<td><?php echo h($pop_item['PopItem']['title']); ?>&nbsp;</td>
+		<td><?php echo h($pop_item['PopItem']['head']); ?>&nbsp;</td>
 		<td><?php echo h($pop_item['PopItem']['descr']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $pop_item['PopItem']['id'])); ?>
