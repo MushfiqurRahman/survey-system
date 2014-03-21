@@ -1,5 +1,5 @@
 <div class="subsets index">
-	<h2><?php echo __('Subsets'); pr($subsets);?></h2>
+	<h2><?php echo __('Subsets');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>

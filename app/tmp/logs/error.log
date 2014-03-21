@@ -1,10 +1,68 @@
-2014-03-21 09:22:35 Error: Fatal Error (1): Call to a member function find() on a non-object in [/home/mushfique/public_html/2014/survey-system/app/Controller/SubsetsController.php, line 58]
-2014-03-21 09:22:35 Error: [FatalErrorException] Call to a member function find() on a non-object
-Request URL: /mushfique/2014/survey-system/Subsets/add
-Stack Trace:
-#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/home/mushfique...', 58)
-#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/home/mushfique...', 58, Array)
-#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/home/mushfique...', 58, Array)
-#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
-#4 [internal function]: App::shutdown()
-#5 {main}
+2014-03-21 10:27:57 Error: Array
+(
+    [Subset] => Array
+        (
+            [title] => FAL Cream RNG
+            [task_id] => 2
+        )
+
+    [Product] => Array
+        (
+            [Product] => Array
+                (
+                    [0] => 17
+                    [1] => 18
+                    [2] => 19
+                    [3] => 22
+                )
+
+        )
+
+)
+
+2014-03-21 10:27:57 Error: After sort.........
+2014-03-21 10:27:57 Error: Array
+(
+    [Subset] => Array
+        (
+            [title] => FAL Cream RNG
+            [task_id] => 2
+        )
+
+    [Product] => Array
+        (
+            [Product] => Array
+                (
+                    [0] => 17
+                    [1] => 18
+                    [2] => 19
+                    [3] => 22
+                )
+
+        )
+
+)
+
+2014-03-21 10:27:57 Error: Array
+(
+    [Subset] => Array
+        (
+            [title] => FAL Cream RNG
+            [task_id] => 2
+            [active_sku_code] => 403
+        )
+
+    [Product] => Array
+        (
+            [Product] => Array
+                (
+                    [0] => 17
+                    [1] => 18
+                    [2] => 19
+                    [3] => 22
+                )
+
+        )
+
+)
+

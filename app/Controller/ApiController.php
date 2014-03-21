@@ -150,30 +150,33 @@ class ApiController extends AppController {
         $this->_get_hot_spots();
         
         foreach($this->frontEndMenus as $k => $menu){
+            if( $menu=='hot_spots' || $menu=='pop_items' || $menu=='trade_promotion' )
+                continue;
             //pr($this->Part->find('all',array('conditions' => array('Part.front_end_menu_id' => $k))));
             
             $menuData = $this->Part->find('all', array('contain' => array(
                 'Task' => array(
                     'fields' => array('id', 'outlet_type_id','title'),
-//                    'fields' => array('id','outlet_type_id',),
                     'Product' => array('fields' => array(
                         'id','title','sku'
                      )),
-                    
+                    'Subset' => array('fields' => 
+                        array('id','task_id','active_sku_code'),
+                        'Product' => array('id','title','sku')),
                     'OutletType' => array('fields' => array(
-                        'id','title'
+                        'id','title'                ),
+
                     )),
                 ),
-                ),
                 'conditions' => array('Part.front_end_menu_id' => $k),));
-            //pr($menuData);
+            pr($menuData);
             
             if( !empty($menuData) ){
                 $this->_format_sku_for_front_end($menuData, $menu);
             }
         }        
 //        pr($this->dataForFrontEnd);
-        echo json_encode($this->dataForFrontEnd);
+        //echo json_encode($this->dataForFrontEnd);
     }
     
     function _format_sku_for_front_end($menuData, $menu){
@@ -181,15 +184,39 @@ class ApiController extends AppController {
         if( isset($menuData[0]['Task']) ){
             foreach( $menuData[0]['Task'] as $groupId => $task ){
                 
-                if( isset($task['Product']) && count($task['Product'])>0 ){
+                if( isset($task['Subset']) && !empty($task['Subset']) ){
+                    foreach( $task['Subset'] as $subset){
+                        
+                        foreach($subset['Product'] as $product){
+                            $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['id'] = $product['id'];
+                            $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['sku_title'] = $product['title'];
+                            $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['sku_code'] = $product['sku'];
+                            $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['outlet_type'] = $task['OutletType']['title'];
+                            $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['front_end_menu'] = $menu;
+                            //$this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['group_id'] = $groupId;//for set purpose
+                            $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['task_id'] = $task['id'];//for set purpose
+                            $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['subset_id'] = $subset['id'];
+                            if( $product['sku']== $subset['active_sku_code']){
+                                $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['is_active_sku'] = 1;
+                            }else{
+                                $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['is_active_sku'] = 0;
+                            }                            
+                            $this->counter['sku_counter']++;
+                        }
+                    }
+                }
+                else if( isset($task['Product']) && count($task['Product'])>0 ){
                     foreach($task['Product'] as $product){                        
                         $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['id'] = $product['id'];
                         $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['sku_title'] = $product['title'];
                         $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['sku_code'] = $product['sku'];
                         $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['outlet_type'] = $task['OutletType']['title'];
                         $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['front_end_menu'] = $menu;
-                        $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['group_id'] = $groupId;//for set purpose
-                        //$this->menuItemCounter[$menu]++;
+                        //$this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['group_id'] = $groupId;//for set purpose
+                        $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['task_id'] = $task['id'];//for set purpose
+                        $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['subset_id'] = -1;                        
+                        $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['is_active_sku'] = -1;
+                        
                         $this->counter['sku_counter']++;
                     }
                 }

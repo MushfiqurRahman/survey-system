@@ -79,4 +79,19 @@ class Subset extends AppModel {
 		)
 	);
         
+        protected function _get_active_sku_code($productId ){
+            return $this->Product->field('sku',array('Product.id' => $productId));
+        }
+        
+        //'active_sku_code' means for which sku of a set spinner sill be shown
+        public function beforeSave($options = array()) {
+            if( isset($this->data['Product']['Product']) && !empty($this->data['Product']['Product']) ){
+                sort($this->data['Product']['Product']);
+                $totalProducts = count($this->data['Product']['Product']);
+                $middleIndex = (int)$totalProducts/2;
+                $this->data['Subset']['active_sku_code'] = $this->_get_active_sku_code($this->data['Product']['Product'][$middleIndex]);
+            }
+            return true;
+        }
+        
 }

@@ -58,7 +58,6 @@ class TasksController extends AppController {
 			}
 		}
                 $surveyAttribs = $this->Task->getSurveyAttribs();
-		//$products = $this->Task->Product->find('list');
                 $products = $this->Task->Product->productsListWithSku();
 //                $frontEndMenus = $this->Task->FrontEndMenu->find('list');
                 $outletTypes = $this->Task->OutletType->getOutletTypes();
@@ -87,10 +86,9 @@ class TasksController extends AppController {
 			$options = array('conditions' => array('Task.' . $this->Task->primaryKey => $id));
 			$this->request->data = $this->Task->find('first', $options);
 		}
-		$surveyAttribs = $this->Task->getSurveyAttribs();
-		$products = $this->Task->Product->find('list');
+                $surveyAttribs = $this->Task->getSurveyAttribs();
+                $products = $this->Task->Product->productsListWithSku();
                 $outletTypes = $this->Task->OutletType->getOutletTypes();
-//                $frontEndMenus = $this->Task->FrontEndMenu->find('list');
 		$this->set(compact('surveyAttribs', 'products', 'outletTypes'));
 	}
 
