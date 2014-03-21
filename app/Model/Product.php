@@ -87,7 +87,9 @@ class Product extends AppModel {
 	);
         
         public function productsListWithSku(){
-            $products = $this->find('all', array('fields' => array('id','title','sku'), 'recursive' => -1));
+            $products = $this->find('all', array('fields' => array('id','title','sku'),
+                'order' => array('sku'),
+                'recursive' => -1));
             $productsList = array();
             
             foreach($products as $pd){

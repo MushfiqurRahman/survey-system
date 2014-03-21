@@ -4,8 +4,9 @@
 		<legend><?php echo __('Edit Subset'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('territory_id');
-		echo $this->Form->input('title');
+		echo $this->Form->input('title', array('style' => 'width:600px;'));
+                echo $this->Form->input('task_id', array('style' => 'width:600px;'));
+                echo $this->Form->input('Product', array('size' => 40));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

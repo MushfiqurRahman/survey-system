@@ -1,25 +1,23 @@
-<div class="towns index">
-	<h2><?php echo __('Subsets'); ?></h2>
+<div class="subsets index">
+	<h2><?php echo __('Subsets'); pr($subsets);?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('territory_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('title'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
+			<th><?php echo $this->Paginator->sort('subset'); ?></th>
+			<th><?php echo $this->Paginator->sort('task'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	<?php foreach ($towns as $town): ?>
+	<?php foreach ($subsets as $subset): ?>
 	<tr>
-		<td><?php echo h($town['Subset']['id']); ?>&nbsp;</td>
+		<td><?php echo h($subset['Subset']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($town['Territory']['title'], array('controller' => 'territories', 'action' => 'view', $town['Territory']['id'])); ?>
+			<?php echo $this->Html->link($subset['Subset']['title'], array('controller' => 'subsets', 'action' => 'view', $subset['Subset']['id'])); ?>
 		</td>
-		<td><?php echo h($town['Subset']['title']); ?>&nbsp;</td>
-		<td><?php echo h($town['Subset']['created']); ?>&nbsp;</td>
+		<td><?php echo h($subset['Task']['title']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $town['Subset']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $town['Subset']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $town['Subset']['id']), null, __('Are you sure you want to delete # %s?', $town['Subset']['id'])); ?>
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $subset['Subset']['id'])); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $subset['Subset']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $subset['Subset']['id']), null, __('Are you sure you want to delete # %s?', $subset['Subset']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

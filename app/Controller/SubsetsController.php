@@ -55,8 +55,9 @@ class SubsetsController extends AppController {
 				$this->Session->setFlash(__('The subset could not be saved. Please, try again.'));
 			}
 		}
-		$territories = $this->Subset->Territory->find('list');
-		$this->set(compact('territories'));
+		$tasks = $this->Subset->Task->taskListWithOutletType();
+                $products = $this->Subset->Product->productsListWithSku();
+		$this->set(compact('tasks', 'products'));
 	}
 
 /**
@@ -81,8 +82,9 @@ class SubsetsController extends AppController {
 			$options = array('conditions' => array('Subset.' . $this->Subset->primaryKey => $id));
 			$this->request->data = $this->Subset->find('first', $options);
 		}
-		$territories = $this->Subset->Territory->find('list');
-		$this->set(compact('territories'));
+		$tasks = $this->Subset->Task->taskListWithOutletType();
+                $products = $this->Subset->Product->productsListWithSku();
+		$this->set(compact('tasks', 'products'));
 	}
 
 /**
