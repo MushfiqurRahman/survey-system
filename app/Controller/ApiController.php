@@ -169,18 +169,18 @@ class ApiController extends AppController {
                     )),
                 ),
                 'conditions' => array('Part.front_end_menu_id' => $k),));
-            pr($menuData);
+            //pr($menuData);
             
             if( !empty($menuData) ){
                 $this->_format_sku_for_front_end($menuData, $menu);
             }
         }        
-//        pr($this->dataForFrontEnd);
+        pr($this->dataForFrontEnd);
         //echo json_encode($this->dataForFrontEnd);
     }
     
     function _format_sku_for_front_end($menuData, $menu){
-        pr($menuData);
+        //pr($menuData);
         if( isset($menuData[0]['Task']) ){
             foreach( $menuData[0]['Task'] as $groupId => $task ){
                 
