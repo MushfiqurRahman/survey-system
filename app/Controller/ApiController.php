@@ -169,7 +169,7 @@ class ApiController extends AppController {
                         'id','title','sku'
                      )),
                     'Subset' => array('fields' => 
-                        array('id','task_id','active_sku_code'),
+                        array('id','task_id','active_sku_code', 'end_sku_code'),
                         'Product' => array('id','title','sku')),
                     'OutletType' => array('fields' => array(
                         'id','title', 'class'),
@@ -188,8 +188,8 @@ class ApiController extends AppController {
                 }
             }
         }        
-        pr($this->dataForFrontEnd);
-        //echo json_encode($this->dataForFrontEnd);
+        //pr($this->dataForFrontEnd);
+        echo json_encode($this->dataForFrontEnd);
     }
     
     function _format_sku_for_front_end($menuData, $menu){
