@@ -51,6 +51,13 @@ class ApiController extends AppController {
         echo json_encode($response);
     }
     
+    protected function _get_outlet_type($outletType){
+        if( isset($outletType['class']) && !empty($outletType['class']) ){
+            return $outletType['title'].'_'.$outletType['class'];
+        }
+        return $outletType['title'];
+    }
+    
     /**
      * 
      * @param type $userCode
@@ -91,7 +98,7 @@ class ApiController extends AppController {
                             'Region' => array('fields' => array('id','title')),
                         )
                     ),                
-                    'OutletType' => array('fields' => array('id','title')),
+                    'OutletType' => array('fields' => array('id','title', 'class')),
                 ),
                 'fields' => array('id','town_id','name','address','dms_code', 'class'),
                 'conditions' => array('Outlet.dms_code' => $oC),
@@ -123,7 +130,7 @@ class ApiController extends AppController {
         $this->loggedInOutlets[$this->outletCounter]['town'] = $outlet['Town']['title'];
         $this->loggedInOutlets[$this->outletCounter]['name'] = $outlet['Outlet']['name'];
         $this->loggedInOutlets[$this->outletCounter]['address'] = $outlet['Outlet']['address'];
-        $this->loggedInOutlets[$this->outletCounter]['outlet_type'] = $outlet['OutletType']['title'];
+        $this->loggedInOutlets[$this->outletCounter]['outlet_type'] = $this->_get_outlet_type($outlet['OutletType']);
         $this->loggedInOutlets[$this->outletCounter]['dms_code'] = $outlet['Outlet']['dms_code'];
         $this->loggedInOutlets[$this->outletCounter]['classType'] = $outlet['Outlet']['class'];
     }
@@ -134,6 +141,7 @@ class ApiController extends AppController {
     protected function _initialize_counter(){
         $this->counter['sku_counter'] = $this->counter['trade_promotion_counter'] = 0;
         $this->counter['pop_item_counter'] = $this->counter['hot_spot_counter'] = 0;
+        $this->counter['subset_counter'] = 0;
     }
 
 
@@ -164,7 +172,7 @@ class ApiController extends AppController {
                         array('id','task_id','active_sku_code'),
                         'Product' => array('id','title','sku')),
                     'OutletType' => array('fields' => array(
-                        'id','title'                ),
+                        'id','title', 'class'),
 
                     )),
                 ),
@@ -173,6 +181,11 @@ class ApiController extends AppController {
             
             if( !empty($menuData) ){
                 $this->_format_sku_for_front_end($menuData, $menu);
+                
+                if( $menu=='fixed_display'){
+                    //pr($menuData[0]);exit;
+                    $this->_get_subsets($menuData[0]);
+                }
             }
         }        
         pr($this->dataForFrontEnd);
@@ -180,7 +193,7 @@ class ApiController extends AppController {
     }
     
     function _format_sku_for_front_end($menuData, $menu){
-        //pr($menuData);
+//        pr($menuData);exit;
         if( isset($menuData[0]['Task']) ){
             foreach( $menuData[0]['Task'] as $groupId => $task ){
                 
@@ -191,7 +204,7 @@ class ApiController extends AppController {
                             $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['id'] = $product['id'];
                             $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['sku_title'] = $product['title'];
                             $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['sku_code'] = $product['sku'];
-                            $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['outlet_type'] = $task['OutletType']['title'];
+                            $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['outlet_type'] = $this->_get_outlet_type($task['OutletType']);
                             $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['front_end_menu'] = $menu;
                             //$this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['group_id'] = $groupId;//for set purpose
                             $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['task_id'] = $task['id'];//for set purpose
@@ -200,7 +213,13 @@ class ApiController extends AppController {
                                 $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['is_active_sku'] = 1;
                             }else{
                                 $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['is_active_sku'] = 0;
-                            }                            
+                            }     
+                            //end sku is needed for subset finished mark
+                            if( $product['sku']==$subset['end_sku_code'] ){
+                                $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['is_end_sku'] = 1;
+                            }else{
+                                $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['is_end_sku'] = 0;
+                            }
                             $this->counter['sku_counter']++;
                         }
                     }
@@ -210,18 +229,29 @@ class ApiController extends AppController {
                         $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['id'] = $product['id'];
                         $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['sku_title'] = $product['title'];
                         $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['sku_code'] = $product['sku'];
-                        $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['outlet_type'] = $task['OutletType']['title'];
+                        $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['outlet_type'] = $this->_get_outlet_type($task['OutletType']);
                         $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['front_end_menu'] = $menu;
                         //$this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['group_id'] = $groupId;//for set purpose
                         $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['task_id'] = $task['id'];//for set purpose
                         $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['subset_id'] = -1;                        
                         $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['is_active_sku'] = -1;
-                        
+                        $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['is_end_sku'] = -1;
                         $this->counter['sku_counter']++;
                     }
                 }
             }
         }
+    }
+    
+    /** Fixed display form has some subsets */
+    protected function _get_subsets( $menuData ){ //pr($menuData);
+       
+        foreach($menuData['Task'] as $task){
+            $this->dataForFrontEnd['Subset'][ $this->counter['subset_counter'] ]['task_join_type'] = $menuData['Part']['task_join_type'];
+            $this->dataForFrontEnd['Subset'][ $this->counter['subset_counter'] ]['set_title'] = $task['title'];
+            $this->dataForFrontEnd['Subset'][ $this->counter['subset_counter'] ]['outlet_type'] = $this->_get_outlet_type($task['OutletType']);
+        }
+        $this->counter['subset_counter']++;
     }
     
     protected function _get_trade_promotions(){
@@ -239,7 +269,7 @@ class ApiController extends AppController {
         
         $popItems = $this->PopItem->find('all', array('contain' => array(
             'OutletType' => array(
-                'fields' => array('id','title'),
+                'fields' => array('id','title', 'class'),
             ),),
             'fields' => array('id','head','descr'),));
         
@@ -248,7 +278,7 @@ class ApiController extends AppController {
                 foreach($pItem['OutletType'] as $outletType){
                     $this->dataForFrontEnd['PopItem'][ $this->counter['pop_item_counter'] ]['head'] = $pItem['PopItem']['head'];
                     $this->dataForFrontEnd['PopItem'][ $this->counter['pop_item_counter'] ]['descr'] = $pItem['PopItem']['descr'];
-                    $this->dataForFrontEnd['PopItem'][ $this->counter['pop_item_counter'] ]['outlet_type'] = $outletType['title'];
+                    $this->dataForFrontEnd['PopItem'][ $this->counter['pop_item_counter'] ]['outlet_type'] = $this->_get_outlet_type($outletType);
                     $this->counter['pop_item_counter']++;
                 }
             }
@@ -261,7 +291,7 @@ class ApiController extends AppController {
         
         $hotSpots = $this->HotSpot->find('all', array('contain' => array(
             'OutletType' => array(
-                'fields' => array('id','title'),
+                'fields' => array('id','title', 'class'),
             ),           
             ),
             'fields' => array('id','head','descr', 'first_compliance', 'second_compliance'),));
@@ -273,7 +303,7 @@ class ApiController extends AppController {
                     $this->dataForFrontEnd['HotSpot'][ $this->counter['hot_spot_counter'] ]['descr'] = $hSpot['HotSpot']['descr'];
                     $this->dataForFrontEnd['HotSpot'][ $this->counter['hot_spot_counter'] ]['first_compliance'] = $hSpot['HotSpot']['first_compliance'];
                     $this->dataForFrontEnd['HotSpot'][ $this->counter['hot_spot_counter'] ]['second_compliance'] = $hSpot['HotSpot']['second_compliance'];
-                    $this->dataForFrontEnd['HotSpot'][ $this->counter['hot_spot_counter'] ]['outlet_type'] = $outletType['title'];
+                    $this->dataForFrontEnd['HotSpot'][ $this->counter['hot_spot_counter'] ]['outlet_type'] = $this->_get_outlet_type($outletType);
                     $this->counter['hot_spot_counter']++;
                 }
             }
@@ -284,6 +314,6 @@ class ApiController extends AppController {
      * 
      */
     public function receive_survey_data(){
-        
+        $this->log(print_r($this->request->data, true),'error');
     }
 }
