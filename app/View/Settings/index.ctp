@@ -7,6 +7,7 @@
         <li><?php echo $this->Html->link('Trade Promotion Items', array('controller' => 'Programs', 'action' => 'index'));?></li>
         <li><?php echo $this->Html->link('HotSpots', array('controller' => 'HotSpots', 'action' => 'index'));?></li>
         <li><?php echo $this->Html->link('Pop Items', array('controller' => 'PopItems', 'action' => 'index'));?></li>
+        <li><?php echo $this->Html->link('SKU Subsets', array('controller' => 'Subsets', 'action' => 'index'));?></li>
         <li><?php echo $this->Html->link('Import Universe', array('controller' => 'Regions', 'action' => 'import_universe'));?></li>
      </ul>
 </div>

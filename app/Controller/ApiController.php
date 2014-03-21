@@ -177,6 +177,7 @@ class ApiController extends AppController {
     }
     
     function _format_sku_for_front_end($menuData, $menu){
+        pr($menuData);
         if( isset($menuData[0]['Task']) ){
             foreach( $menuData[0]['Task'] as $groupId => $task ){
                 

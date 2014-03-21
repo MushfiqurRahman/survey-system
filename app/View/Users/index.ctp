@@ -4,7 +4,6 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('role_id'); ?></th>
-			<th><?php echo $this->Paginator->sort('category_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('is_surveyor'); ?></th>
 			<th><?php echo $this->Paginator->sort('town_id'); ?></th>
 			<th><?php echo $this->Paginator->sort('name'); ?></th>
@@ -19,9 +18,7 @@
 		<td>
 			<?php echo $this->Html->link($user['Role']['title'], array('controller' => 'roles', 'action' => 'view', $user['Role']['id'])); ?>
 		</td>
-		<td>
-			<?php echo $this->Html->link($user['Category']['title'], array('controller' => 'categories', 'action' => 'view', $user['Category']['id'])); ?>
-		</td>
+		
 		<td><?php echo h($user['User']['is_surveyor']); ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($user['Town']['title'], array('controller' => 'towns', 'action' => 'view', $user['Town']['id'])); ?>

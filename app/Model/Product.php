@@ -68,6 +68,21 @@ class Product extends AppModel {
 			'finderQuery' => '',
 			'deleteQuery' => '',
 			'insertQuery' => ''
+		),
+            'Subset' => array(
+			'className' => 'Subset',
+			'joinTable' => 'products_subsets',
+			'foreignKey' => 'product_id',
+			'associationForeignKey' => 'subset_id',
+			'unique' => 'keepExisting',
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
 		)
 	);
         

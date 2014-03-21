@@ -65,6 +65,22 @@ class Task extends AppModel {
                         'dependent' => true
 		)
 	);
+        
+        public $hasMany = array(
+                'Subset' => array(
+                'className' => 'Subset',
+                'foreignKey' => 'task_id',
+                'dependent' => false,
+                'conditions' => '',
+                'fields' => '',
+                'order' => '',
+                'limit' => '',
+                'offset' => '',
+                'exclusive' => '',
+                'finderQuery' => '',
+                'counterQuery' => ''
+            )
+        );
 
 /**
  * hasAndBelongsToMany associations
