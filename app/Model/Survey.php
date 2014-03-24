@@ -109,16 +109,21 @@ class Survey extends AppModel {
 //		)
 //	);
         
-        public function saveSurvey($data){
+        public function saveSurvey($data, $firstImage = '', $secondImage = ''){
+            
+            $this->log(print_r($data, 'error'));
+            $this->log('received in model','error');
+            
+            $response['success'] = true;
+            
             $formatted = array();
                         
             $formatted['Survey']['outlet_id'] = $this->Outlet->field('id', array('dms_code' => $data['dms_code']));
             $formatted['Survey']['user_id'] = 1;
-            if( $data['is_failure']==false || $data['is_failure']==0 || $data['is_failure']=='false'){
+            if( $data['is_failure']=='true'){
                 $formatted['Survey']['is_failure'] = true;
-                $formatted['Survey']['failure_cause'] = $data['failure_cause'];
+                $formatted['Survey']['failure_cause'] = $data['failure_cause'];                
             }else{
-                $formatted['Survey']['outlet_id'] = $this->Outlet->field('id', array('dms_code' => $data['dms_code']));
                 $formatted['Survey']['is_failure'] = false;
                 $formatted['Survey']['failure_cause'] = $data['failure_cause'];
                 $formatted['Survey']['must_sku'] = $data['must_have_sku'];
@@ -128,18 +133,28 @@ class Survey extends AppModel {
                 $formatted['Survey']['pop'] = $data['pop_item'];
                 $formatted['Survey']['hot_spot'] = $data['hot_spot'];
                 $formatted['Survey']['additional_info'] = $data['additional_info'];                
-                $formatted['Survey']['lattitude'] = $data['lattitude'];
-                $formatted['Survey']['longitude'] = $data['longitude'];
-                $formatted['Survey']['date_time'] = $data[''];                
-                $formatted['Survey']['first_image'] = isset($data['first_image']) ? $data['first_image'] : '';
-                $formatted['Survey']['second_image'] = isset($data['second_image']) ? $data['second_image'] : '';
+                             
+                $formatted['Survey']['first_image'] = $firstImage;
+                $formatted['Survey']['second_image'] = $secondImage;
+                
+                //for test only
+                //$formatted['Survey']['outlet_id'] = $formatted['Survey']['']
             }
+            $formatted['Survey']['lattitude'] = $data['lattitude'];
+            $formatted['Survey']['longitude'] = $data['longitude'];
+            $formatted['Survey']['date_time'] = $data['datetime'];   
+            
+            $this->log(print_r($formatted, true),'error');
             
             if( $this->save($formatted) ){
                 if(!isset($data['first_image']) ){
-                    return 'Data has been saved but image couldn\'t';
+                    $response['message'] = 'Data has been saved but image couldn\'t';
+                }else{
+                    $response['message'] = 'Data has been saved';
                 }
-                return 'Data has been saved';
             }
+            $response['success'] = false;
+            $response['message'] = 'Save failed!';
+            return $response;
         }
 }

@@ -28,8 +28,8 @@
                 <td><?php echo h($survey['Survey']['pop']);?>&nbsp;</td>
                 <td><?php echo h($survey['Survey']['hot_spot']);?>&nbsp;</td>
                 <td><?php echo h($survey['Survey']['additional_info']);?>&nbsp;</td>
-                <td><?php echo h($survey['Survey']['first_image']);?>&nbsp;</td>
-                <td><?php echo h($survey['Survey']['second_image']);?>&nbsp;</td>
+                <td><img src="<?php echo $survey['Survey']['first_image'];?>" width="200" height="160"/>&nbsp;</td>
+                <td><img src="<?php echo $survey['Survey']['second_image'];?>" width="200" height="160"/>&nbsp;</td>
                 
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $survey['Survey']['id'])); ?>			

@@ -330,9 +330,8 @@ class ApiController extends AppController {
     public function receive_survey_data(){
         $this->autoLayout = $this->autoRender = false;
         $this->layout = false;
-        $this->log(print_r($this->request->data, true),'error');
-        $this->log(print_r($_REQUEST,true),'error');
-        $this->log(print_r($_FILES,true),'error');      
+//        $this->log(print_r($this->request->data, true),'error');
+//        $this->log(print_r($_FILES,true),'error');      
         
         $response['success'] = true;
             
@@ -344,12 +343,13 @@ class ApiController extends AppController {
                 $this->request->data['second_image'] = $imagePath['second_image'];
             }
             $this->loadModel('Survey');
-            $msg = $this->Survey->saveSurvey($this->request->data);
-            $response['message'] = $msg;
+            $result = $this->Survey->saveSurvey($this->request->data, $imagePaths['first_image'], $imagePaths['second_image']);
+            $response = $result;
         }else{
             $response['message'] = 'Nothing found!';
             $response['success'] = false;
         }
+        $this->log(print_r($response, true),'error');
         echo json_encode($response);
     }
     
