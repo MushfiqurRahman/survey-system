@@ -29,12 +29,14 @@ class ApiController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         $this->layout = $this->autoRender = false;
-        $this->Auth->allow('api_login', 'get_form_data');
+        $this->Auth->allow('api_login', 'get_form_data', 'receive_survey_data');
     }
     
     public function api_login(){
         $this->layout = $this->autoRender = false;
         $this->loggedInOutlets = array();
+        
+        
         $response = array();
         $response['status'] = true;
         if( $this->_is_valid_user_code() ){
@@ -141,7 +143,7 @@ class ApiController extends AppController {
     protected function _initialize_counter(){
         $this->counter['sku_counter'] = $this->counter['trade_promotion_counter'] = 0;
         $this->counter['pop_item_counter'] = $this->counter['hot_spot_counter'] = 0;
-        $this->counter['subset_counter'] = 0;
+        $this->counter['task_counter'] = $this->counter['subset_counter'] = 0;
     }
 
 
@@ -184,7 +186,8 @@ class ApiController extends AppController {
                 
                 if( $menu=='fixed_display'){
                     //pr($menuData[0]);exit;
-                    $this->_get_subsets($menuData[0]);
+                    //$this->_get_subsets($menuData[0]);
+                    $this->_get_tasks($menuData[0], 'fixed_display');
                 }
             }
         }        
@@ -193,7 +196,7 @@ class ApiController extends AppController {
     }
     
     function _format_sku_for_front_end($menuData, $menu){
-//        pr($menuData);exit;
+        //pr($menuData);exit;
         if( isset($menuData[0]['Task']) ){
             foreach( $menuData[0]['Task'] as $groupId => $task ){
                 
@@ -244,14 +247,25 @@ class ApiController extends AppController {
     }
     
     /** Fixed display form has some subsets */
-    protected function _get_subsets( $menuData ){ //pr($menuData);
-       
-        foreach($menuData['Task'] as $task){
-            $this->dataForFrontEnd['Subset'][ $this->counter['subset_counter'] ]['task_join_type'] = $menuData['Part']['task_join_type'];
-            $this->dataForFrontEnd['Subset'][ $this->counter['subset_counter'] ]['set_title'] = $task['title'];
-            $this->dataForFrontEnd['Subset'][ $this->counter['subset_counter'] ]['outlet_type'] = $this->_get_outlet_type($task['OutletType']);
+//    protected function _get_subsets( $menuData ){ //pr($menuData);
+//       
+//        foreach($menuData['Task'] as $task){
+//            $this->dataForFrontEnd['Subset'][ $this->counter['subset_counter'] ]['task_join_type'] = $menuData['Part']['task_join_type'];
+//            $this->dataForFrontEnd['Subset'][ $this->counter['subset_counter'] ]['set_title'] = $task['title'];
+//            $this->dataForFrontEnd['Subset'][ $this->counter['subset_counter'] ]['outlet_type'] = $this->_get_outlet_type($task['OutletType']);
+//        }
+//        $this->counter['subset_counter']++;
+//    }
+    
+    protected function _get_tasks($menuData, $frontEndMenu = ''){
+        foreach( $menuData['Task'] as $task ){
+            $this->dataForFrontEnd['Task'][ $this->counter['task_counter'] ]['task_join_type'] = $menuData['Part']['task_join_type'];
+            $this->dataForFrontEnd['Task'][ $this->counter['task_counter'] ]['task_title'] = $task['title'];
+            $this->dataForFrontEnd['Task'][ $this->counter['task_counter'] ]['front_end_menu'] = $frontEndMenu;
+            $this->dataForFrontEnd['Task'][ $this->counter['task_counter'] ]['part_id'] = $menuData['Part']['id'];
+            $this->dataForFrontEnd['Task'][ $this->counter['task_counter'] ]['outlet_type'] = $this->_get_outlet_type($task['OutletType']);
+            $this->counter['task_counter']++;
         }
-        $this->counter['subset_counter']++;
     }
     
     protected function _get_trade_promotions(){
@@ -314,6 +328,46 @@ class ApiController extends AppController {
      * 
      */
     public function receive_survey_data(){
+        $this->autoLayout = $this->autoRender = false;
+        $this->layout = false;
         $this->log(print_r($this->request->data, true),'error');
+        $this->log(print_r($_REQUEST,true),'error');
+        $this->log(print_r($_FILES,true),'error');      
+        
+        $response['success'] = true;
+            
+        if( !empty($this->request->data) ){
+            
+            $imagePaths = $this->_upload_images();
+            if( $imagePaths ){
+                $this->request->data['first_image'] = $imagePath['first_image'];
+                $this->request->data['second_image'] = $imagePath['second_image'];
+            }
+            $this->loadModel('Survey');
+            $msg = $this->Survey->saveSurvey($this->request->data);
+            $response['message'] = $msg;
+        }else{
+            $response['message'] = 'Nothing found!';
+            $response['success'] = false;
+        }
+        echo json_encode($response);
+    }
+    
+    protected function _upload_images(){
+        if( empty($_FILES) ) return false;
+        $imagePaths = array();
+        
+        if( !is_dir('attachments/'.date('F')) ){
+            mkdir('attachments/'.date('F'), 0777);
+        }
+        if( $_FILES['first_image']['error']==0 ){
+            move_uploaded_file($_FILES['first_image']['tmp_name'], 'attachments/'.date('F').'/'.$_FILES['first_image']['name']);
+            $imagePaths['first_image'] = 'attachments/'.date('F').'/'.$_FILES['first_image']['name'];
+        }
+        if( $_FILES['second_image']['error']==0){
+            move_uploaded_file($_FILES['second_image']['tmp_name'], 'attachments/'.date('F').'/'.$_FILES['second_image']);
+            $imagePaths['second_image'] = 'attachments/'.date('F').'/'.$_FILES['second_image'];
+        }
+        return $imagePaths;
     }
 }
