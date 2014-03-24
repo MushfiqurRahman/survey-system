@@ -9,6 +9,12 @@
         <li><?php echo $this->Html->link('Pop Items', array('controller' => 'PopItems', 'action' => 'index'));?></li>
         <li><?php echo $this->Html->link('SKU Subsets', array('controller' => 'Subsets', 'action' => 'index'));?></li>
         <li><?php echo $this->Html->link('Import Universe', array('controller' => 'Regions', 'action' => 'import_universe'));?></li>
+        
+        
+        <br/>
+        <br/>
+        <br/>
+        <li><?php echo $this->Html->link('Surveys', array('controller' => 'Surveys', 'action' => 'index'));?></li>
      </ul>
 </div>
 <div class="settings index">

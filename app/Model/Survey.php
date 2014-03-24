@@ -24,16 +24,6 @@ class Survey extends AppModel {
  * @var array
  */
 	public $validate = array(
-//		'survey_type_id' => array(
-//			'numeric' => array(
-//				'rule' => array('numeric'),
-//				//'message' => 'Your custom message here',
-//				//'allowEmpty' => false,
-//				//'required' => false,
-//				//'last' => false, // Stop validation after this rule
-//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-//			),
-//		),
 		'outlet_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -52,46 +42,6 @@ class Survey extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-//		'user_id' => array(
-//			'numeric' => array(
-//				'rule' => array('numeric'),
-//				//'message' => 'Your custom message here',
-//				//'allowEmpty' => false,
-//				//'required' => false,
-//				//'last' => false, // Stop validation after this rule
-//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-//			),
-//		),
-//		'responder_name' => array(
-//			'notempty' => array(
-//				'rule' => array('notempty'),
-//				//'message' => 'Your custom message here',
-//				//'allowEmpty' => false,
-//				//'required' => false,
-//				//'last' => false, // Stop validation after this rule
-//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-//			),
-//		),
-//		'phone' => array(
-//			'notempty' => array(
-//				'rule' => array('notempty'),
-//				//'message' => 'Your custom message here',
-//				//'allowEmpty' => false,
-//				//'required' => false,
-//				//'last' => false, // Stop validation after this rule
-//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-//			),
-//		),
-//		'time' => array(
-//			'datetime' => array(
-//				'rule' => array('datetime'),
-//				//'message' => 'Your custom message here',
-//				//'allowEmpty' => false,
-//				//'required' => false,
-//				//'last' => false, // Stop validation after this rule
-//				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-//			),
-//		),
 		'lattitude' => array(
 			'decimal' => array(
 				'rule' => array('decimal'),
@@ -122,13 +72,6 @@ class Survey extends AppModel {
  * @var array
  */
 	public $belongsTo = array(
-//		'SurveyType' => array(
-//			'className' => 'SurveyType',
-//			'foreignKey' => 'survey_type_id',
-//			'conditions' => '',
-//			'fields' => '',
-//			'order' => ''
-//		),		
 		'Outlet' => array(
 			'className' => 'Outlet',
 			'foreignKey' => 'outlet_id',
@@ -165,8 +108,6 @@ class Survey extends AppModel {
 //			'counterQuery' => ''
 //		)
 //	);
-        
-      
         
         public function saveSurvey($data){
             $formatted = array();
