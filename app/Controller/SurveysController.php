@@ -111,4 +111,11 @@ class SurveysController extends AppController {
 		$this->Session->setFlash(__('Survey was not deleted'));
 		return $this->redirect(array('action' => 'index'));
 	}
+        
+        public function view_location($id){
+            $lattitude = $this->Survey->field('lattitude',array('id' => $id));
+            $longitude = $this->Survey->field('longitude',array('id' => $id));
+            $this->set('lattitude', $lattitude);
+            $this->set('longitude', $longitude);
+        }
 }

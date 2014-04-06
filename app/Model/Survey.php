@@ -111,8 +111,8 @@ class Survey extends AppModel {
         
         public function saveSurvey($data, $firstImage = '', $secondImage = ''){
             
-            $this->log(print_r($data, 'error'));
-            $this->log('received in model','error');
+//            $this->log(print_r($data, 'error'));
+//            $this->log('received in model','error');
             
             $response['success'] = true;
             
@@ -120,7 +120,7 @@ class Survey extends AppModel {
                         
             $formatted['Survey']['outlet_id'] = $this->Outlet->field('id', array('dms_code' => $data['dms_code']));
             $formatted['Survey']['user_id'] = 1;
-            if( $data['is_failure']=='true'){
+            if( $data['is_failure']=='true' || $data['is_failure']=='1'){
                 $formatted['Survey']['is_failure'] = true;
                 $formatted['Survey']['failure_cause'] = $data['failure_cause'];                
             }else{
@@ -144,7 +144,7 @@ class Survey extends AppModel {
             $formatted['Survey']['longitude'] = $data['longitude'];
             $formatted['Survey']['date_time'] = $data['datetime'];   
             
-            $this->log(print_r($formatted, true),'error');
+            //$this->log(print_r($formatted, true),'error');
             
             if( $this->save($formatted) ){
                 if(!isset($data['first_image']) ){
@@ -152,9 +152,11 @@ class Survey extends AppModel {
                 }else{
                     $response['message'] = 'Data has been saved';
                 }
+            }else{
+                $response['success'] = false;
+                $response['message'] = 'Save failed!';
             }
-            $response['success'] = false;
-            $response['message'] = 'Save failed!';
+            
             return $response;
         }
 }

@@ -28,11 +28,12 @@
                 <td><?php echo h($survey['Survey']['pop']);?>&nbsp;</td>
                 <td><?php echo h($survey['Survey']['hot_spot']);?>&nbsp;</td>
                 <td><?php echo h($survey['Survey']['additional_info']);?>&nbsp;</td>
-                <td><img src="<?php echo $survey['Survey']['first_image'];?>" width="200" height="160"/>&nbsp;</td>
-                <td><img src="<?php echo $survey['Survey']['second_image'];?>" width="200" height="160"/>&nbsp;</td>
+                <td><img src="<?php echo Configure::read('base_url').'/'.$survey['Survey']['first_image'];?>"/>&nbsp;</td>
+                <td><img src="<?php echo Configure::read('base_url').'/'.$survey['Survey']['second_image'];?>"/>&nbsp;</td>
                 
 		<td class="actions">
 			<?php echo $this->Html->link(__('View'), array('action' => 'view', $survey['Survey']['id'])); ?>			
+                    <?php echo $this->Html->link(__('View Location'), array('action' => 'view_location', $survey['Survey']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $survey['Survey']['id']), null, __('Are you sure you want to delete # %s?', $survey['Survey']['id'])); ?>
 		</td>
 	</tr>
