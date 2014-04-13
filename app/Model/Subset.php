@@ -79,22 +79,24 @@ class Subset extends AppModel {
 		)
 	);
         
-        protected function _get_active_sku_code($productId ){
+        protected function _get_sku_code($productId ){
             return $this->Product->field('sku',array('Product.id' => $productId));
         }
         
-        protected function _get_end_sku_code($productId ){
-            return $this->Product->field('sku', array('Product.id' => $productId));
-        }
         
         //'active_sku_code' means for which sku of a set spinner will be shown
         public function beforeSave($options = array()) {
             if( isset($this->data['Product']['Product']) && !empty($this->data['Product']['Product']) ){
                 sort($this->data['Product']['Product']);
+                
+                //$this->log(print_r($this->data, true),'error');
+                
                 $totalProducts = count($this->data['Product']['Product']);
                 $middleIndex = (int)$totalProducts/2;
-                $this->data['Subset']['active_sku_code'] = $this->_get_active_sku_code($this->data['Product']['Product'][$middleIndex]);
-                $this->data['Subset']['end_sku_code'] = $this->_get_active_sku_code($this->data['Product']['Product'][$totalProducts -1]);
+                $this->data['Subset']['active_sku_code'] = $this->_get_sku_code($this->data['Product']['Product'][$middleIndex]);
+                $this->data['Subset']['end_sku_code'] = $this->_get_sku_code($this->data['Product']['Product'][$totalProducts -1]);
+                
+                //$this->log(print_r($this->data, true),'error');
             }
             return true;
         }

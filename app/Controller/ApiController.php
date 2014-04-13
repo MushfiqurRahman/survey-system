@@ -193,8 +193,19 @@ class ApiController extends AppController {
             }
         }        
         $this->_count_total_data();
-        //pr($this->dataForFrontEnd);
-        echo json_encode($this->dataForFrontEnd);
+        //since for testing purpose json format is not useful
+        if( $this->_show_json_format()){
+            echo json_encode($this->dataForFrontEnd);
+        }else{
+            pr($this->dataForFrontEnd);
+        }
+    }
+    
+    protected function _show_json_format(){
+        $this->loadModel('Setting');
+        $isJson = $this->Setting->field('value', array('variable_name' => 'data_in_json_format'));
+        if( $isJson==1 ) return true;
+        return false;
     }
     
     /**
@@ -220,6 +231,8 @@ class ApiController extends AppController {
 
                     if( isset($task['Subset']) && !empty($task['Subset']) ){
                         foreach( $task['Subset'] as $subset){
+                            
+                            sort($subset['Product']);
 
                             foreach($subset['Product'] as $product){
                                 $this->dataForFrontEnd['Sku'][ $this->counter['sku_counter'] ]['id'] = $product['id'];

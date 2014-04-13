@@ -170,6 +170,8 @@ truncate table towns;
             
             $this->regions = $this->territories = $this->towns = $this->outlets = array();
             
+            $this->_get_existing_data();
+            
             $startTime = microtime(true);
             
             App::import('Vendor','PHPExcel',array('file' => 'PHPExcel/Classes/PHPExcel.php'));
@@ -189,6 +191,11 @@ truncate table towns;
             for($i=7; $i<=$totalRow; $i++){    
                 
                 $this->outlets[$i-7]['Outlet'] = array();
+                
+                //incase outlet already exists
+                if( isset( $this->outlets[ trim($objWorksheet->getCellByColumnAndRow(9,$i)->getValue()) ] )){
+                   continue;
+                }
                 
                 for($j=1;$j<10;$j++){
                     
@@ -252,6 +259,36 @@ truncate table towns;
             $endTime = microtime(true);
             echo 'Total spent time: '.($endTime - $startTime);
             return true;
+        }
+        
+        
+
+
+        /**
+         * @desc Get Existing regions, territories, towns, outlet types and outlets, to prevent same data twice or multiple insertion
+         */
+        protected function _get_existing_data(){
+            $this->regions = $this->Region->find('list', array('fields' => array('title','id')));
+            $this->territories = $this->Region->Territory->find('list', array('fields' => array('title','id')));
+            $this->towns = $this->Region->Territory->Town->find('list', array('fields' => array('title', 'id')));
+            $this->outlets = $this->Region->Territory->Town->Outlet->find('list', array('fields' => array('dms_code', 'id')));
+            
+            $tempOutletTypes = $this->Region->Territory->Town->Outlet->OutletType->find('all', array(
+                'fields' => array('id','title','class'),'recursive' => -1));
+            
+            if( !empty($tempOutletTypes) ){
+                foreach($tempOutletTypes as $outletTp){
+                    $this->outletTypeCount++;
+                    $this->outletTypes[$this->outletTypeCount]['id'] = $outletTp['OutletType']['id'];
+                    $this->outletTypes[$this->outletTypeCount]['type'] = $outletTp['OutletType']['title'];
+                    $this->outletTypes[$this->outletTypeCount]['class'] = $outletTp['OutletType']['class'];
+                }
+            }
+            
+//            pr($this->outletTypes);
+//            pr($this->regions);
+//            pr($this->territories);
+//            pr($this->towns);
         }
         
         

@@ -11,11 +11,11 @@
 	<tr>
 		<td><?php echo h($subset['Subset']['id']); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($subset['Subset']['title'], array('controller' => 'subsets', 'action' => 'view', $subset['Subset']['id'])); ?>
+			<?php echo $this->Html->link($subset['Subset']['title'], array('controller' => 'subsets', 'action' => 'edit', $subset['Subset']['id'])); ?>
 		</td>
 		<td><?php echo h($subset['Task']['title']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $subset['Subset']['id'])); ?>
+			<?php //echo $this->Html->link(__('View'), array('action' => 'view', $subset['Subset']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $subset['Subset']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $subset['Subset']['id']), null, __('Are you sure you want to delete # %s?', $subset['Subset']['id'])); ?>
 		</td>
