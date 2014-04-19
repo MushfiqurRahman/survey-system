@@ -68,6 +68,13 @@ class SurveysController extends AppController {
                 $this->set('data',$this->request->query);
             }
 	}
+        
+        /**
+         * 
+         */
+        public function export_report(){
+            
+        }
 
 /**
  * view method

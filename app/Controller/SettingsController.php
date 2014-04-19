@@ -21,8 +21,13 @@ class SettingsController extends AppController {
  * @return void
  */
 	public function index() {
+            if( $this->loggedinUser['Role']['title']=='Admin'){
 		$this->Setting->recursive = 0;
 		$this->set('settings', $this->Paginator->paginate());
+            }else{
+                $this->Session->setFlash(__("You are not authorized to access that location!"));
+                $this->redirect(array('controller' => 'Surveys', 'action' => 'index'));
+            }
 	}
 
 /**

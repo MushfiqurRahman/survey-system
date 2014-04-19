@@ -9,9 +9,17 @@
 
                        <div class="collapse nav-collapse" >
                            <ul class="nav pull-right">
-                               <li class="active"><?php echo $this->Html->link('Settings', array('controller' => 'Settings','action' => 'index'));?></li>
-                               <li class="active"><?php echo $this->Html->link('Survey Type', array('controller' => 'OutletTypes','action' => 'index'));?></li>
-                               <li><?php //echo $this->Html->link('User Info',array('controller' => 'users', 'action' => 'index'));?></li>
+                               <li class="active"><?php echo $this->Html->link('Surveys', array('controller' => 'Surveys','action' => 'index'));?></li>
+                               <?php
+                                    if( $loggedinUser['Role']['title']=='Admin'){
+                               ?>
+                                    <li class="active">
+                                        <?php echo $this->Html->link('Settings', array('controller' => 'Settings','action' => 'index'));?>                                     
+                                    </li>
+                                    <li><?php echo $this->Html->link('Export Report',array('controller' => 'surveys', 'action' => 'export_report'));?></li>
+                               <?php
+                                    }?>
+                               
                                <li><?php echo $this->Html->link('Logout',array('controller' => 'users', 'action' => 'logout'));?></li>
                            </ul>
                        </div>      

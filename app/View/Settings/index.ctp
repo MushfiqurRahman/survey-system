@@ -1,22 +1,4 @@
-<div>
-    <ul>
-        <li><?php echo $this->Html->link('Products', array('controller' => 'Products', 'action' => 'index'));?></li>
-        <li><?php echo $this->Html->link('Survey Attributes', array('controller' => 'SurveyAttributes', 'action' => 'index'));?></li>
-        <li><?php echo $this->Html->link('Tasks', array('controller' => 'Tasks', 'action' => 'index'));?></li>
-        <li><?php echo $this->Html->link('Parts', array('controller' => 'Parts', 'action' => 'index'));?></li>        
-        <li><?php echo $this->Html->link('Trade Promotion Items', array('controller' => 'Programs', 'action' => 'index'));?></li>
-        <li><?php echo $this->Html->link('HotSpots', array('controller' => 'HotSpots', 'action' => 'index'));?></li>
-        <li><?php echo $this->Html->link('Pop Items', array('controller' => 'PopItems', 'action' => 'index'));?></li>
-        <li><?php echo $this->Html->link('SKU Subsets', array('controller' => 'Subsets', 'action' => 'index'));?></li>
-        <li><?php echo $this->Html->link('Import Universe', array('controller' => 'Regions', 'action' => 'import_universe'));?></li>
-        
-        
-        <br/>
-        <br/>
-        <br/>
-        <li><?php echo $this->Html->link('Surveys', array('controller' => 'Surveys', 'action' => 'index'));?></li>
-     </ul>
-</div>
+
 <div class="settings index">
 	<h2><?php echo __('Settings'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
@@ -56,8 +38,23 @@
 	</div>
 </div>
 <div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Setting'), array('action' => 'add')); ?></li>
-	</ul>
+    <h3><?php echo __('Important Actions'); ?></h3>
+    <ul>
+        <li><?php echo $this->Html->link('Users', array('controller' => 'Users', 'action' => 'index'));?></li>
+        <li><?php echo $this->Html->link('Outlet Types', array('controller' => 'OutletTypes', 'action' => 'index'));?></li>
+        <li><?php echo $this->Html->link('Products', array('controller' => 'Products', 'action' => 'index'));?></li>
+        <li><?php echo $this->Html->link('Survey Attributes', array('controller' => 'SurveyAttributes', 'action' => 'index'));?></li>
+        <li><?php echo $this->Html->link('Tasks', array('controller' => 'Tasks', 'action' => 'index'));?></li>
+        <li><?php echo $this->Html->link('Parts', array('controller' => 'Parts', 'action' => 'index'));?></li>        
+        <li><?php echo $this->Html->link('Trade Promotion Items', array('controller' => 'Programs', 'action' => 'index'));?></li>
+        <li><?php echo $this->Html->link('HotSpots', array('controller' => 'HotSpots', 'action' => 'index'));?></li>
+        <li><?php echo $this->Html->link('Pop Items', array('controller' => 'PopItems', 'action' => 'index'));?></li>
+        <li><?php echo $this->Html->link('SKU Subsets', array('controller' => 'Subsets', 'action' => 'index'));?></li>
+        <li><?php echo $this->Html->link('Import Universe', array('controller' => 'Regions', 'action' => 'import_universe'));?></li>
+        
+        
+                
+        
+     </ul>
+
 </div>

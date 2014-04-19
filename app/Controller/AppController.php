@@ -39,6 +39,8 @@ class AppController extends Controller {
         'logoutRedirect' => array('controller' => 'users', 'action' => 'login')
     ));
     
+    var $loggedinUser = array();
+    
     public function beforeFilter() {
         parent::beforeFilter();
         
@@ -47,5 +49,7 @@ class AppController extends Controller {
             AuthComponent::ALL => array('userModel' => 'User', 'contain' => array('Role')),
             'Form' => array('fields' => array('username' => 'email'))
         );
+        $this->loggedinUser = $this->Auth->user();
+        $this->set('loggedinUser',$this->loggedinUser);
     }
 }

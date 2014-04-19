@@ -27,6 +27,7 @@ class UsersController extends AppController {
 
                 //if ($this->Auth->login($this->request->data['User'])) {
                 if ($this->Auth->login()) {
+                    
                     //var_dump($this->Auth->redirect());exit;
                     return $this->redirect($this->Auth->redirect());
                 } else {
@@ -88,7 +89,7 @@ class UsersController extends AppController {
                     }
 		}
 		$roles = $this->User->Role->find('list');
-		$categories = $this->User->Category->find('list');
+		//$categories = $this->User->Category->find('list');
 		$towns = $this->User->Town->find('list');
 		$outlets = $this->User->Outlet->find('list');
 		$this->set(compact('roles', 'categories', 'towns', 'outlets'));
