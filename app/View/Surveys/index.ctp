@@ -78,7 +78,7 @@
                 </td>
                 <td><?php echo $this->Form->input('dms_code',array('type' => 'text', 
                     'placeholder' => 'dms code', 
-                    'value' => empty($data['town_id'])?'':$data['town_id'],
+                    'value' => empty($data['dms_code'])?'':$data['dms_code'],
                     'label' => false));?></td>
             </tr>
         </table>
@@ -143,9 +143,9 @@
             populate_territory($("#regionId").val());
         }
         
-//        if( $("#territoryId").val()>0 ){
-//            populate_town($("#territoryId").val());
-//        }
+        if( $("#territoryId").val()>0 ){
+            populate_town($("#territoryId").val());
+        }
         
         $("#regionId").change(function(e){
             $('#territoryId option[value!=""]').remove();
@@ -153,14 +153,17 @@
                  populate_territory($(this).val());
             }
         });
-        
+        $("#territoryId").change(function(e){
+           if( $(this).val()>0 ){               
+                populate_town($(this).val());
+           }
+        });
         function populate_territory(regionId){
             $.ajax({
                     url: base_url + "/surveys/ajaxGetListData",
                     data: "region_id="+regionId,
                     type: "post",
                     success: function(response){
-                        //alert(response);
                         var decodedData = $.parseJSON(response);
                         if( decodedData['success']!=true){
                             alert(decodedData['data']);
@@ -174,13 +177,9 @@
         }
         
         function populate_town(territoryId){
-        }
-        
-        $("#territoryId").change(function(e){
-           if( $(this).val()>0 ){               
-                $.ajax({
+            $.ajax({
                     url: base_url + "/surveys/ajaxGetListData",
-                    data: "territory_id="+$(this).val(),
+                    data: "territory_id="+territoryId,
                     type: "post",
                     success: function(response){
                         //alert(response);
@@ -194,8 +193,9 @@
                         }
                     }
                 });
-           }
-        });
+        }
+        
+        
         
         $("#btnSearch").click(function(e){
             e.preventDefault();
