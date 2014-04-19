@@ -3,35 +3,43 @@
         
     ?>
     
-	<h2><?php echo __('Surveys'); ?></h2>
+	<h2><?php echo __('Surveys'); 
+        if( isset($data) ){
+            //pr($data);
+        }
+        ?></h2>
         
-        <?php echo $this->Form->create(array('action' => 'index','type' => 'post'));?>
+        <?php echo $this->Form->create(array('action' => 'index','type' => 'get'));?>
+<!--        <form name="survey_search" action="Surveys/index" type="post" id="SurveyIndexForm">-->
         
         <table>
             <tr>
                 <td>
-                    <?php echo $this->Form->input('month', array('type' => 'select',
-                    'options' => array('1' => 'January',
-                        '2' => 'February',
-                        '3' => 'March',
-                        '4' => 'April',
-                        '5' => 'May',
-                        '6' => 'June',
-                        '7' => 'July',
-                        '8' => 'August',
-                        '9' => 'September',
-                        '10' => 'October',
-                        '11' => 'November',
-                        '12' => 'December'), 
-                    'empty' => '-Select Month-',
-                        'label' => false,
-                        'id' => 'selectMonth'));
+                    <?php 
+                        echo $this->Form->input('month_id', array('type' => 'select',
+                            'options' => array('1' => 'January',
+                                '2' => 'February',
+                                '3' => 'March',
+                                '4' => 'April',
+                                '5' => 'May',
+                                '6' => 'June',
+                                '7' => 'July',
+                                '8' => 'August',
+                                '9' => 'September',
+                                '10' => 'October',
+                                '11' => 'November',
+                                '12' => 'December'), 
+                            'empty' => '-Select Month-',
+                            'selected' => empty($data['month_id'])?'':$data['month_id'],
+                            'label' => false,
+                            'id' => 'selectMonth'));
                     ?>
                 </td>
                 <td>
-                    <?php echo $this->Form->input('year',array('type' => 'select',
+                    <?php echo $this->Form->input('year_id',array('type' => 'select',
                         'options' => array('2014' => '2014', '2015' => '2015', '2016' => '2016'),
                         'empty' => '-Select Year-', 'label' => false,
+                        'selected' => empty($data['year_id'])?'':$data['year_id'],
                         'id' => 'selectYear'));
                     ?>
                 </td>
@@ -43,6 +51,7 @@
                             'options' => $regions,
                             'empty' => '-Select Region-',
                             'label' => false,
+                            'selected' => empty($data['region_id'])?'':$data['region_id'],
                             'id' => 'regionId'));
                     ?>
                 </td>
@@ -51,6 +60,7 @@
                         echo $this->Form->input('territory_id', array('type' => 'select',
                             'empty' => '-Select Territory-',
                             'label' => false,
+                            'selected' => empty($data['territory_id'])?'':$data['territory_id'],
                             'id' => 'territoryId'
                             ));
                     ?>
@@ -62,16 +72,21 @@
                         echo $this->Form->input('town_id', array('type' => 'select', 
                             'empty' => '-Select Town-',
                             'label' => false,
+                            'selected' => empty($data['town_id'])?'':$data['town_id'],
                             'id' => 'townId'));
                     ?>
                 </td>
-                <td><?php echo $this->Form->input('dms_code',array('type' => 'text', 'placeholder' => 'dms code', 'label' => false));?></td>
+                <td><?php echo $this->Form->input('dms_code',array('type' => 'text', 
+                    'placeholder' => 'dms code', 
+                    'value' => empty($data['town_id'])?'':$data['town_id'],
+                    'label' => false));?></td>
             </tr>
         </table>
                 
         <?php echo $this->Form->input('Search', array('type' => 'submit', 'value' => 'Search', 
             'id' => 'btnSearch', 'label' => false));
-        echo $this->Form->end();?>
+        //echo $this->Form->end();?>
+        </form>
         
         
 	<table cellpadding="0" cellspacing="0" style="margin-top:70px;">
@@ -123,14 +138,29 @@
 <script>
     $(document).ready(function(){
         var base_url = "<?php echo Configure::read('base_url');?>";
+        
+        if( $("#regionId").val()>0 ){
+            populate_territory($("#regionId").val());
+        }
+        
+//        if( $("#territoryId").val()>0 ){
+//            populate_town($("#territoryId").val());
+//        }
+        
         $("#regionId").change(function(e){
-           if( $(this).val()>0 ){               
-                $.ajax({
+            $('#territoryId option[value!=""]').remove();
+            if( $(this).val()>0 ){               
+                 populate_territory($(this).val());
+            }
+        });
+        
+        function populate_territory(regionId){
+            $.ajax({
                     url: base_url + "/surveys/ajaxGetListData",
-                    data: "region_id="+$(this).val(),
+                    data: "region_id="+regionId,
                     type: "post",
                     success: function(response){
-                        alert(response);
+                        //alert(response);
                         var decodedData = $.parseJSON(response);
                         if( decodedData['success']!=true){
                             alert(decodedData['data']);
@@ -141,8 +171,10 @@
                         }
                     }
                 });
-           }
-        });
+        }
+        
+        function populate_town(territoryId){
+        }
         
         $("#territoryId").change(function(e){
            if( $(this).val()>0 ){               
@@ -151,7 +183,7 @@
                     data: "territory_id="+$(this).val(),
                     type: "post",
                     success: function(response){
-                        alert(response);
+                        //alert(response);
                         var decodedData = $.parseJSON(response);
                         if( decodedData['success']!=true){
                             alert(decodedData['data']);

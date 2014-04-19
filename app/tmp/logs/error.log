@@ -15,3 +15,81 @@ Stack Trace:
 #11 /home/mushfique/public_html/2014/survey-system/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(SurveysController), Object(CakeRequest), Object(CakeResponse))
 #12 /home/mushfique/public_html/2014/survey-system/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #13 {main}
+2014-04-19 13:40:23 Error: [MissingControllerException] Controller class IndexController could not be found.
+Exception Attributes: array (
+  'class' => 'IndexController',
+  'plugin' => NULL,
+)
+Request URL: /mushfique/2014/survey-system/index?data%5Bmonth%5D=&data%5Byear%5D=&data%5Bregion_id%5D=&data%5Bterritory_id%5D=&data%5Btown_id%5D=&data%5Bdms_code%5D=
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-04-19 13:40:54 Error: [MissingActionException] Action SurveysController::Surveys() could not be found.
+Exception Attributes: array (
+  'controller' => 'SurveysController',
+  'action' => 'Surveys',
+)
+Request URL: /mushfique/2014/survey-system/Surveys/Surveys/index?data%5Bmonth%5D=&data%5Byear%5D=&data%5Bregion_id%5D=&data%5Bterritory_id%5D=&data%5Btown_id%5D=&data%5Bdms_code%5D=
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /home/mushfique/public_html/2014/survey-system/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(SurveysController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/mushfique/public_html/2014/survey-system/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-04-19 13:53:00 Error: [MissingControllerException] Controller class IndexController could not be found.
+Exception Attributes: array (
+  'class' => 'IndexController',
+  'plugin' => NULL,
+)
+Request URL: /mushfique/2014/survey-system/index?data%5Bmonth%5D=1&data%5Byear%5D=2014&data%5Bregion_id%5D=3&data%5Bterritory_id%5D=3&data%5Btown_id%5D=3&data%5Bdms_code%5D=
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-04-19 13:53:46 Error: [MissingControllerException] Controller class IndexController could not be found.
+Exception Attributes: array (
+  'class' => 'IndexController',
+  'plugin' => NULL,
+)
+Request URL: /mushfique/2014/survey-system/index?data%5Bmonth%5D=1&data%5Byear%5D=2015&data%5Bregion_id%5D=2&data%5Bterritory_id%5D=4&data%5Btown_id%5D=4&data%5Bdms_code%5D=
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-04-19 13:54:10 Error: [MissingControllerException] Controller class IndexController could not be found.
+Exception Attributes: array (
+  'class' => 'IndexController',
+  'plugin' => NULL,
+)
+Request URL: /mushfique/2014/survey-system/index?data%5Bmonth%5D=1&data%5Byear%5D=2015&data%5Bregion_id%5D=2&data%5Bterritory_id%5D=4&data%5Btown_id%5D=4&data%5Bdms_code%5D=
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-04-19 13:54:28 Error: [MissingControllerException] Controller class IndexController could not be found.
+Exception Attributes: array (
+  'class' => 'IndexController',
+  'plugin' => NULL,
+)
+Request URL: /mushfique/2014/survey-system/index?data%5Bmonth%5D=1&data%5Byear%5D=2015&data%5Bregion_id%5D=2&data%5Bterritory_id%5D=4&data%5Btown_id%5D=4&data%5Bdms_code%5D=
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2014-04-19 13:54:51 Error: [MissingActionException] Action SurveysController::Surveys() could not be found.
+Exception Attributes: array (
+  'controller' => 'SurveysController',
+  'action' => 'Surveys',
+)
+Request URL: /mushfique/2014/survey-system/Surveys/Surveys/index?data%5Bmonth%5D=3&data%5Byear%5D=2014&data%5Bregion_id%5D=2&data%5Bterritory_id%5D=5&data%5Btown_id%5D=5&data%5Bdms_code%5D=
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /home/mushfique/public_html/2014/survey-system/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(SurveysController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/mushfique/public_html/2014/survey-system/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}
+2014-04-19 13:55:26 Error: [MissingActionException] Action SurveysController::Surveys() could not be found.
+Exception Attributes: array (
+  'controller' => 'SurveysController',
+  'action' => 'Surveys',
+)
+Request URL: /mushfique/2014/survey-system/Surveys/Surveys/
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Routing/Dispatcher.php(187): Controller->invokeAction(Object(CakeRequest))
+#1 /home/mushfique/public_html/2014/survey-system/lib/Cake/Routing/Dispatcher.php(162): Dispatcher->_invoke(Object(SurveysController), Object(CakeRequest), Object(CakeResponse))
+#2 /home/mushfique/public_html/2014/survey-system/app/webroot/index.php(110): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#3 {main}

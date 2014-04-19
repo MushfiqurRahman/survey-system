@@ -192,44 +192,110 @@ class Survey extends AppModel {
      */
     public function set_conditions($data){
         $conditions = array();
-        if( isset($data['Survey'])){
+//        if( isset($data['Survey'])){
+//            $outletIds = array();
+//            
+//            if( !empty($data['Survey']['dms_code']) ){
+//                $outletIds = $this->Outlet->find('list', array('conditions' => 
+//                    array('dms_code' => $data['Survey']['dms_code'])));
+//            }else if( !empty($data['Survey']['town_id']) ){
+//                $outletIds = $this->Outlet->find('list', array('conditions' => 
+//                    array('town_id' => $data['Survey']['town_id'])));
+//                
+//            }else if( !empty($data['Survey']['territory_id']) ){
+//                $townIds = $this->Outlet->Town->find('list', array('conditions' => 
+//                    array('territory_id' => $data['Survey']['territory_id'])));
+//                
+//                $outletIds = $this->Outlet->find('list', array('conditions' => 
+//                    array('town_id' => $townIds)));
+//            }else if( !empty($data['Survey']['region_id'])){
+//                $territoryIds = $this->Outlet->Town->Territory->find('list', array(
+//                    'conditions' => array('region_id' => $data['Survey']['region_id'])
+//                ));
+//                $townIds = $this->Outlet->Town->find('list', array('conditions' => 
+//                    array('territory_id' => $territoryIds)));
+//                
+//                $outletIds = $this->Outlet->find('list', array('conditions' => 
+//                    array('town_id' => $townIds)));
+//            }
+//            
+//            if( !empty($outletIds) ){
+//                $conditions['outlet_id'] = $outletIds;
+//            }
+//            
+//            if( !empty($data['Survey']['year']) ){
+//                $conditions['YEAR(date_time)'] = $data['Survey']['year'];
+//            }
+//            if( !empty($data['Survey']['month']) ){
+//                $conditions['MONTH(date_time)'] = $data['Survey']['month'];
+//            }
+//        }
+        if( !empty($data)){
             $outletIds = array();
             
-            if( !empty($data['Survey']['dms_code']) ){
+            if( !empty($data['dms_code']) ){
                 $outletIds = $this->Outlet->find('list', array('conditions' => 
-                    array('dms_code' => $data['Survey']['dms_code'])));
-            }else if( !empty($data['Survey']['town_id']) ){
-                $outletIds = $this->Outlet->find('list', array('conditions' => 
-                    array('town_id' => $data['Survey']['town_id'])));
+                    array('dms_code' => $data['dms_code'])));
+                $outletIds = $this->id_from_list($outletIds);
                 
-            }else if( !empty($data['Survey']['territory_id']) ){
+            }else if( !empty($data['town_id']) ){
+                $outletIds = $this->Outlet->find('list', array('conditions' => 
+                    array('town_id' => $data['town_id'])));
+                
+                $outletIds = $this->id_from_list($outletIds);
+                
+            }else if( !empty($data['territory_id']) ){
                 $townIds = $this->Outlet->Town->find('list', array('conditions' => 
-                    array('territory_id' => $data['Survey']['territory_id'])));
+                    array('territory_id' => $data['territory_id'])));
+                $townIds = $this->id_from_list($townIds);
                 
                 $outletIds = $this->Outlet->find('list', array('conditions' => 
                     array('town_id' => $townIds)));
-            }else if( !empty($data['Survey']['region_id'])){
+                $outletIds = $this->id_from_list($outletIds);
+                
+            }else if( !empty($data['region_id'])){
                 $territoryIds = $this->Outlet->Town->Territory->find('list', array(
-                    'conditions' => array('region_id' => $data['Survey']['region_id'])
+                    'conditions' => array('region_id' => $data['region_id'])
                 ));
+                $territoryIds = $this->id_from_list($territoryIds);
+                
                 $townIds = $this->Outlet->Town->find('list', array('conditions' => 
                     array('territory_id' => $territoryIds)));
+                $townIds = $this->id_from_list($townIds);
                 
                 $outletIds = $this->Outlet->find('list', array('conditions' => 
                     array('town_id' => $townIds)));
+                $outletIds = $this->id_from_list($outletIds);
             }
             
             if( !empty($outletIds) ){
                 $conditions['outlet_id'] = $outletIds;
             }
             
-            if( !empty($data['Survey']['year']) ){
-                $conditions['YEAR(date_time)'] = $data['Survey']['year'];
+            if( !empty($data['year_id']) ){
+                $conditions['YEAR(date_time)'] = $data['year_id'];
+            }else{
+                $conditions['YEAR(date_time)'] = date('Y');
             }
-            if( !empty($data['Survey']['month']) ){
-                $conditions['MONTH(date_time)'] = $data['Survey']['month'];
+            if( !empty($data['month_id']) ){
+                $conditions['MONTH(date_time)'] = $data['month_id'];
+            }else{
+                $conditions['MONTH(date_time)'] = date('m');
             }
         }
         return $conditions;
+    }
+    
+    /**
+     * 
+     * @param type $list
+     * @return type
+     */
+    public function id_from_list($list){
+        $ids = array();
+        foreach($list as $k => $v){
+            $ids[] = $k;
+        }
+        return $ids;
     }
 }
