@@ -14,6 +14,35 @@ class SurveysController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
+        
+        public function beforeFilter() {
+            parent::beforeFilter();
+            $this->set('regions', $this->Survey->Outlet->Town->Territory->Region->find('list'));
+        }
+        
+        /**
+         * Used in /View/Surveys/index.ctp file
+         */
+        public function ajaxGetListData(){
+            $this->layout = $this->autoRender = false;
+            if($this->request->is('ajax')){
+                $response = array();
+                $response['success'] = true;
+                if( isset($this->request->data['region_id'])){
+                    $response['data'] = $this->Survey->Outlet->Town->Territory->find('list', array(
+                        'conditions' => array('region_id' => $this->request->data['region_id']),
+                    ));
+                }else if( isset($this->request->data['territory_id'])){
+                    $response['data'] = $this->Survey->Outlet->Town->find('list', array(
+                        'conditions' => array('territory_id' => $this->request->data['territory_id']),
+                    ));
+                }else{
+                    $response['success'] = FALSE;
+                    $response['data'] = 'Failed to retrieve data';
+                }
+                echo json_encode($response);
+            }
+        }
 
 /**
  * index method
@@ -21,13 +50,14 @@ class SurveysController extends AppController {
  * @return void
  */
 	public function index() {            
+            pr($this->request->data);
+            
             $this->Survey->Behaviors->load('Containable');
 
             $this->paginate = array(
                 'fields' => array('id','outlet_id','date_time'),
                 'contain' => $this->Survey->get_contain_array(),
-                //'conditions' => $this->Survey->set_conditions($SurveyIds, $this->request->data),
-                //'conditions' => $this->Survey->set_conditions($houseIds, $this->request->data, false, $this->current_campaign_detail['Campaign']['id']),
+                'conditions' => $this->Survey->set_conditions($this->request->data),
                 'order' => array('Survey.created' => 'DESC'),
                 'limit' => 20,
             );

@@ -1,6 +1,80 @@
 <div class="surveys index">
+    <?php
+        
+    ?>
+    
 	<h2><?php echo __('Surveys'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+        
+        <?php echo $this->Form->create(array('action' => 'index','type' => 'post'));?>
+        
+        <table>
+            <tr>
+                <td>
+                    <?php echo $this->Form->input('month', array('type' => 'select',
+                    'options' => array('1' => 'January',
+                        '2' => 'February',
+                        '3' => 'March',
+                        '4' => 'April',
+                        '5' => 'May',
+                        '6' => 'June',
+                        '7' => 'July',
+                        '8' => 'August',
+                        '9' => 'September',
+                        '10' => 'October',
+                        '11' => 'November',
+                        '12' => 'December'), 
+                    'empty' => '-Select Month-',
+                        'label' => false,
+                        'id' => 'selectMonth'));
+                    ?>
+                </td>
+                <td>
+                    <?php echo $this->Form->input('year',array('type' => 'select',
+                        'options' => array('2014' => '2014', '2015' => '2015', '2016' => '2016'),
+                        'empty' => '-Select Year-', 'label' => false,
+                        'id' => 'selectYear'));
+                    ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php 
+                        echo $this->Form->input('region_id', array('type' => 'select', 
+                            'options' => $regions,
+                            'empty' => '-Select Region-',
+                            'label' => false,
+                            'id' => 'regionId'));
+                    ?>
+                </td>
+                <td>
+                    <?php 
+                        echo $this->Form->input('territory_id', array('type' => 'select',
+                            'empty' => '-Select Territory-',
+                            'label' => false,
+                            'id' => 'territoryId'
+                            ));
+                    ?>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <?php 
+                        echo $this->Form->input('town_id', array('type' => 'select', 
+                            'empty' => '-Select Town-',
+                            'label' => false,
+                            'id' => 'townId'));
+                    ?>
+                </td>
+                <td><?php echo $this->Form->input('dms_code',array('type' => 'text', 'placeholder' => 'dms code', 'label' => false));?></td>
+            </tr>
+        </table>
+                
+        <?php echo $this->Form->input('Search', array('type' => 'submit', 'value' => 'Search', 
+            'id' => 'btnSearch', 'label' => false));
+        echo $this->Form->end();?>
+        
+        
+	<table cellpadding="0" cellspacing="0" style="margin-top:70px;">
 	<tr>
 			<th><?php echo __('Region'); ?></th>
 			<th><?php echo __('Territory'); ?></th>
@@ -45,3 +119,61 @@
 	?>
 	</div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        var base_url = "<?php echo Configure::read('base_url');?>";
+        $("#regionId").change(function(e){
+           if( $(this).val()>0 ){               
+                $.ajax({
+                    url: base_url + "/surveys/ajaxGetListData",
+                    data: "region_id="+$(this).val(),
+                    type: "post",
+                    success: function(response){
+                        alert(response);
+                        var decodedData = $.parseJSON(response);
+                        if( decodedData['success']!=true){
+                            alert(decodedData['data']);
+                        }else{                        
+                            $.each(decodedData['data'], function(i,v){
+                                $("#territoryId").append('<option value="'+i+'">'+v+'</option>');
+                            });
+                        }
+                    }
+                });
+           }
+        });
+        
+        $("#territoryId").change(function(e){
+           if( $(this).val()>0 ){               
+                $.ajax({
+                    url: base_url + "/surveys/ajaxGetListData",
+                    data: "territory_id="+$(this).val(),
+                    type: "post",
+                    success: function(response){
+                        alert(response);
+                        var decodedData = $.parseJSON(response);
+                        if( decodedData['success']!=true){
+                            alert(decodedData['data']);
+                        }else{                        
+                            $.each(decodedData['data'], function(i,v){
+                                $("#townId").append('<option value="'+i+'">'+v+'</option>');
+                            });
+                        }
+                    }
+                });
+           }
+        });
+        
+        $("#btnSearch").click(function(e){
+            e.preventDefault();
+            
+            if( $("#selectMonth").val()>0 && $("#selectYear").val()<1 ){
+                alert("Please select a year");
+                return false;
+            }else{
+                $("#SurveyIndexForm").submit();
+            }
+        });
+    });
+</script>

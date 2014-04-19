@@ -183,7 +183,53 @@ class Survey extends AppModel {
                         'fields' => array('title'),
                         'Region' => array('fields' => array('title')))),
             ),
-            //'fields' => array('id','outlet_id','date_time')
         );
+    }
+    
+    /**
+     * Used in SurveysController's index method
+     * @param type $data
+     */
+    public function set_conditions($data){
+        $conditions = array();
+        if( isset($data['Survey'])){
+            $outletIds = array();
+            
+            if( !empty($data['Survey']['dms_code']) ){
+                $outletIds = $this->Outlet->find('list', array('conditions' => 
+                    array('dms_code' => $data['Survey']['dms_code'])));
+            }else if( !empty($data['Survey']['town_id']) ){
+                $outletIds = $this->Outlet->find('list', array('conditions' => 
+                    array('town_id' => $data['Survey']['town_id'])));
+                
+            }else if( !empty($data['Survey']['territory_id']) ){
+                $townIds = $this->Outlet->Town->find('list', array('conditions' => 
+                    array('territory_id' => $data['Survey']['territory_id'])));
+                
+                $outletIds = $this->Outlet->find('list', array('conditions' => 
+                    array('town_id' => $townIds)));
+            }else if( !empty($data['Survey']['region_id'])){
+                $territoryIds = $this->Outlet->Town->Territory->find('list', array(
+                    'conditions' => array('region_id' => $data['Survey']['region_id'])
+                ));
+                $townIds = $this->Outlet->Town->find('list', array('conditions' => 
+                    array('territory_id' => $territoryIds)));
+                
+                $outletIds = $this->Outlet->find('list', array('conditions' => 
+                    array('town_id' => $townIds)));
+            }
+            
+            if( !empty($outletIds) ){
+                $conditions['outlet_id'] = $outletIds;
+            }
+            
+            if( !empty($data['Survey']['year']) ){
+                $conditions['YEAR(date_time)'] = $data['Survey']['year'];
+            }
+            if( !empty($data['Survey']['month']) ){
+                $conditions['MONTH(date_time)'] = $data['Survey']['month'];
+            }
+        }
+        return $conditions;
     }
 }
