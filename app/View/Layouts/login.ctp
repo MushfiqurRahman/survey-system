@@ -6,14 +6,12 @@
 	if($title_for_layout!='')
 		echo $title_for_layout.' | ';
 
- 	echo $settings_var['app_name'];
+ 	//echo $settings_var['app_name'];
 ?>
 </title>
 
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 
-<style type="text/css" media="all">
-	@import url("<?php echo $settings_var['base_url'];?>/css/login.css");
+<style type="text/css" source="<?php echo Router::url('/',true);?>/css/login.css">
 </style>
 <script type="text/javascript" src="<?php echo Router::url('/',true);?>/js/jquery-1.9.1.min.js"></script>
 <!--<script type="text/javascript" src="/js/chatJs/firebug-lite/content/firebug-lite-dev.js"></script>-->

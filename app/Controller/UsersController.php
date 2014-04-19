@@ -25,7 +25,9 @@ class UsersController extends AppController {
             $this->set('title_for_layout', "Login");
             if( $this->request->is('post') && !empty($this->data) ){//pr($this->data);
 
-                if ($this->Auth->login($this->request->data['User'])) {
+                //if ($this->Auth->login($this->request->data['User'])) {
+                if ($this->Auth->login()) {
+                    //var_dump($this->Auth->redirect());exit;
                     return $this->redirect($this->Auth->redirect());
                 } else {
                     $this->Session->setFlash(__('Username or password is incorrect'), 'default', array(), 'auth');

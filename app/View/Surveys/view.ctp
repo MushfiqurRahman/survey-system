@@ -1,124 +1,115 @@
 <div class="surveys view">
-<h2><?php echo __('Survey'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($survey['Survey']['id']); ?>
+<h2><?php echo __($survey['Outlet']['name'].' Details<hr>');?></h2>
+<table>
+    <tr><td><?php echo __('Region'); ?></td>
+        <td>
+			<?php echo h($survey['Outlet']['Town']['Territory']['Region']['title']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Category'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($survey['Category']['title'], array('controller' => 'categories', 'action' => 'view', $survey['Category']['id'])); ?>
+        </td>
+    </tr>
+    <tr>
+		<td><?php echo __('Territory'); ?></td>
+		<td>
+			<?php echo $survey['Outlet']['Town']['Territory']['title']; ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Subcategory'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($survey['Subcategory']['title'], array('controller' => 'subcategories', 'action' => 'view', $survey['Subcategory']['id'])); ?>
+		</td>
+                </tr>
+                <tr>
+		<td><?php echo __('Town'); ?></td>
+		<td>
+			<?php echo $survey['Outlet']['Town']['title']; ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Outlet'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($survey['Outlet']['name'], array('controller' => 'outlets', 'action' => 'view', $survey['Outlet']['id'])); ?>
+		</td>
+                </tr>
+                <tr>
+		<td><?php echo __('Shop Name'); ?></td>
+		<td>
+			<?php echo $survey['Outlet']['name']; ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('User'); ?></dt>
-		<dd>
-			<?php echo $this->Html->link($survey['User']['name'], array('controller' => 'users', 'action' => 'view', $survey['User']['id'])); ?>
+		</td>
+                </tr>
+                <tr>
+		<td><?php echo __('Shop Type'); ?></td>
+		<td>
+			<?php echo $survey['Outlet']['OutletType']['title'];?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Responder Name'); ?></dt>
-		<dd>
-			<?php echo h($survey['Survey']['responder_name']); ?>
+		</td>
+                </tr>
+                <tr>
+		<td><?php echo __('Class'); ?></td>
+		<td>
+			<?php echo h($survey['Outlet']['OutletType']['class']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Phone'); ?></dt>
-		<dd>
-			<?php echo h($survey['Survey']['phone']); ?>
+		</td>
+                </tr>
+                <tr>
+		<td><?php echo __('Phone'); ?></td>
+		<td>
+			<?php echo h($survey['Outlet']['phone']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Responder Role'); ?></dt>
-		<dd>
-			<?php echo h($survey['Survey']['responder_role']); ?>
+		</td>
+                </tr>
+                <tr>
+		<td><?php echo __('DMS Code'); ?></td>
+		<td>
+			<?php echo h($survey['Outlet']['dms_code']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Image'); ?></dt>
-		<dd>
-			<?php echo h($survey['Survey']['image']); ?>
+		</td>
+                </tr>
+                <tr>
+		<td><?php echo __('Audit Date & Time'); ?></td>
+		<td>
+			<?php echo h($survey['Survey']['date_time']); ?>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Time'); ?></dt>
-		<dd>
-			<?php echo h($survey['Survey']['time']); ?>
+		</td>
+                </tr>
+                <tr>
+		<td><?php echo __('Location'); ?></td>
+		<td>
+			<div id="googleMap" style="width:380px;height:300px;"></div>
 			&nbsp;
-		</dd>
-		<dt><?php echo __('Lattitude'); ?></dt>
-		<dd>
-			<?php echo h($survey['Survey']['lattitude']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Longitude'); ?></dt>
-		<dd>
-			<?php echo h($survey['Survey']['longitude']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($survey['Survey']['created']); ?>
-			&nbsp;
-		</dd>
-	</dl>
+		</td>
+                </tr>
+                <tr>
+		<td><?php echo __('Shop Images'); ?></td>
+		<td>
+                    <img src="<?php echo Configure::read('base_url').'/'.$survey['Survey']['first_image'];?>"/>
+                    <img src="<?php echo Configure::read('base_url').'/'.$survey['Survey']['second_image'];?>"/>
+		</td>
+</table>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Survey'), array('action' => 'edit', $survey['Survey']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Survey'), array('action' => 'delete', $survey['Survey']['id']), null, __('Are you sure you want to delete # %s?', $survey['Survey']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Surveys'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Survey'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Categories'), array('controller' => 'categories', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Category'), array('controller' => 'categories', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Subcategories'), array('controller' => 'subcategories', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Subcategory'), array('controller' => 'subcategories', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Outlets'), array('controller' => 'outlets', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Outlet'), array('controller' => 'outlets', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users'), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User'), array('controller' => 'users', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Survey Details'), array('controller' => 'survey_details', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Survey Detail'), array('controller' => 'survey_details', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
-<div class="related">
-	<h3><?php echo __('Related Survey Details'); ?></h3>
-	<?php if (!empty($survey['SurveyDetail'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Survey Id'); ?></th>
-		<th><?php echo __('Question Detail Id'); ?></th>
-		<th><?php echo __('Answer'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php
-		$i = 0;
-		foreach ($survey['SurveyDetail'] as $surveyDetail): ?>
-		<tr>
-			<td><?php echo $surveyDetail['id']; ?></td>
-			<td><?php echo $surveyDetail['survey_id']; ?></td>
-			<td><?php echo $surveyDetail['question_detail_id']; ?></td>
-			<td><?php echo $surveyDetail['answer']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'survey_details', 'action' => 'view', $surveyDetail['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'survey_details', 'action' => 'edit', $surveyDetail['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'survey_details', 'action' => 'delete', $surveyDetail['id']), null, __('Are you sure you want to delete # %s?', $surveyDetail['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Survey Detail'), array('controller' => 'survey_details', 'action' => 'add')); ?> </li>
-		</ul>
-	</div>
-</div>
+
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false">
+</script>
+
+<script>
+
+    var lattitude = "<?php echo $survey['Survey']['lattitude'];?>";
+    var longitude = "<?php echo $survey['Survey']['longitude'];?>";
+
+var myCenter=new google.maps.LatLng(lattitude, longitude);
+
+function initialize()
+{
+	
+	var mapProp = {
+	  center:myCenter,
+	  zoom:13,
+	  mapTypeId:google.maps.MapTypeId.ROADMAP
+	  };
+	var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+	
+	
+	var marker=new google.maps.Marker({
+		  position:myCenter,
+		  });
+
+	marker.setMap(map);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+
+
+

@@ -20,9 +20,20 @@ class SurveysController extends AppController {
  *
  * @return void
  */
-	public function index() {
-		$this->Survey->recursive = 0;
-		$this->set('surveys', $this->Paginator->paginate());
+	public function index() {            
+            $this->Survey->Behaviors->load('Containable');
+
+            $this->paginate = array(
+                'fields' => array('id','outlet_id','date_time'),
+                'contain' => $this->Survey->get_contain_array(),
+                //'conditions' => $this->Survey->set_conditions($SurveyIds, $this->request->data),
+                //'conditions' => $this->Survey->set_conditions($houseIds, $this->request->data, false, $this->current_campaign_detail['Campaign']['id']),
+                'order' => array('Survey.created' => 'DESC'),
+                'limit' => 20,
+            );
+            $Surveys = $this->paginate();
+            //pr($Surveys);exit;
+            $this->set('surveys', $Surveys);
 	}
 
 /**
@@ -36,7 +47,21 @@ class SurveysController extends AppController {
 		if (!$this->Survey->exists($id)) {
 			throw new NotFoundException(__('Invalid survey'));
 		}
-		$options = array('conditions' => array('Survey.' . $this->Survey->primaryKey => $id));
+                $this->Survey->Behaviors->load('Containable');
+                
+		$options = array(
+                    'contain' => array(
+                        'Outlet' => array(
+                            'fields' => array('id','outlet_type_id', 'town_id','name','phone','address','dms_code'),
+                            'OutletType' => array('title','class'),
+                            'Town' => array(
+                                'fields' => array('title'),
+                                'Territory' => array(
+                                    'fields' => array('title'),
+                                    'Region' => array('fields' => array('title')))),
+                    )),
+                    'fields' => array('id','outlet_id','lattitude','longitude','first_image','second_image','date_time'),
+                    'conditions' => array('Survey.' . $this->Survey->primaryKey => $id));
 		$this->set('survey', $this->Survey->find('first', $options));
 	}
 

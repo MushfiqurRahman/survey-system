@@ -159,4 +159,31 @@ class Survey extends AppModel {
             
             return $response;
         }
+        
+    /**
+     *
+     * @return type
+     */
+    public function get_contain_array() {
+
+//        $conditions = array();
+//        if (isset($data['start_date'])) {
+//            $conditions[]['DATE(Feedback.created) >= '] = $data['start_date'];
+//        }
+//        if (isset($data['end_date'])) {
+//            $conditions[]['DATE(Feedback.created) <='] = $data['end_date'];
+//        }
+        return array(
+            'Outlet' => array(
+                'fields' => array('id','outlet_type_id', 'town_id','name','phone','address','dms_code','class'),
+                'OutletType' => array('title','class'),
+                'Town' => array(
+                    'fields' => array('title'),
+                    'Territory' => array(
+                        'fields' => array('title'),
+                        'Region' => array('fields' => array('title')))),
+            ),
+            //'fields' => array('id','outlet_id','date_time')
+        );
+    }
 }
