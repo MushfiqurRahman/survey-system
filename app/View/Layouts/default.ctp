@@ -27,12 +27,13 @@
 	<?php
 		//echo $this->Html->meta('icon');
 
-		echo $this->Html->css(array( 'bootstrap-responsive.css', 'cake.generic','bootstrap','style'));
+		echo $this->Html->css(array( 'bootstrap-responsive.css', 'cake.generic','bootstrap','style',
+                    'CalendarControl'));
                 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		//echo $this->fetch('script');
-                echo $this->Html->script(array('jquery-1.9.1.min', 'bootstrap.min', 'main'));
+                echo $this->Html->script(array('jquery-1.9.1.min', 'bootstrap.min', 'main', 'CalendarControl'));
                 echo $scripts_for_layout;
 	?>
 </head>

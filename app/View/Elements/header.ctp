@@ -16,7 +16,7 @@
                                     <li class="active">
                                         <?php echo $this->Html->link('Settings', array('controller' => 'Settings','action' => 'index'));?>                                     
                                     </li>
-                                    <li><?php echo $this->Html->link('Export Report',array('controller' => 'surveys', 'action' => 'export_report'));?></li>
+                                    <li><?php echo $this->Html->link('Export Report',array('controller' => 'surveys', 'action' => 'export_filter'));?></li>
                                <?php
                                     }?>
                                

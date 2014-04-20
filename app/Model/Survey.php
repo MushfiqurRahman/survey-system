@@ -165,14 +165,6 @@ class Survey extends AppModel {
      * @return type
      */
     public function get_contain_array() {
-
-//        $conditions = array();
-//        if (isset($data['start_date'])) {
-//            $conditions[]['DATE(Feedback.created) >= '] = $data['start_date'];
-//        }
-//        if (isset($data['end_date'])) {
-//            $conditions[]['DATE(Feedback.created) <='] = $data['end_date'];
-//        }
         return array(
             'Outlet' => array(
                 'fields' => array('id','outlet_type_id', 'town_id','name','phone','address','dms_code','class'),
@@ -192,44 +184,6 @@ class Survey extends AppModel {
      */
     public function set_conditions($data){
         $conditions = array();
-//        if( isset($data['Survey'])){
-//            $outletIds = array();
-//            
-//            if( !empty($data['Survey']['dms_code']) ){
-//                $outletIds = $this->Outlet->find('list', array('conditions' => 
-//                    array('dms_code' => $data['Survey']['dms_code'])));
-//            }else if( !empty($data['Survey']['town_id']) ){
-//                $outletIds = $this->Outlet->find('list', array('conditions' => 
-//                    array('town_id' => $data['Survey']['town_id'])));
-//                
-//            }else if( !empty($data['Survey']['territory_id']) ){
-//                $townIds = $this->Outlet->Town->find('list', array('conditions' => 
-//                    array('territory_id' => $data['Survey']['territory_id'])));
-//                
-//                $outletIds = $this->Outlet->find('list', array('conditions' => 
-//                    array('town_id' => $townIds)));
-//            }else if( !empty($data['Survey']['region_id'])){
-//                $territoryIds = $this->Outlet->Town->Territory->find('list', array(
-//                    'conditions' => array('region_id' => $data['Survey']['region_id'])
-//                ));
-//                $townIds = $this->Outlet->Town->find('list', array('conditions' => 
-//                    array('territory_id' => $territoryIds)));
-//                
-//                $outletIds = $this->Outlet->find('list', array('conditions' => 
-//                    array('town_id' => $townIds)));
-//            }
-//            
-//            if( !empty($outletIds) ){
-//                $conditions['outlet_id'] = $outletIds;
-//            }
-//            
-//            if( !empty($data['Survey']['year']) ){
-//                $conditions['YEAR(date_time)'] = $data['Survey']['year'];
-//            }
-//            if( !empty($data['Survey']['month']) ){
-//                $conditions['MONTH(date_time)'] = $data['Survey']['month'];
-//            }
-//        }
         if( !empty($data)){
             $outletIds = array();
             
@@ -297,5 +251,78 @@ class Survey extends AppModel {
             $ids[] = $k;
         }
         return $ids;
+    }
+    
+    /**
+     * Used in SurveysController export_report method
+     * @param type $data
+     * @return type
+     */
+    public function getReportData($data){
+        
+        $this->Behaviors->load('Containable');
+        
+        if( $data['report_type']=='must_sku' ){            
+            $fields = array('Survey.id','Survey.outlet_id','Survey.must_sku');            
+        }else if( $data['report_type']=='fixed_display'){
+            $fields = array('Survey.id','Survey.outlet_id','Survey.fixed_display');
+        }else{
+            $fields = array('Survey.id','Survey.outlet_id','Survey.additional_info');
+        }        
+        $reportData = $this->find('all', array(
+                    'fields' => $fields,
+                    'contain' => array(
+                        'Outlet' => array(
+                            'fields' => array('id','outlet_type_id','name', 'dms_code'),
+                            'OutletType' => array('title','class'))),
+                    'conditions' => array('DATE(date_time) >=' => $data['start_date'], 
+                        'DATE(date_time) <=' => $data['end_date']),
+                    ));
+        
+        //$this->log(print_r($reportData,true),'error');
+        
+        if( $data['report_type']=='must_sku' ){            
+            $formattedData = $this->_formatForMustSku($reportData);
+        }else if( $data['report_type']=='fixed_display'){
+            $formattedData = $this->_formatForFixedDisplay($reportData);
+        }else{
+            $formattedData = $this->_formatForAdditionalInfo($reportData);
+        }       
+        return $formattedData;
+    }
+    
+    protected function _formatForMustSku($data){
+        $formatted = array();
+        $count = 0;
+        
+        foreach($data as $dt){
+            
+            $this->log( print_r( explode(",", $dt['Survey']['must_sku']), true),'error');
+            
+//            $formatted[$count][''] = $dt[''][''];
+//            $formatted[$count][''] = $dt[''][''];
+//            $formatted[$count][''] = $dt[''][''];
+//            $formatted[$count][''] = $dt[''][''];
+//            $formatted[$count][''] = $dt[''][''];
+//            $formatted[$count][''] = $dt[''][''];
+//            $formatted[$count][''] = $dt[''][''];
+            
+            
+        }
+        
+        
+        return $formatted;
+    }
+    
+    protected function _formatForFixedDisplay($data){
+        $formatted = array();
+        
+        return $formatted;
+    }
+    
+    protected function _formatForAdditionalInfo($data){
+        $formatted = array();
+        
+        return $formatted;
     }
 }
