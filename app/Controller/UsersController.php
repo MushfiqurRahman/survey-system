@@ -48,8 +48,13 @@ class UsersController extends AppController {
  * @return void
  */
 	public function index() {
+            if( $this->loggedinUser['Role']['title']=='Admin'){
 		$this->User->recursive = 0;
 		$this->set('users', $this->Paginator->paginate());
+            }else{
+                $this->Session->setFlash(__("You are not authorized to access that location!"));
+                $this->redirect($this->Auth->redirect());
+            }
 	}
 
 /**
@@ -89,10 +94,7 @@ class UsersController extends AppController {
                     }
 		}
 		$roles = $this->User->Role->find('list');
-		//$categories = $this->User->Category->find('list');
-		$towns = $this->User->Town->find('list');
-		$outlets = $this->User->Outlet->find('list');
-		$this->set(compact('roles', 'categories', 'towns', 'outlets'));
+		$this->set(compact('roles'));
 	}
 
 /**
@@ -107,6 +109,7 @@ class UsersController extends AppController {
 			throw new NotFoundException(__('Invalid user'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+                    $this->request->data['User']['password'] = $this->Auth->password($this->data['User']['password']);
 			if ($this->User->save($this->request->data)) {
 				$this->Session->setFlash(__('The user has been saved'));
 				return $this->redirect(array('action' => 'index'));
@@ -116,12 +119,10 @@ class UsersController extends AppController {
 		} else {
 			$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 			$this->request->data = $this->User->find('first', $options);
+                        $this->request->data['User']['password'] = '';
 		}
 		$roles = $this->User->Role->find('list');
-		$categories = $this->User->Category->find('list');
-		$towns = $this->User->Town->find('list');
-		$outlets = $this->User->Outlet->find('list');
-		$this->set(compact('roles', 'categories', 'towns', 'outlets'));
+		$this->set(compact('roles'));
 	}
 
 /**
