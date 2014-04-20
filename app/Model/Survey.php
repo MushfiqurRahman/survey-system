@@ -294,23 +294,27 @@ class Survey extends AppModel {
     protected function _formatForMustSku($data){
         $formatted = array();
         $count = 0;
+        $slNo = 1;
         
         foreach($data as $dt){
+            $dt['Survey']['must_sku'] = str_replace("\"","",$dt['Survey']['must_sku']);
+            $skus = explode(",", $dt['Survey']['must_sku']);
             
-            $this->log( print_r( explode(",", $dt['Survey']['must_sku']), true),'error');
-            
-//            $formatted[$count][''] = $dt[''][''];
-//            $formatted[$count][''] = $dt[''][''];
-//            $formatted[$count][''] = $dt[''][''];
-//            $formatted[$count][''] = $dt[''][''];
-//            $formatted[$count][''] = $dt[''][''];
-//            $formatted[$count][''] = $dt[''][''];
-//            $formatted[$count][''] = $dt[''][''];
-            
-            
+            foreach($skus as $sku){
+                $codeNcount = explode(":",$sku);
+                
+                $formatted[$count]['Slno'] = sprintf("%04s", $slNo);
+                $formatted[$count]['Outlet_id'] = $dt['Outlet']['dms_code'];
+                $formatted[$count]['Shop_Type'] = $dt['Outlet']['OutletType']['title'];
+                $formatted[$count]['Shop_Class'] = $dt['Outlet']['OutletType']['class'];
+                $formatted[$count]['Outlet_Name'] = $dt['Outlet']['name'];
+                $formatted[$count]['Product_Code'] = $codeNcount[0];
+                $formatted[$count]['Qty'] = $codeNcount[1];
+                
+                $count++;
+            }
+            $slNo++;
         }
-        
-        
         return $formatted;
     }
     

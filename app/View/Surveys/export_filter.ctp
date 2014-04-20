@@ -31,8 +31,8 @@
             </tr>
         </table>
                 
-        <?php echo $this->Form->input('Search', array('type' => 'submit', 'value' => 'Search', 
-            'id' => 'btnSearch', 'label' => false));
+        <?php echo $this->Form->input('Export', array('type' => 'submit', 'value' => 'Export', 
+            'id' => 'btnExport', 'label' => false));
         //echo $this->Form->end();?>
         </form>
         
@@ -40,7 +40,7 @@
 
 <script>
     $(document).ready(function(){
-        $("#btnSearch").click(function(e){
+        $("#btnExport").click(function(e){
             e.preventDefault();
             
             if( $.trim($("#startDate").val()).length==0 && $.trim($("#endDate").val()).length==0 ){

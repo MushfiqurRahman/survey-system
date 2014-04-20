@@ -14,6 +14,7 @@ class SurveysController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
+        public $helpers = array('Excel');
         
         public function beforeFilter() {
             parent::beforeFilter();
@@ -70,36 +71,25 @@ class SurveysController extends AppController {
 	}
         
         /**
-         * 
+         * Please don't delete the following function. That's very essential. It show the filter form 
+         * for export
          */
         public function export_filter(){
         }
         
+        /**
+         * 
+         */
         public function export_report(){            
             $this->layout = 'ajax';            
             ini_set('memory_limit', '512M');
             
-            //$this->Survey->Behaviors->load('Containable');
-            
             if( !empty($this->request->query) ){
                 $formattedData = $this->Survey->getReportData($this->request->query);
-//                pr($this->Survey->find('all', array(
-//                    'fields' => array('Survey.id','Survey.outlet_id','Survey.must_sku'),
-//                    'contain' => array(
-//                        'Outlet' => array(
-//                            'fields' => array('id','outlet_type_id','name'),
-//                            'OutletType' => array('title','class'))),
-//                    'conditions' => array('DATE(date_time) >=' => $this->request->query['start_date'], 
-//                        'DATE(date_time) <=' => $this->request->query['end_date']),
-//                    )));
+                
+                $this->set('formattedData',$formattedData);
             }
         }
-        
-        
-
-
-
-
 
         /**
  * view method
