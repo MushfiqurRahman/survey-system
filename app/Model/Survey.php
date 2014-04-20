@@ -298,12 +298,14 @@ class Survey extends AppModel {
         
         foreach($data as $dt){
             $dt['Survey']['must_sku'] = str_replace("\"","",$dt['Survey']['must_sku']);
+            $dt['Survey']['must_sku'] = str_replace("{","",$dt['Survey']['must_sku']);
+            $dt['Survey']['must_sku'] = str_replace("}","",$dt['Survey']['must_sku']);
             $skus = explode(",", $dt['Survey']['must_sku']);
             
             foreach($skus as $sku){
                 $codeNcount = explode(":",$sku);
                 
-                $formatted[$count]['Slno'] = sprintf("%04s", $slNo);
+                $formatted[$count]['Slno'] =  $slNo;
                 $formatted[$count]['Outlet_id'] = $dt['Outlet']['dms_code'];
                 $formatted[$count]['Shop_Type'] = $dt['Outlet']['OutletType']['title'];
                 $formatted[$count]['Shop_Class'] = $dt['Outlet']['OutletType']['class'];
