@@ -305,9 +305,19 @@ class Survey extends AppModel {
         
         foreach($data as $dt){
             $dt['Survey']['fixed_display'] = $this->_removeQuoteNBrace($dt['Survey']['fixed_display']);
-            $skus = explode(",", $dt['Survey']['fixed_display']);
+            $fixedDisplay = explode(",", $dt['Survey']['fixed_display']);
             
-            $this->log(print_r($skus,true),'error');exit;
+            $fixedDisplayValues = array();
+            
+            foreach($fixedDisplay as $v){
+                $tmp = explode(":",$v);
+                //extracting the sku code from string
+                preg_match_all('/^([0-9]{3})/', $tmp[0], $skuCode);
+                $this->_extractValues(&$fixedDisplayValues, $skuCode[0], $v, $tmp[1]);
+            }
+            
+            $this->log(print_r($fixedDisplayValues, true),'error');
+            
             
 //            foreach($skus as $sku){
 //                $codeNcount = explode(":",$sku);
@@ -325,6 +335,23 @@ class Survey extends AppModel {
             $slNo++;
         }
         return $formatted;
+    }
+    
+    protected function _extractValues($fixedDisplayValues, $skuCode, $str, $value){
+        if( !isset($fixedDisplayValues[$skuCode])){
+            $fixedDisplayValues[$skuCode] = array();
+        }
+        
+        $str = str_replace($skuCode,"", $str);
+        if( $str=='_dis_count'){
+            $fixedDisplayValues[$skuCode]['display_count'] = $value;
+        }else if( $str=='_face_count'){
+            $fixedDisplayValues[$skuCode]['faceup_count'] = $value;
+        }else if($str =='_availability'){
+            $fixedDisplayValues[$skuCode]['availability'] = $value;
+        }else if( $str=='_sequence'){
+            $fixedDisplayValues[$skuCode]['sequence'] = $value;
+        }
     }
     
     protected function _formatForAdditionalInfo($data){

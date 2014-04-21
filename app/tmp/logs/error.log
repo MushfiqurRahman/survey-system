@@ -1,924 +1,1494 @@
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => sku_code_137:1
-    [1] => sku_code_140:1
-)
+2014-04-21 13:35:04 Error: Array
+(
+    [0] => 158_dis_count:0
+    [1] => 155_dis_count:0
+    [2] => 139_sequence:true
+    [3] => 144_dis_count:0
+    [4] => 145_dis_count:0
+    [5] => 149_face_count:0
+    [6] => 159_face_count:0
+    [7] => 156_face_count:0
+    [8] => 161_dis_count:0
+    [9] => 145_availability:false
+    [10] => 136_dis_count:1
+    [11] => 142_sequence:true
+    [12] => 151_sequence:false
+    [13] => 135_dis_count:1
+    [14] => 155_sequence:false
+    [15] => 143_face_count:11
+    [16] => 159_sequence:false
+    [17] => 144_face_count:0
+    [18] => 139_dis_count:1
+    [19] => 148_availability:false
+    [20] => 151_face_count:0
+    [21] => 143_dis_count:11
+    [22] => 150_dis_count:0
+    [23] => 148_dis_count:0
+    [24] => 135_face_count:1
+    [25] => 162_face_count:0
+    [26] => 161_availability:false
+    [27] => 160_face_count:0
+    [28] => 157_face_count:0
+    [29] => 148_face_count:0
+    [30] => 138_dis_count:1
+    [31] => 156_dis_count:0
+    [32] => 151_dis_count:0
+    [33] => 146_face_count:0
+    [34] => 159_dis_count:0
+    [35] => 141_face_count:1
+    [36] => 161_sequence:false
+    [37] => 134_dis_count:1
+    [38] => 152_dis_count:0
+    [39] => 140_dis_count:1
+    [40] => 141_dis_count:1
+    [41] => 136_face_count:1
+    [42] => 158_face_count:0
+    [43] => 142_dis_count:1
+    [44] => 137_dis_count:1
+    [45] => 140_sequence:true
+    [46] => 154_face_count:0
+    [47] => 160_dis_count:0
+    [48] => 150_face_count:0
+    [49] => 142_face_count:1
+    [50] => 142_availability:true
+    [51] => 162_sequence:false
+    [52] => 149_dis_count:0
+    [53] => 162_dis_count:0
+    [54] => 151_availability:false
+    [55] => 134_face_count:1
+    [56] => 152_face_count:0
+    [57] => 137_face_count:1
+    [58] => 145_sequence:false
+    [59] => 136_availability:true
+    [60] => 140_availability:true
+    [61] => 147_face_count:0
+    [62] => 139_face_count:1
+    [63] => 155_availability:false
+    [64] => 157_dis_count:0
+    [65] => 140_face_count:1
+    [66] => 154_dis_count:0
+    [67] => 148_sequence:false
+    [68] => 161_face_count:0
+    [69] => 153_face_count:0
+    [70] => 146_dis_count:0
+    [71] => 162_availability:false
+    [72] => 136_sequence:true
+    [73] => 153_dis_count:0
+    [74] => 139_availability:true
+    [75] => 159_availability:false
+    [76] => 155_face_count:0
+    [77] => 147_dis_count:0
+    [78] => 145_face_count:0
+    [79] => 138_face_count:1
+)
+
+2014-04-21 13:35:04 Error: Array
+(
+    [0] => Array
+        (
+            [0] => 158
+        )
+
+    [1] => Array
+        (
+            [0] => 158
+        )
+
+)
+
+2014-04-21 13:35:04 Error: Array
+(
+    [0] => Array
+        (
+            [0] => 155
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Vim Liquid Bikroy Program_avail:false
-    [1] => Deo Bikroy Program_update:false
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:false
-    [4] => Fair & Lovely Bikroy Utshob_update:false
-    [5] => Vim Liquid Bikroy Program_update:false
-)
+    [1] => Array
+        (
+            [0] => 155
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
-)
+    [0] => Array
+        (
+            [0] => 139
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => datetime:2014-04-02 13:23
-    [1] => cell:01717069957
-    [2] => name:poit
-)
+    [1] => Array
+        (
+            [0] => 139
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => sku_code_137:44
-    [1] => sku_code_140:4
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Vim Liquid Bikroy Program_avail:false
-    [1] => Deo Bikroy Program_update:false
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:false
-    [4] => Fair & Lovely Bikroy Utshob_update:false
-    [5] => Vim Liquid Bikroy Program_update:false
-)
+    [0] => Array
+        (
+            [0] => 144
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
-)
+    [1] => Array
+        (
+            [0] => 144
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => datetime:2014-04-03 15:34
-    [1] => cell:58555565565
-    [2] => name:gjhg
-)
+    [0] => Array
+        (
+            [0] => 145
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => sku_code_137:6
-    [1] => sku_code_140:6
-)
+    [1] => Array
+        (
+            [0] => 145
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
-)
+    [0] => Array
+        (
+            [0] => 149
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
-)
+    [1] => Array
+        (
+            [0] => 149
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => datetime:2014-04-06 15:47
-    [1] => cell:01719861113
-    [2] => name:nasir
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => sku_code_137:7
-    [1] => sku_code_140:8
-)
+    [0] => Array
+        (
+            [0] => 159
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
-)
+    [1] => Array
+        (
+            [0] => 159
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
-)
+    [0] => Array
+        (
+            [0] => 156
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => datetime:2014-04-06 17:48
-    [1] => cell:01717111530
-    [2] => name:mushfi
-)
+    [1] => Array
+        (
+            [0] => 156
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => sku_code_137:7
-    [1] => sku_code_140:82
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
-)
+    [0] => Array
+        (
+            [0] => 161
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
-)
+    [1] => Array
+        (
+            [0] => 161
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => datetime:2014-04-07 00:27
-    [1] => cell:666
-    [2] => name:kndkr
-)
+    [0] => Array
+        (
+            [0] => 145
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => sku_code_140:22
-)
+    [1] => Array
+        (
+            [0] => 145
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Shelf Talker (Face Care):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Shelf Talker (Hair Care):true
-    [3] => Perfect Store retailers? book (Available & updated):true
-)
+    [0] => Array
+        (
+            [0] => 136
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:Hair Care
-    [1] => Beside\/Adjacent Cash Counter_second:Hair Care
-    [2] => Eye Level of Consumers_second:Hair Care
-    [3] => Near\/In front of Entrance_first:Skin Care
-    [4] => Eye Level of Consumers_first:Skin Care
-    [5] => Beside\/Adjacent Cash Counter_first:Skin Care
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Skin Care
-    [7] => Near\/In front of Entrance_second:Hair Care
-)
+    [1] => Array
+        (
+            [0] => 136
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => datetime:2014-04-07 01:55
-    [1] => cell:01717111530
-    [2] => name:name
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => sku_code_137:2
-    [1] => sku_code_140:3
-)
+    [0] => Array
+        (
+            [0] => 142
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
-)
+    [1] => Array
+        (
+            [0] => 142
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
-)
+    [0] => Array
+        (
+            [0] => 151
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => datetime:2014-04-07 02:01
-    [1] => cell:555
-    [2] => name:yyy
-)
+    [1] => Array
+        (
+            [0] => 151
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => sku_code_140:44
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
-)
+    [0] => Array
+        (
+            [0] => 135
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Shelf Talker (Face Care):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Shelf Talker (Hair Care):true
-    [3] => Perfect Store retailers? book (Available & updated):true
-)
+    [1] => Array
+        (
+            [0] => 135
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:Hair Care
-    [1] => Beside\/Adjacent Cash Counter_second:Hair Care
-    [2] => Eye Level of Consumers_second:Hair Care
-    [3] => Near\/In front of Entrance_first:Skin Care
-    [4] => Eye Level of Consumers_first:Skin Care
-    [5] => Beside\/Adjacent Cash Counter_first:Skin Care
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Skin Care
-    [7] => Near\/In front of Entrance_second:Hair Care
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => datetime:2014-04-07 13:02
-    [1] => cell:25345385555
-    [2] => name:tuiyyy
-)
+    [0] => Array
+        (
+            [0] => 155
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => sku_code_137:7
-    [1] => sku_code_140:7
-)
+    [1] => Array
+        (
+            [0] => 155
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
-)
+    [0] => Array
+        (
+            [0] => 143
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
-)
+    [1] => Array
+        (
+            [0] => 143
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => datetime:2014-04-07 13:20
-    [1] => cell:54545484245
-    [2] => name:yrufuurjiriif
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => sku_code_137:9
-    [1] => sku_code_140:3
-)
+    [0] => Array
+        (
+            [0] => 159
+        )
 
-2014-04-21 08:19:13 Error: Array
-(
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
+    [1] => Array
+        (
+            [0] => 159
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
+    [0] => Array
+        (
+            [0] => 144
+        )
+
+    [1] => Array
+        (
+            [0] => 144
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
+    [0] => Array
+        (
+            [0] => 139
+        )
+
+    [1] => Array
+        (
+            [0] => 139
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => datetime:2014-04-07 17:11
-    [1] => cell:01711197353
-    [2] => name:monday
+    [0] => Array
+        (
+            [0] => 148
+        )
+
+    [1] => Array
+        (
+            [0] => 148
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => sku_code_137:7
-    [1] => sku_code_140:8
+    [0] => Array
+        (
+            [0] => 151
+        )
+
+    [1] => Array
+        (
+            [0] => 151
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
+    [0] => Array
+        (
+            [0] => 143
+        )
+
+    [1] => Array
+        (
+            [0] => 143
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
+    [0] => Array
+        (
+            [0] => 150
+        )
+
+    [1] => Array
+        (
+            [0] => 150
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
+    [0] => Array
+        (
+            [0] => 148
+        )
+
+    [1] => Array
+        (
+            [0] => 148
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => datetime:2014-04-07 17:17
-    [1] => cell:01911174811
-    [2] => name:Monday 2
+    [0] => Array
+        (
+            [0] => 135
+        )
+
+    [1] => Array
+        (
+            [0] => 135
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => sku_code_137:4
-    [1] => sku_code_140:5
+    [0] => Array
+        (
+            [0] => 162
+        )
+
+    [1] => Array
+        (
+            [0] => 162
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
+    [0] => Array
+        (
+            [0] => 161
+        )
+
+    [1] => Array
+        (
+            [0] => 161
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
+    [0] => Array
+        (
+            [0] => 160
+        )
+
+    [1] => Array
+        (
+            [0] => 160
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
+    [0] => Array
+        (
+            [0] => 157
+        )
+
+    [1] => Array
+        (
+            [0] => 157
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => datetime:2014-04-07 18:07
-    [1] => cell:888
-    [2] => name:gps
+    [0] => Array
+        (
+            [0] => 148
+        )
+
+    [1] => Array
+        (
+            [0] => 148
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => sku_code_137:5
-    [1] => sku_code_140:8
+    [0] => Array
+        (
+            [0] => 138
+        )
+
+    [1] => Array
+        (
+            [0] => 138
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
+    [0] => Array
+        (
+            [0] => 156
+        )
+
+    [1] => Array
+        (
+            [0] => 156
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
+    [0] => Array
+        (
+            [0] => 151
+        )
+
+    [1] => Array
+        (
+            [0] => 151
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
+    [0] => Array
+        (
+            [0] => 146
+        )
+
+    [1] => Array
+        (
+            [0] => 146
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => datetime:2014-04-08 10:45
-    [1] => cell:55655665566
-    [2] => name:ghjhghjj
+    [0] => Array
+        (
+            [0] => 159
+        )
+
+    [1] => Array
+        (
+            [0] => 159
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => sku_code_137:5
-    [1] => sku_code_140:6
+    [0] => Array
+        (
+            [0] => 141
+        )
+
+    [1] => Array
+        (
+            [0] => 141
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
+    [0] => Array
+        (
+            [0] => 161
+        )
+
+    [1] => Array
+        (
+            [0] => 161
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
+    [0] => Array
+        (
+            [0] => 134
+        )
+
+    [1] => Array
+        (
+            [0] => 134
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
+    [0] => Array
+        (
+            [0] => 152
+        )
+
+    [1] => Array
+        (
+            [0] => 152
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => datetime:2014-04-08 11:37
-    [1] => cell:555
-    [2] => name:gps err
+    [0] => Array
+        (
+            [0] => 140
+        )
+
+    [1] => Array
+        (
+            [0] => 140
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => sku_code_137:5
-    [1] => sku_code_140:5
+    [0] => Array
+        (
+            [0] => 141
+        )
+
+    [1] => Array
+        (
+            [0] => 141
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
+    [0] => Array
+        (
+            [0] => 136
+        )
+
+    [1] => Array
+        (
+            [0] => 136
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
+    [0] => Array
+        (
+            [0] => 158
+        )
+
+    [1] => Array
+        (
+            [0] => 158
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
+    [0] => Array
+        (
+            [0] => 142
+        )
+
+    [1] => Array
+        (
+            [0] => 142
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => datetime:2014-04-08 11:40
-    [1] => cell:45555555554
-    [2] => name:gqqsss
+    [0] => Array
+        (
+            [0] => 137
+        )
+
+    [1] => Array
+        (
+            [0] => 137
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => sku_code_137:4
-    [1] => sku_code_140:44
+    [0] => Array
+        (
+            [0] => 140
+        )
+
+    [1] => Array
+        (
+            [0] => 140
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
+    [0] => Array
+        (
+            [0] => 154
+        )
+
+    [1] => Array
+        (
+            [0] => 154
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
+    [0] => Array
+        (
+            [0] => 160
+        )
+
+    [1] => Array
+        (
+            [0] => 160
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
+    [0] => Array
+        (
+            [0] => 150
+        )
+
+    [1] => Array
+        (
+            [0] => 150
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => datetime:2014-04-09 11:17
-    [1] => cell:12853222255
-    [2] => name:duiyfjih
+    [0] => Array
+        (
+            [0] => 142
+        )
+
+    [1] => Array
+        (
+            [0] => 142
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => sku_code_137:9
-    [1] => sku_code_140:6
+    [0] => Array
+        (
+            [0] => 142
+        )
+
+    [1] => Array
+        (
+            [0] => 142
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
+    [0] => Array
+        (
+            [0] => 162
+        )
+
+    [1] => Array
+        (
+            [0] => 162
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
+    [0] => Array
+        (
+            [0] => 149
+        )
+
+    [1] => Array
+        (
+            [0] => 149
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
+    [0] => Array
+        (
+            [0] => 162
+        )
+
+    [1] => Array
+        (
+            [0] => 162
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => datetime:2014-04-09 13:07
-    [1] => cell:01717111530
-    [2] => name:gps ok now
+    [0] => Array
+        (
+            [0] => 151
+        )
+
+    [1] => Array
+        (
+            [0] => 151
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => sku_code_137:5
-    [1] => sku_code_140:8
+    [0] => Array
+        (
+            [0] => 134
+        )
+
+    [1] => Array
+        (
+            [0] => 134
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
+    [0] => Array
+        (
+            [0] => 152
+        )
+
+    [1] => Array
+        (
+            [0] => 152
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
+    [0] => Array
+        (
+            [0] => 137
+        )
+
+    [1] => Array
+        (
+            [0] => 137
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
+    [0] => Array
+        (
+            [0] => 145
+        )
+
+    [1] => Array
+        (
+            [0] => 145
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => datetime:2014-04-09 15:39
-    [1] => cell:5555
-    [2] => name:gps data
+    [0] => Array
+        (
+            [0] => 136
+        )
+
+    [1] => Array
+        (
+            [0] => 136
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => sku_code_137:5
-    [1] => sku_code_140:5
+    [0] => Array
+        (
+            [0] => 140
+        )
+
+    [1] => Array
+        (
+            [0] => 140
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
+    [0] => Array
+        (
+            [0] => 147
+        )
+
+    [1] => Array
+        (
+            [0] => 147
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
+    [0] => Array
+        (
+            [0] => 139
+        )
+
+    [1] => Array
+        (
+            [0] => 139
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
+    [0] => Array
+        (
+            [0] => 155
+        )
+
+    [1] => Array
+        (
+            [0] => 155
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => datetime:2014-04-09 15:51
-    [1] => cell:555555
-    [2] => name:gps out
+    [0] => Array
+        (
+            [0] => 157
+        )
+
+    [1] => Array
+        (
+            [0] => 157
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => sku_code_140:50
+    [0] => Array
+        (
+            [0] => 140
+        )
+
+    [1] => Array
+        (
+            [0] => 140
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
+    [0] => Array
+        (
+            [0] => 154
+        )
+
+    [1] => Array
+        (
+            [0] => 154
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Shelf Talker (Face Care):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Shelf Talker (Hair Care):true
-    [3] => Perfect Store retailers? book (Available & updated):true
+    [0] => Array
+        (
+            [0] => 148
+        )
+
+    [1] => Array
+        (
+            [0] => 148
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:Hair Care
-    [1] => Beside\/Adjacent Cash Counter_second:Hair Care
-    [2] => Eye Level of Consumers_second:Hair Care
-    [3] => Near\/In front of Entrance_first:Skin Care
-    [4] => Eye Level of Consumers_first:Skin Care
-    [5] => Beside\/Adjacent Cash Counter_first:Skin Care
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Skin Care
-    [7] => Near\/In front of Entrance_second:Hair Care
+    [0] => Array
+        (
+            [0] => 161
+        )
+
+    [1] => Array
+        (
+            [0] => 161
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => datetime:2014-04-09 16:24
-    [1] => cell:01776755676
-    [2] => name:fkyoydiydk
+    [0] => Array
+        (
+            [0] => 153
+        )
+
+    [1] => Array
+        (
+            [0] => 153
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => sku_code_140:4
+    [0] => Array
+        (
+            [0] => 146
+        )
+
+    [1] => Array
+        (
+            [0] => 146
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
+    [0] => Array
+        (
+            [0] => 162
+        )
+
+    [1] => Array
+        (
+            [0] => 162
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Shelf Talker (Face Care):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Shelf Talker (Hair Care):true
-    [3] => Perfect Store retailers? book (Available & updated):true
+    [0] => Array
+        (
+            [0] => 136
+        )
+
+    [1] => Array
+        (
+            [0] => 136
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:Hair Care
-    [1] => Beside\/Adjacent Cash Counter_second:Hair Care
-    [2] => Eye Level of Consumers_second:Hair Care
-    [3] => Near\/In front of Entrance_first:Skin Care
-    [4] => Eye Level of Consumers_first:Skin Care
-    [5] => Beside\/Adjacent Cash Counter_first:Skin Care
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Skin Care
-    [7] => Near\/In front of Entrance_second:Hair Care
+    [0] => Array
+        (
+            [0] => 153
+        )
+
+    [1] => Array
+        (
+            [0] => 153
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => datetime:2014-04-09 16:38
-    [1] => cell:22454554424
-    [2] => name:uriuruuifiirr
+    [0] => Array
+        (
+            [0] => 139
+        )
+
+    [1] => Array
+        (
+            [0] => 139
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => sku_code_137:60
-    [1] => sku_code_140:60
+    [0] => Array
+        (
+            [0] => 159
+        )
+
+    [1] => Array
+        (
+            [0] => 159
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Vim Liquid Bikroy Program_avail:true
-    [1] => Deo Bikroy Program_update:true
-    [2] => Fair & Lovely Bikroy Utshob_avail:true
-    [3] => Deo Bikroy Program_avail:true
-    [4] => Fair & Lovely Bikroy Utshob_update:true
-    [5] => Vim Liquid Bikroy Program_update:true
+    [0] => Array
+        (
+            [0] => 155
+        )
+
+    [1] => Array
+        (
+            [0] => 155
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Permanent Shelf Marker\/Shelf talker (Face\/Oral\/Hair\/Skin Cleansing):true
-    [1] => Perfect Store Identifier\/Marker:true
-    [2] => Perfect Store retailers? book (Available & updated):true
+    [0] => Array
+        (
+            [0] => 147
+        )
+
+    [1] => Array
+        (
+            [0] => 147
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => Clearly Visible\/No obstacle in front of the shelf_second:
-    [1] => Beside\/Adjacent Cash Counter_second:
-    [2] => Eye Level of Consumers_second:
-    [3] => Near\/In front of Entrance_first:Compliance
-    [4] => Eye Level of Consumers_first:Compliance
-    [5] => Beside\/Adjacent Cash Counter_first:Compliance
-    [6] => Clearly Visible\/No obstacle in front of the shelf_first:Compliance
-    [7] => Near\/In front of Entrance_second:
+    [0] => Array
+        (
+            [0] => 145
+        )
+
+    [1] => Array
+        (
+            [0] => 145
+        )
+
 )
 
-2014-04-21 08:19:13 Error: Array
+2014-04-21 13:35:04 Error: Array
 (
-    [0] => datetime:2014-04-09 16:55
-    [1] => cell:8463243
-    [2] => name:gofoufufoufuf
+    [0] => Array
+        (
+            [0] => 138
+        )
+
+    [1] => Array
+        (
+            [0] => 138
+        )
+
 )
 
+2014-04-21 14:11:07 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:11:07 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/surveys/export_report?start_date=2014-04-01&end_date=2014-04-21&report_type=fixed_display
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:11:13 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:11:13 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/surveys/export_report?start_date=2014-04-01&end_date=2014-04-21&report_type=fixed_display
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:11:36 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:11:36 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/surveys/
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:11:57 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:11:57 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:11:58 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:11:58 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:12:06 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:12:06 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:12:07 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:12:07 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:12:08 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:12:08 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:12:21 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:12:21 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:12:22 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:12:22 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:12:31 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:12:31 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:12:31 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:12:31 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:12:50 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:12:50 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/surveys/export_filter
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:12:54 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:12:54 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/surveys/export_filter
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:13:14 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:13:14 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/Surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:13:15 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:13:15 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/Surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:13:26 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:13:26 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/Surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:13:26 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:13:26 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/Surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:13:26 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:13:26 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/Surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:13:27 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:13:27 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/Surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:13:27 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:13:27 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/Surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:13:27 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:13:27 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/Surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:13:27 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:13:27 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/Surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:13:27 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:13:27 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/Surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:13:28 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:13:28 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/Surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:13:53 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:13:53 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/Surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:13:54 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:13:54 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/Surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:13:54 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:13:54 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/Surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2014-04-21 14:13:55 Error: Fatal Error (64): Call-time pass-by-reference has been removed in [/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php, line 316]
+2014-04-21 14:13:55 Error: [FatalErrorException] Call-time pass-by-reference has been removed
+Request URL: /mushfique/2014/survey-system/Surveys
+Stack Trace:
+#0 /home/mushfique/public_html/2014/survey-system/lib/Cake/Error/ErrorHandler.php(184): ErrorHandler::handleFatalError(64, 'Call-time pass-...', '/home/mushfique...', 316)
+#1 [internal function]: ErrorHandler::handleError(64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#2 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 64, 'Call-time pass-...', '/home/mushfique...', 316, Array)
+#3 /home/mushfique/public_html/2014/survey-system/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
