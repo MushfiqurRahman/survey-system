@@ -88,31 +88,10 @@ class Survey extends AppModel {
 		)
 	);
 
-/**
- * hasMany associations
- *
- * @var array
- */
-//	public $hasMany = array(
-//		'SurveyDetail' => array(
-//			'className' => 'SurveyDetail',
-//			'foreignKey' => 'survey_id',
-//			'dependent' => false,
-//			'conditions' => '',
-//			'fields' => '',
-//			'order' => '',
-//			'limit' => '',
-//			'offset' => '',
-//			'exclusive' => '',
-//			'finderQuery' => '',
-//			'counterQuery' => ''
-//		)
-//	);
         
         public function saveSurvey($data, $firstImage = '', $secondImage = ''){
             
 //            $this->log(print_r($data, 'error'));
-//            $this->log('received in model','error');
             
             $response['success'] = true;
             
@@ -267,7 +246,8 @@ class Survey extends AppModel {
         }else if( $data['report_type']=='fixed_display'){
             $fields = array('Survey.id','Survey.outlet_id','Survey.fixed_display');
         }else{
-            $fields = array('Survey.id','Survey.outlet_id','Survey.additional_info');
+            $fields = array('Survey.id','Survey.outlet_id','Survey.new_product','Survey.trade_promotion',
+                'Survey.pop','Survey.hot_spot','Survey.additional_info');
         }        
         $reportData = $this->find('all', array(
                     'fields' => $fields,
@@ -297,9 +277,7 @@ class Survey extends AppModel {
         $slNo = 1;
         
         foreach($data as $dt){
-            $dt['Survey']['must_sku'] = str_replace("\"","",$dt['Survey']['must_sku']);
-            $dt['Survey']['must_sku'] = str_replace("{","",$dt['Survey']['must_sku']);
-            $dt['Survey']['must_sku'] = str_replace("}","",$dt['Survey']['must_sku']);
+            $dt['Survey']['must_sku'] = $this->_removeQuoteNBrace($dt['Survey']['must_sku']);
             $skus = explode(",", $dt['Survey']['must_sku']);
             
             foreach($skus as $sku){
@@ -322,13 +300,84 @@ class Survey extends AppModel {
     
     protected function _formatForFixedDisplay($data){
         $formatted = array();
+        $count = 0;
+        $slNo = 1;
         
+        foreach($data as $dt){
+            $dt['Survey']['fixed_display'] = $this->_removeQuoteNBrace($dt['Survey']['fixed_display']);
+            $skus = explode(",", $dt['Survey']['fixed_display']);
+            
+            $this->log(print_r($skus,true),'error');exit;
+            
+//            foreach($skus as $sku){
+//                $codeNcount = explode(":",$sku);
+//                
+//                $formatted[$count]['Slno'] =  $slNo;
+//                $formatted[$count]['Outlet_id'] = $dt['Outlet']['dms_code'];
+//                $formatted[$count]['Shop_Type'] = $dt['Outlet']['OutletType']['title'];
+//                $formatted[$count]['Shop_Class'] = $dt['Outlet']['OutletType']['class'];
+//                $formatted[$count]['Outlet_Name'] = $dt['Outlet']['name'];
+//                $formatted[$count]['Product_Code'] = $codeNcount[0];
+//                $formatted[$count]['Qty'] = $codeNcount[1];
+//                
+//                $count++;
+//            }
+            $slNo++;
+        }
         return $formatted;
     }
     
     protected function _formatForAdditionalInfo($data){
         $formatted = array();
+        $count = 0;
+        $slNo = 1;
         
+        foreach($data as $dt){
+            $dt['Survey']['new_product'] = $this->_removeQuoteNBrace($dt['Survey']['new_product']);
+            $dt['Survey']['trade_promotion'] = $this->_removeQuoteNBrace($dt['Survey']['trade_promotion']);
+            $dt['Survey']['pop'] = $this->_removeQuoteNBrace($dt['Survey']['pop']);
+            $dt['Survey']['hot_spot'] = $this->_removeQuoteNBrace($dt['Survey']['hot_spot']);
+            $dt['Survey']['additional_info'] = $this->_removeQuoteNBrace($dt['Survey']['additional_info']);
+            
+            $newProduct = explode(",", $dt['Survey']['new_product']);
+            $tradePromotion = explode(",", $dt['Survey']['trade_promotion']);
+            $pop = explode(",", $dt['Survey']['pop']);
+            $hotSpot = explode(",", $dt['Survey']['hot_spot']);
+            $additionalInfo = explode(",", $dt['Survey']['additional_info']);
+            
+            $this->log(print_r($newProduct, true),'error');
+            $this->log(print_r($tradePromotion, true),'error');
+            $this->log(print_r($pop, true),'error');
+            $this->log(print_r($hotSpot, true),'error');
+            $this->log(print_r($additionalInfo, true),'error');
+            
+//            foreach($skus as $sku){
+//                $codeNcount = explode(":",$sku);
+//                
+//                $formatted[$count]['Slno'] =  $slNo;
+//                $formatted[$count]['Outlet_id'] = $dt['Outlet']['dms_code'];
+//                $formatted[$count]['Shop_Type'] = $dt['Outlet']['OutletType']['title'];
+//                $formatted[$count]['Shop_Class'] = $dt['Outlet']['OutletType']['class'];
+//                $formatted[$count]['Outlet_Name'] = $dt['Outlet']['name'];
+//                $formatted[$count]['Product_Code'] = $codeNcount[0];
+//                $formatted[$count]['Qty'] = $codeNcount[1];
+//                
+//                $count++;
+//            }
+//            $slNo++;
+        }
         return $formatted;
+    }
+    
+    /**
+     * Remove " and { and } from fetched data
+     * @param type $string
+     * @return type
+     */
+    protected function _removeQuoteNBrace($string){
+        $string = str_replace("\"","",$string);
+        $string = str_replace("{","",$string);
+        $string = str_replace("}","",$string);
+        return $string;
     }
 }

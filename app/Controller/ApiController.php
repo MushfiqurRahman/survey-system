@@ -305,6 +305,7 @@ class ApiController extends AppController {
         $this->loadModel('Program');
         $tradePromotionItems = $this->Program->find('all');
         foreach( $tradePromotionItems as $promoItem){
+            $this->dataForFrontEnd['TradePromotion'][ $this->counter['trade_promotion_counter'] ]['id'] = $promoItem['Program']['id'];
             $this->dataForFrontEnd['TradePromotion'][ $this->counter['trade_promotion_counter'] ]['program_name'] = $promoItem['Program']['title'];
             $this->counter['trade_promotion_counter']++;
         }
@@ -323,6 +324,7 @@ class ApiController extends AppController {
         if( !empty($popItems) ){
             foreach($popItems as $pItem){
                 foreach($pItem['OutletType'] as $outletType){
+                    $this->dataForFrontEnd['PopItem'][ $this->counter['pop_item_counter'] ]['id'] = $pItem['PopItem']['id'];
                     $this->dataForFrontEnd['PopItem'][ $this->counter['pop_item_counter'] ]['head'] = $pItem['PopItem']['head'];
                     $this->dataForFrontEnd['PopItem'][ $this->counter['pop_item_counter'] ]['descr'] = $pItem['PopItem']['descr'];
                     $this->dataForFrontEnd['PopItem'][ $this->counter['pop_item_counter'] ]['outlet_type'] = $this->_get_outlet_type($outletType);
@@ -346,6 +348,7 @@ class ApiController extends AppController {
         if( !empty($hotSpots) ){
             foreach($hotSpots as $hSpot){
                 foreach($hSpot['OutletType'] as $outletType){
+                    $this->dataForFrontEnd['HotSpot'][ $this->counter['hot_spot_counter'] ]['id'] = $hSpot['HotSpot']['id'];
                     $this->dataForFrontEnd['HotSpot'][ $this->counter['hot_spot_counter'] ]['head'] = $hSpot['HotSpot']['head'];
                     $this->dataForFrontEnd['HotSpot'][ $this->counter['hot_spot_counter'] ]['descr'] = $hSpot['HotSpot']['descr'];
                     $this->dataForFrontEnd['HotSpot'][ $this->counter['hot_spot_counter'] ]['first_compliance'] = $hSpot['HotSpot']['first_compliance'];

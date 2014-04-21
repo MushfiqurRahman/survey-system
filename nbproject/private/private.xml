@@ -5,10 +5,11 @@
         <group>
             <file>file:/home/mushfique/public_html/2014/survey-system/app/Model/Survey.php</file>
             <file>file:/home/mushfique/public_html/2014/survey-system/app/View/Surveys/export_report.ctp</file>
-            <file>file:/home/mushfique/public_html/2014/survey-system/app/View/Elements/header.ctp</file>
-            <file>file:/home/mushfique/public_html/2014/survey-system/app/Controller/SettingsController.php</file>
+            <file>file:/home/mushfique/public_html/2014/survey-system/app/Controller/UsersController.php</file>
+            <file>file:/home/mushfique/public_html/2014/survey-system/app/tmp/logs/error.log</file>
             <file>file:/home/mushfique/public_html/2014/survey-system/app/Controller/SurveysController.php</file>
-            <file>file:/home/mushfique/public_html/2014/survey-system/app/Controller/AppController.php</file>
+            <file>file:/home/mushfique/public_html/2014/survey-system/app/View/Surveys/index.ctp</file>
+            <file>file:/home/mushfique/public_html/2014/survey-system/app/View/Surveys/export_filter.ctp</file>
         </group>
     </open-files>
 </project-private>
