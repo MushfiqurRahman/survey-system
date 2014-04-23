@@ -264,7 +264,11 @@ class Survey extends AppModel {
         if( $data['report_type']=='must_sku' ){            
             $formattedData = $this->_formatForMustSku($reportData);
         }else if( $data['report_type']=='fixed_display'){
+            $startTime = microtime(true);
             $formattedData = $this->_formatForFixedDisplay($reportData);
+            $endTime = microtime(true);
+            
+            $this->log('total time taken: '. ($endTime-$startTime), 'error');
         }else{
             $formattedData = $this->_formatForAdditionalInfo($reportData);
         }       
@@ -298,12 +302,17 @@ class Survey extends AppModel {
         return $formatted;
     }
     
+    
     protected function _formatForFixedDisplay($data){
         $formatted = array();
         $count = 0;
         $slNo = 1;
         
+        $productModel = ClassRegistry::init('Product');
+        $productlist = $productModel->find('list', array('fields' => array('sku','title',)));
+        
         foreach($data as $dt){
+            
             $dt['Survey']['fixed_display'] = $this->_removeQuoteNBrace($dt['Survey']['fixed_display']);
             $fixedDisplay = explode(",", $dt['Survey']['fixed_display']);
             
@@ -313,31 +322,42 @@ class Survey extends AppModel {
                 $tmp = explode(":",$v);
                 //extracting the sku code from string
                 preg_match_all('/^([0-9]{3})/', $tmp[0], $skuCode);
-                $this->_extractValues(&$fixedDisplayValues, $skuCode[0], $v, $tmp[1]);
+//                
+//                $this->log(print_r($skuCode, true),'error');
+//                $this->log(print_r($v, true),'error');
+//                $this->log(print_r($tmp, true),'error');
+                
+                //$tmp[0] contains a string like: 158_dis_count
+                $this->_extractValues($fixedDisplayValues, $skuCode[0][0], $tmp[0], $tmp[1]);
             }
             
-            $this->log(print_r($fixedDisplayValues, true),'error');
+//            $this->log(print_r($fixedDisplayValues, true),'error');exit;
             
-            
-//            foreach($skus as $sku){
-//                $codeNcount = explode(":",$sku);
-//                
-//                $formatted[$count]['Slno'] =  $slNo;
-//                $formatted[$count]['Outlet_id'] = $dt['Outlet']['dms_code'];
-//                $formatted[$count]['Shop_Type'] = $dt['Outlet']['OutletType']['title'];
-//                $formatted[$count]['Shop_Class'] = $dt['Outlet']['OutletType']['class'];
-//                $formatted[$count]['Outlet_Name'] = $dt['Outlet']['name'];
-//                $formatted[$count]['Product_Code'] = $codeNcount[0];
-//                $formatted[$count]['Qty'] = $codeNcount[1];
-//                
-//                $count++;
-//            }
+            //now formatting for xls export
+            foreach($fixedDisplayValues as $k => $fv){
+                $formatted[$count]['slno'] =  $slNo;
+                $formatted[$count]['outlet_id'] = $dt['Outlet']['dms_code'];//though column name is id but actually it's dms_code
+                $formatted[$count]['item_desc'] = $productlist[$k];
+                $formatted[$count]['item_code'] = $k;
+                $formatted[$count]['availability'] = isset($fv['availability']) ? $fv['availability'] : false;
+                $formatted[$count]['display_qty'] = $fv['display_count'];
+                $formatted[$count]['face_up'] = $fv['faceup_count'];
+                $formatted[$count]['sequence'] = isset($fv['sequence']) ? $fv['sequence'] : false;
+                $formatted[$count]['shop_type'] = $dt['Outlet']['OutletType']['title'];
+                $formatted[$count]['shop_class'] = $dt['Outlet']['OutletType']['class'];
+                $formatted[$count]['outlet_name'] = $dt['Outlet']['name'];
+//                $formatted[$count]['category'] = $codeNcount[1];
+
+                $count++;
+            }
             $slNo++;
         }
+        
+        //$this->log(print_r($formatted, true),'error');
         return $formatted;
     }
     
-    protected function _extractValues($fixedDisplayValues, $skuCode, $str, $value){
+    protected function _extractValues(&$fixedDisplayValues, $skuCode, $str, $value){
         if( !isset($fixedDisplayValues[$skuCode])){
             $fixedDisplayValues[$skuCode] = array();
         }
@@ -351,7 +371,7 @@ class Survey extends AppModel {
             $fixedDisplayValues[$skuCode]['availability'] = $value;
         }else if( $str=='_sequence'){
             $fixedDisplayValues[$skuCode]['sequence'] = $value;
-        }
+        }        
     }
     
     protected function _formatForAdditionalInfo($data){
@@ -372,11 +392,11 @@ class Survey extends AppModel {
             $hotSpot = explode(",", $dt['Survey']['hot_spot']);
             $additionalInfo = explode(",", $dt['Survey']['additional_info']);
             
-            $this->log(print_r($newProduct, true),'error');
-            $this->log(print_r($tradePromotion, true),'error');
-            $this->log(print_r($pop, true),'error');
-            $this->log(print_r($hotSpot, true),'error');
-            $this->log(print_r($additionalInfo, true),'error');
+//            $this->log(print_r($newProduct, true),'error');
+//            $this->log(print_r($tradePromotion, true),'error');
+//            $this->log(print_r($pop, true),'error');
+//            $this->log(print_r($hotSpot, true),'error');
+//            $this->log(print_r($additionalInfo, true),'error');
             
 //            foreach($skus as $sku){
 //                $codeNcount = explode(":",$sku);
@@ -393,6 +413,7 @@ class Survey extends AppModel {
 //            }
 //            $slNo++;
         }
+        $this->log(print_r($formatted,true),'error');
         return $formatted;
     }
     

@@ -51,7 +51,7 @@ class SurveysController extends AppController {
  * @return void
  */
 	public function index() {            
-            //pr($this->request->query);
+//            pr($this->request->query);exit;
             
             $this->Survey->Behaviors->load('Containable');
 
