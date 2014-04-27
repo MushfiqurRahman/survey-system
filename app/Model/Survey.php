@@ -270,7 +270,7 @@ class Survey extends AppModel {
             
             $this->log('total time taken: '. ($endTime-$startTime), 'error');
         }else{
-            $formattedData = $this->_formatForAdditionalInfo($reportData);
+            $formattedData = $this->_formatOthers($reportData);
         }       
         return $formattedData;
     }
@@ -331,18 +331,16 @@ class Survey extends AppModel {
                 $this->_extractValues($fixedDisplayValues, $skuCode[0][0], $tmp[0], $tmp[1]);
             }
             
-//            $this->log(print_r($fixedDisplayValues, true),'error');exit;
-            
             //now formatting for xls export
             foreach($fixedDisplayValues as $k => $fv){
                 $formatted[$count]['slno'] =  $slNo;
                 $formatted[$count]['outlet_id'] = $dt['Outlet']['dms_code'];//though column name is id but actually it's dms_code
                 $formatted[$count]['item_desc'] = $productlist[$k];
                 $formatted[$count]['item_code'] = $k;
-                $formatted[$count]['availability'] = isset($fv['availability']) ? $fv['availability'] : false;
+                $formatted[$count]['availability'] = $fv['availability']==true ? 1 : 0;
                 $formatted[$count]['display_qty'] = $fv['display_count'];
                 $formatted[$count]['face_up'] = $fv['faceup_count'];
-                $formatted[$count]['sequence'] = isset($fv['sequence']) ? $fv['sequence'] : false;
+                $formatted[$count]['sequence'] = $fv['sequence']==true ? 1 : 0;
                 $formatted[$count]['shop_type'] = $dt['Outlet']['OutletType']['title'];
                 $formatted[$count]['shop_class'] = $dt['Outlet']['OutletType']['class'];
                 $formatted[$count]['outlet_name'] = $dt['Outlet']['name'];
@@ -357,6 +355,13 @@ class Survey extends AppModel {
         return $formatted;
     }
     
+    /**
+     * Extract values for FixedDisplay
+     * @param type $fixedDisplayValues
+     * @param type $skuCode
+     * @param type $str
+     * @param type $value
+     */
     protected function _extractValues(&$fixedDisplayValues, $skuCode, $str, $value){
         if( !isset($fixedDisplayValues[$skuCode])){
             $fixedDisplayValues[$skuCode] = array();
@@ -374,7 +379,12 @@ class Survey extends AppModel {
         }        
     }
     
-    protected function _formatForAdditionalInfo($data){
+    /**
+     * Formats the New Product, Trade Promotion, HotSpots, Pop items and Additional info
+     * @param type $data
+     * @return array
+     */
+    protected function _formatOthers($data){
         $formatted = array();
         $count = 0;
         $slNo = 1;
@@ -393,30 +403,153 @@ class Survey extends AppModel {
             $additionalInfo = explode(",", $dt['Survey']['additional_info']);
             
 //            $this->log(print_r($newProduct, true),'error');
-//            $this->log(print_r($tradePromotion, true),'error');
-//            $this->log(print_r($pop, true),'error');
-//            $this->log(print_r($hotSpot, true),'error');
-//            $this->log(print_r($additionalInfo, true),'error');
+            $this->log(print_r($tradePromotion, true),'error');
+            $this->log(print_r($pop, true),'error');
+            $this->log(print_r($hotSpot, true),'error');
+            $this->log(print_r($additionalInfo, true),'error');
             
-//            foreach($skus as $sku){
-//                $codeNcount = explode(":",$sku);
-//                
-//                $formatted[$count]['Slno'] =  $slNo;
-//                $formatted[$count]['Outlet_id'] = $dt['Outlet']['dms_code'];
-//                $formatted[$count]['Shop_Type'] = $dt['Outlet']['OutletType']['title'];
-//                $formatted[$count]['Shop_Class'] = $dt['Outlet']['OutletType']['class'];
-//                $formatted[$count]['Outlet_Name'] = $dt['Outlet']['name'];
-//                $formatted[$count]['Product_Code'] = $codeNcount[0];
-//                $formatted[$count]['Qty'] = $codeNcount[1];
-//                
-//                $count++;
-//            }
-//            $slNo++;
+            $formatted[$count]['slno'] = $slNo;
+            $formatted[$count]['outlet_id'] = $dt['Outlet']['dms_code'];
+            $formatted[$count]['shot_type'] = $dt['Outlet']['OutletType']['title'];
+            $formatted[$count]['slab'] = $dt['Outlet']['OutletType']['class'];       
+            
+            
+            $this->_extractHotSpots($formatted[$count], $hotSpot);
+            $this->_extractPopItems($formatted[$count], $pop);
+            $this->_extractAdditionalInfo($formatted[$count], $additionalInfo);
+            $this->_extractNewProduct($formatted[$count], $newProduct);
+            $this->_extractTradePromotion($formatted[$count], $tradePromotion);
+            
+            //Slno	Outlet_id	Shop Type	Slab	Hotspot1	Hotspot2	Hotspot3	Hotspot4	Hotspot5	Hotspot6	Hotspot7	Hotspot8	pop1	pop2	pop3	pop4	pop5	Name	Date	Phone	NPD1	NPD2	Avail. Trade Brochure1	Trade Brochure Update1	Avai. Trade Brochure2	Trade Brochure Update2	Avail. Trade Brochure3	Trade Brochure Update3
+            $slNo++;
+            $count++;
         }
-        $this->log(print_r($formatted,true),'error');
+        //$this->log(print_r($formatted,true),'error');
         return $formatted;
     }
     
+    protected function _extractNewProduct(&$formatted, $data){
+        $newProds = array();
+        foreach($data as $dt){
+            $temp = explode(":",$dt);
+            $newProds[] = $temp[1];
+        }
+        //since the data is coming is reversed order
+        $formatted['NPD1'] = isset($newProds[1]) ? $newProds[1] : 0;
+        $formatted['NPD2'] = isset($newProds[0]) ? $newProds[0] : 0;
+    }
+
+
+    protected function _extractTradePromotion(&$formatted, $data){
+        $tradePromo = array();
+        foreach($data as $dt){
+            $temp = explode(":", $dt);
+            switch( $temp[0] ){                
+                case '1_avail':
+                    $tradePromo[1] = $temp[1]==true ? 1 : 0;
+                    break;
+                
+                case '1_update':
+                    $tradePromo[2] = $temp[1]==true ? 1 : 0;
+                    break;
+                
+                case '2_avail':
+                    $tradePromo[3] = $temp[1]==true ? 1 : 0;
+                    break;
+                case '2_update':
+                    $tradePromo[4] = $temp[1]==true ? 1 : 0;
+                    break;                
+                
+                case '3_avail':
+                    $tradePromo[5] = $temp[1]==true ? 1 : 0;
+                    break;
+                case '3_update':
+                    $tradePromo[6] = $temp[1]==true ? 1 : 0;
+                    break;
+            }
+            
+        }
+        for($i=1; $i<=3; $i++){
+            
+            $formatted['avail._trade_brochure'.$i] = isset($tradePromo[($i*2)-1]) ? $tradePromo[$i] : 0;
+            $formatted['trade_brochure_update'.$i] = isset($tradePromo[$i*2]) ? $tradePromo[$i*2] : 0;
+        }
+    }
+    
+    protected function _extractHotSpots(&$formatted, $data){
+        $hotSpots = array();
+        foreach($data as $dt){
+            $temp = explode(":", $dt);
+            switch( $temp[0] ){                
+                case '1_first':
+                    $hotSpots[1] = $temp[1]==true ? 1 : 0;
+//                    $formatted['hotspot1'] = $temp[1]==true ? 1 : 0;
+                    break;
+                
+                case '1_second':
+                    $hotSpots[2] = $temp[1]==true ? 1 : 0;
+//                    $formatted['hotspot2'] = $temp[1]==true ? 1 : 0;
+                    break;
+                
+                case '2_first':
+                    $hotSpots[3] = $temp[1]==true ? 1 : 0;
+//                    $formatted['hotspot3'] = $temp[1]==true ? 1 : 0;
+                    break;
+                
+                case '2_second':
+                    $hotSpots[4] = $temp[1]==true ? 1 : 0;
+//                    $formatted['hotspot4'] = $temp[1]==true ? 1 : 0;
+                    break;
+                
+                case '3_first':
+                    $hotSpots[5] = $temp[1]==true ? 1 : 0;
+//                    $formatted['hotspot5'] = $temp[1]==true ? 1 : 0;
+                    break;
+                
+                case '3_second':
+                    $hotSpots[6] = $temp[1]==true ? 1 : 0;
+//                    $formatted['hotspot6'] = $temp[1]==true ? 1 : 0;
+                    break;
+                
+                case '4_first':
+                    $hotSpots[7] = $temp[1]==true ? 1 : 0;
+//                    $formatted['hotspot7'] = $temp[1]==true ? 1 : 0;
+                    break;
+                
+                case '4_second':
+                    $hotSpots[8] = $temp[1]==true ? 1 : 0;
+//                    $formatted['hotspot8'] = $temp[1]==true ? 1 : 0;
+                    break;
+            }
+        }
+        
+        for($i=1; $i<=8; $i++){
+            $formatted['hotspot'.$i] = $hotSpots[$i];
+        }
+    }
+    
+    protected function _extractPopItems(&$formatted, $data){
+        $pops = array();
+        foreach($data as $dt){
+            $temp = explode(":", $dt);
+            $pops[$temp[0]] = $temp[1]==true ? 1 : 0;
+        }
+        for($i=1; $i<=5; $i++){
+            $formatted['pop'.$i] = isset($pops[$i]) ? $pops[$i] : 0;
+        }
+    }
+    
+    protected function _extractAdditionalInfo(&$formatted, $data){
+        foreach($data as $dt){
+            if(strstr($dt, "datetime:")){
+                $formatted['date'] = substr($dt, 9);
+            }else if(strstr($dt, "cell:")){
+                $formatted['phone'] = substr($dt, 5);
+            }else{
+                $formatted['name'] = substr($dt, 5);
+            }
+        }
+    }
     /**
      * Remove " and { and } from fetched data
      * @param type $string
