@@ -85,9 +85,18 @@ class SurveysController extends AppController {
             ini_set('memory_limit', '512M');
             
             if( !empty($this->request->query) ){
-                $formattedData = $this->Survey->getReportData($this->request->query);
-                
+                $fileName = 'Perfect_q2';
+                switch($this->request->query['report_type']){
+                    case 'fixed_display':
+                        $fileName = 'Fixed_display';
+                        break;
+                    case 'pf_rest':
+                        $fileName = 'pf_rest';
+                        break;
+                }
+                $formattedData = $this->Survey->getReportData($this->request->query);                
                 $this->set('formattedData',$formattedData);
+                $this->set('fileName', $fileName);
             }
         }
 

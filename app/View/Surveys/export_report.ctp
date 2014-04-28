@@ -1,3 +1,3 @@
 <?php
-    $this->Excel->generate($formattedData, 'Perfect_q2');
+    $this->Excel->generate($formattedData, $fileName);
 ?>

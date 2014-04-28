@@ -401,7 +401,7 @@ class ApiController extends AppController {
             $imagePaths['first_image'] = 'attachments/'.date('F').'/'.$_FILES['first_image']['name'];
         }
         if( $_FILES['second_image']['error']==0){
-            move_uploaded_file($_FILES['second_image']['tmp_name'], 'attachments/'.date('F').'/'.$_FILES['second_image']);
+            move_uploaded_file($_FILES['second_image']['tmp_name'], 'attachments/'.date('F').'/'.$_FILES['second_image']['name']);
             $imagePaths['second_image'] = 'attachments/'.date('F').'/'.$_FILES['second_image']['name'];
         }
         return $imagePaths;
