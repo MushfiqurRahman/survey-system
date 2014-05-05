@@ -518,7 +518,7 @@ class Survey extends AppModel {
             }
         }        
         for($i=1; $i<=8; $i++){
-            $formatted['hotspot'.$i] = $hotSpots[$i];
+            $formatted['hotspot'.$i] = isset($hotSpots[$i]) ? $hotSpots[$i] : 0;
         }
     }
     
