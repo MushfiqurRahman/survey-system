@@ -58,6 +58,8 @@ class ProductsController extends AppController {
 		}
 		$tasks = $this->Product->Task->find('list');
 		$this->set(compact('tasks'));
+                //pr($this->Product->Category->find('list'));exit;
+                $this->set('categories', $this->Product->Category->find('list'));
 	}
 
 /**
@@ -81,6 +83,8 @@ class ProductsController extends AppController {
 		} else {
 			$options = array('conditions' => array('Product.' . $this->Product->primaryKey => $id));
 			$this->request->data = $this->Product->find('first', $options);
+                        
+                        $this->set('categories', $this->Product->Category->find('list'));
 		}		
 	}
 

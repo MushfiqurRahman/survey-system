@@ -4,14 +4,16 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
 			<th><?php echo $this->Paginator->sort('title'); ?></th>
+                        <th><?php echo $this->Paginator->sort('category'); ?></th>
 			<th><?php echo $this->Paginator->sort('descr'); ?></th>
 			<th><?php echo $this->Paginator->sort('sku'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	<?php foreach ($products as $product): ?>
+	<?php  foreach ($products as $product):?>
 	<tr>
 		<td><?php echo h($product['Product']['id']); ?>&nbsp;</td>
 		<td><?php echo h($product['Product']['title']); ?>&nbsp;</td>
+                <td><?php echo h($product['Category']['title']); ?>&nbsp;</td>
 		<td><?php echo h($product['Product']['descr']); ?>&nbsp;</td>
 		<td><?php echo h($product['Product']['sku']); ?>&nbsp;</td>
 		<td class="actions">

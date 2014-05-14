@@ -42,6 +42,7 @@
     <ul>
         <li><?php echo $this->Html->link('Users', array('controller' => 'Users', 'action' => 'index'));?></li>
         <li><?php echo $this->Html->link('Outlet Types', array('controller' => 'OutletTypes', 'action' => 'index'));?></li>
+        <li><?php echo $this->Html->link('Categories', array('controller' => 'Categories', 'action' => 'index'));?></li>
         <li><?php echo $this->Html->link('Products', array('controller' => 'Products', 'action' => 'index'));?></li>
         <li><?php echo $this->Html->link('Survey Attributes', array('controller' => 'SurveyAttributes', 'action' => 'index'));?></li>
         <li><?php echo $this->Html->link('Tasks', array('controller' => 'Tasks', 'action' => 'index'));?></li>

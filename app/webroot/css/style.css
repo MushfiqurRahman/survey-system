@@ -18,3 +18,7 @@
  input.descr{
      width: 400px;
  }
+ 
+ input.prod_descr{
+     width: 300px;
+ }

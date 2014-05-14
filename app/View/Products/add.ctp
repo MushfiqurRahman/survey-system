@@ -14,22 +14,33 @@
                         <label>Title</label>
                         <input type="text" size="40" name="data[0][Product][title]" required="required"/>
                     </div>
+                    
+                    <div class="add_prod_field">
+                        <label>Category</label>
+                        <select name="data[0][Product][category_id]" style="width:150px;">
+                            <?php
+                                foreach($categories as $k => $category):
+                                    echo '<option value="'.$k.'">'.$category.'</option>';
+                                endforeach;
+                            ?>
+                        </select>
+                        
+                    </div>
 
                     <div class="add_prod_field">
                         <label>SKU</label>
-                        <input type="text" size="40" class="code" name="data[0][Product][sku]" required="required"/>
+                        <input type="text" size="20" class="code" name="data[0][Product][sku]" required="required"/>
                     </div>
 
                     <div class="add_prod_field">
                         <label>Description</label>
-                        <input type="text" class="descr" name="data[0][Product][descr]"/>
-                    </div>
-                    
+                        <input type="text" class="prod_descr" name="data[0][Product][descr]"/>
+                    </div>                    
                     
                 </div>
                 
                 <div>
-                    <a href="javascript:void(0);" id="addMoreProduct">(+)Add More</a>
+<!--                    <a href="javascript:void(0);" id="addMoreProduct">(+)Add More</a>-->
                 </div>                
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

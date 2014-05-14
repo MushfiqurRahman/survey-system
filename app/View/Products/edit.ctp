@@ -4,6 +4,7 @@
 		<legend><?php echo __('Edit Product'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
+                echo $this->Form->input('category_id');
 		echo $this->Form->input('title');
 		echo $this->Form->input('descr');
 		echo $this->Form->input('sku');
