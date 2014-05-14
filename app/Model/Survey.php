@@ -336,10 +336,19 @@ class Survey extends AppModel {
                 $formatted[$count]['outlet_id'] = $dt['Outlet']['dms_code'];//though column name is id but actually it's dms_code
                 $formatted[$count]['item_desc'] = $productlist[$k];
                 $formatted[$count]['item_code'] = $k;
-                $formatted[$count]['availability'] = $fv['availability']==true ? 1 : 0;
+				if( !isset($fv['availability']) ){
+					$formatted[$count]['availability'] = 0;
+				}else{
+					$formatted[$count]['availability'] = $fv['availability']==true ? 1 : 0;
+				}                
                 $formatted[$count]['display_qty'] = $fv['display_count'];
                 $formatted[$count]['face_up'] = $fv['faceup_count'];
-                $formatted[$count]['sequence'] = $fv['sequence']==true ? 1 : 0;
+				if( !isset($fv['sequence']) ){
+					$formatted[$count]['sequence'] = 0;
+				}else{
+					$formatted[$count]['sequence'] = $fv['sequence']==true ? 1 : 0;
+				}
+                
                 $formatted[$count]['shop_type'] = $dt['Outlet']['OutletType']['title'];
                 $formatted[$count]['shop_class'] = $dt['Outlet']['OutletType']['class'];
                 $formatted[$count]['outlet_name'] = $dt['Outlet']['name'];
@@ -509,7 +518,7 @@ class Survey extends AppModel {
             }
         }        
         for($i=1; $i<=8; $i++){
-            $formatted['hotspot'.$i] = $hotSpots[$i];
+            $formatted['hotspot'.$i] = isset($hotSpots[$i]) ? $hotSpots[$i] : 0;
         }
     }
     
