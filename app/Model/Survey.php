@@ -309,7 +309,13 @@ class Survey extends AppModel {
         
         $productModel = ClassRegistry::init('Product');
         $productlist = $productModel->find('list', array('fields' => array('sku','title',)));
+        $categoryList = $productModel->Category->find('list', array('fields' => array('id','title')));
+        $productsListWithCategoryId = $productModel->find('list', 
+                array('fields' => array('sku','category_id'),
+                'recursive' => -1));
         
+        //$this->log(print_r($productsListWithCategoryId, true),'error');exit;
+                        
         foreach($data as $dt){
             
             $dt['Survey']['fixed_display'] = $this->_removeQuoteNBrace($dt['Survey']['fixed_display']);
@@ -321,20 +327,18 @@ class Survey extends AppModel {
                 $tmp = explode(":",$v);
                 //extracting the sku code from string
                 preg_match_all('/^([0-9]{3})/', $tmp[0], $skuCode);
-//                
-//                $this->log(print_r($skuCode, true),'error');
-//                $this->log(print_r($v, true),'error');
-//                $this->log(print_r($tmp, true),'error');
                 
                 //$tmp[0] contains a string like: 158_dis_count
                 $this->_extractValues($fixedDisplayValues, $skuCode[0][0], $tmp[0], $tmp[1]);
             }
+                
             
             //now formatting for xls export
             foreach($fixedDisplayValues as $k => $fv){
                 $formatted[$count]['slno'] =  $slNo;
                 $formatted[$count]['outlet_id'] = $dt['Outlet']['dms_code'];//though column name is id but actually it's dms_code
                 $formatted[$count]['item_desc'] = $productlist[$k];
+                $formatted[$count]['category_name'] = $categoryList[ $productsListWithCategoryId[$k] ];
                 $formatted[$count]['item_code'] = $k;
 				if( !isset($fv['availability']) ){
 					$formatted[$count]['availability'] = 0;
@@ -352,7 +356,6 @@ class Survey extends AppModel {
                 $formatted[$count]['shop_type'] = $dt['Outlet']['OutletType']['title'];
                 $formatted[$count]['shop_class'] = $dt['Outlet']['OutletType']['class'];
                 $formatted[$count]['outlet_name'] = $dt['Outlet']['name'];
-                $formatted[$count]['category'] = $productlist[$k];
 
                 $count++;
             }
@@ -526,7 +529,7 @@ class Survey extends AppModel {
         $pops = array();
         foreach($data as $dt){
             $temp = explode(":", $dt);
-            $pops[$temp[0]] = $temp[1]==true ? 1 : 0;
+            $pops[$temp[0]] = isset($temp[1]) && $temp[1]==true ? 1 : 0;
         }
         for($i=1; $i<=5; $i++){
             $formatted['pop'.$i] = isset($pops[$i]) ? $pops[$i] : 0;
