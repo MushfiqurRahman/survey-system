@@ -259,7 +259,7 @@ class Survey extends AppModel {
                         'DATE(date_time) <=' => $data['end_date']),
                     ));
         
-        //$this->log(print_r($reportData,true),'error');
+        $this->log(print_r($reportData,true),'error');
         
         if( $data['report_type']=='must_sku' ){            
             $formattedData = $this->_formatForMustSku($reportData);
@@ -267,7 +267,7 @@ class Survey extends AppModel {
             $startTime = microtime(true);
             $formattedData = $this->_formatForFixedDisplay($reportData);
             $endTime = microtime(true);            
-            $this->log('total time taken: '. ($endTime-$startTime), 'error');
+            //$this->log('total time taken: '. ($endTime-$startTime), 'error');
         }else{
             $formattedData = $this->_formatOthers($reportData);
         }       
@@ -411,16 +411,10 @@ class Survey extends AppModel {
             $pop = explode(",", $dt['Survey']['pop']);
             $hotSpot = explode(",", $dt['Survey']['hot_spot']);
             $additionalInfo = explode(",", $dt['Survey']['additional_info']);
-            
-//            $this->log(print_r($newProduct, true),'error');
-//            $this->log(print_r($tradePromotion, true),'error');
-//            $this->log(print_r($pop, true),'error');
-//            $this->log(print_r($hotSpot, true),'error');
-//            $this->log(print_r($additionalInfo, true),'error');
-            
+                        
             $formatted[$count]['slno'] = $slNo;
             $formatted[$count]['outlet_id'] = $dt['Outlet']['dms_code'];
-            $formatted[$count]['shot_type'] = $dt['Outlet']['OutletType']['title'];
+            $formatted[$count]['shop_type'] = $dt['Outlet']['OutletType']['title'];
             $formatted[$count]['slab'] = $dt['Outlet']['OutletType']['class'];
             
             $this->_extractHotSpots($formatted[$count], $hotSpot);
@@ -531,9 +525,18 @@ class Survey extends AppModel {
             $temp = explode(":", $dt);
             $pops[$temp[0]] = isset($temp[1]) && $temp[1]==true ? 1 : 0;
         }
-        for($i=1; $i<=5; $i++){
+        $totalPopItems = $this->_get_total_pop_items();
+        for($i=1; $i<=$totalPopItems; $i++){
             $formatted['pop'.$i] = isset($pops[$i]) ? $pops[$i] : 0;
         }
+    }
+    
+    /**
+     * 
+     */
+    protected function _get_total_pop_items(){
+        $PopItem = ClassRegistry::init('PopItem');
+        return $PopItem->find('count');
     }
     
     protected function _extractAdditionalInfo(&$formatted, $data){
