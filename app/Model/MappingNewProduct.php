@@ -51,4 +51,49 @@ class MappingNewProduct extends AppModel {
 			),
 		),
 	);
+        
+        public $belongsTo = array(
+		'OutletType' => array(
+			'className' => 'OutletType',
+			'foreignKey' => 'outlet_type_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Product' => array(
+			'className' => 'Product',
+			'foreignKey' => 'product_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
+        
+        
+        
+        /**
+         * check if the order value already exists 
+         * @uses : In MappingTradePromotionsController add method
+         */
+        public function isNewProductOrderExists($data) {
+            $existingOrder = $this->find('first', array(
+                'conditions' => array(
+                    'outlet_type_id' => $data['MappingNewProduct']['outlet_type_id'],
+                    'product_id' => $data['MappingNewProduct']['product_id'],
+                    'product_order' => $data['MappingNewProduct']['product_order']
+                )
+            ));
+            if(empty($existingOrder) || $existingOrder==false ){
+                return false;
+            }//following conditions are essential for edit time
+            else if( isset($data['MappingNewProduct']['id']) &&
+                    $data['MappingNewProduct']['id']!=$existingOrder['MappingNewProduct']['id']){
+                return true;
+            }
+            else if( isset($data['MappingNewProduct']['id']) &&
+                    $data['MappingNewProduct']['id']==$existingOrder['MappingNewProduct']['id']){
+                return false;
+            }
+            return true;
+        }
 }

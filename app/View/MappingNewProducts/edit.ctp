@@ -5,8 +5,8 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('outlet_type_id');
-		echo $this->Form->input('product_id');
-		echo $this->Form->input('sku');
+		echo $this->Form->input('product_id', array('style' => 'width:400px;'));
+		
 		echo $this->Form->input('product_order');
 	?>
 	</fieldset>

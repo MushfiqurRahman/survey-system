@@ -12,12 +12,11 @@
 	<?php foreach ($mappingNewProducts as $mappingNewProduct): ?>
 	<tr>
 		<td><?php echo h($mappingNewProduct['MappingNewProduct']['id']); ?>&nbsp;</td>
-		<td><?php echo h($mappingNewProduct['MappingNewProduct']['outlet_type_id']); ?>&nbsp;</td>
-		<td><?php echo h($mappingNewProduct['MappingNewProduct']['product_id']); ?>&nbsp;</td>
-		<td><?php echo h($mappingNewProduct['MappingNewProduct']['sku']); ?>&nbsp;</td>
+		<td><?php echo h($mappingNewProduct['OutletType']['title'].($mappingNewProduct['OutletType']['class']==''? '' : '_'.$mappingNewProduct['OutletType']['class'])); ?>&nbsp;</td>
+		<td><?php echo h($mappingNewProduct['Product']['title']); ?>&nbsp;</td>
+		<td><?php echo h($mappingNewProduct['Product']['sku']); ?>&nbsp;</td>
 		<td><?php echo h($mappingNewProduct['MappingNewProduct']['product_order']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $mappingNewProduct['MappingNewProduct']['id'])); ?>
+		<td class="actions">			
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $mappingNewProduct['MappingNewProduct']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $mappingNewProduct['MappingNewProduct']['id']), null, __('Are you sure you want to delete # %s?', $mappingNewProduct['MappingNewProduct']['id'])); ?>
 		</td>

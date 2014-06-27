@@ -63,6 +63,22 @@ class Product extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+        
+        public $hasMany = array(
+		'MappingNewProduct' => array(
+			'className' => 'MappingNewProduct',
+			'foreignKey' => 'product_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+            );
 
 /**
  * hasAndBelongsToMany associations

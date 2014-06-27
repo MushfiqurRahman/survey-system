@@ -47,6 +47,9 @@ class MappingNewProductsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+                    if( $this->MappingNewProduct->isNewProductOrderExists($this->request->data)){
+                        $this->Session->setFlash(__('Order Already exists, please select unique order'));
+                    }else{
 			$this->MappingNewProduct->create();
 			if ($this->MappingNewProduct->save($this->request->data)) {
 				$this->Session->setFlash(__('The mapping new product has been saved'));
@@ -54,7 +57,10 @@ class MappingNewProductsController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The mapping new product could not be saved. Please, try again.'));
 			}
+                    }
 		}
+                $this->set('products', $this->MappingNewProduct->Product->productsListWithSku());
+                $this->set('outletTypes', $this->MappingNewProduct->OutletType->getOutletTypes());
 	}
 
 /**
@@ -69,16 +75,22 @@ class MappingNewProductsController extends AppController {
 			throw new NotFoundException(__('Invalid mapping new product'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+                    if( $this->MappingNewProduct->isNewProductOrderExists($this->request->data)){
+                        $this->Session->setFlash(__('Order Already exists, please select unique order'));
+                    }else{
 			if ($this->MappingNewProduct->save($this->request->data)) {
 				$this->Session->setFlash(__('The mapping new product has been saved'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The mapping new product could not be saved. Please, try again.'));
 			}
+                    }
 		} else {
 			$options = array('conditions' => array('MappingNewProduct.' . $this->MappingNewProduct->primaryKey => $id));
 			$this->request->data = $this->MappingNewProduct->find('first', $options);
 		}
+                $this->set('products', $this->MappingNewProduct->Product->productsListWithSku());
+                $this->set('outletTypes', $this->MappingNewProduct->OutletType->getOutletTypes());
 	}
 
 /**
