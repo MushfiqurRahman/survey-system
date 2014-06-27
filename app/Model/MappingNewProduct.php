@@ -79,7 +79,7 @@ class MappingNewProduct extends AppModel {
             $existingOrder = $this->find('first', array(
                 'conditions' => array(
                     'outlet_type_id' => $data['MappingNewProduct']['outlet_type_id'],
-                    'product_id' => $data['MappingNewProduct']['product_id'],
+                    
                     'product_order' => $data['MappingNewProduct']['product_order']
                 )
             ));
