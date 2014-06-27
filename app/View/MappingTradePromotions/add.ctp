@@ -5,7 +5,7 @@
 	<?php
 		echo $this->Form->input('outlet_type_id');
 		echo $this->Form->input('program_id');
-		echo $this->Form->input('trade_promotion_order');
+		echo $this->Form->input('trade_promotion_order', array('value' => 1));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

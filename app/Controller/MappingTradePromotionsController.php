@@ -21,7 +21,7 @@ class MappingTradePromotionsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->MappingTradePromotion->recursive = 0;
+		//$this->MappingTradePromotion->recursive = 0;
 		$this->set('mappingTradePromotions', $this->Paginator->paginate());
 	}
 
@@ -47,6 +47,9 @@ class MappingTradePromotionsController extends AppController {
  */
 	public function add() {
 		if ($this->request->is('post')) {
+                    if( $this->MappingTradePromotion->isPromotionOrderExists($this->request->data)){
+                        $this->Session->setFlash(__('Given order already exists. Please, enter unique order.'));
+                    }else{
 			$this->MappingTradePromotion->create();
 			if ($this->MappingTradePromotion->save($this->request->data)) {
 				$this->Session->setFlash(__('The mapping trade promotion has been saved'));
@@ -54,7 +57,13 @@ class MappingTradePromotionsController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The mapping trade promotion could not be saved. Please, try again.'));
 			}
-		}
+                    }
+		} 
+                $outletTypes = $this->MappingTradePromotion->OutletType->getOutletTypes();
+                $programs = $this->MappingTradePromotion->Program->find('list');
+                $this->set('outletTypes', $outletTypes);
+                $this->set('programs', $programs);                    
+                
 	}
 
 /**
@@ -69,16 +78,24 @@ class MappingTradePromotionsController extends AppController {
 			throw new NotFoundException(__('Invalid mapping trade promotion'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+                    if( $this->MappingTradePromotion->isPromotionOrderExists($this->request->data)){
+                        $this->Session->setFlash(__('Given order already exists. Please, enter unique order.'));
+                    }else{
 			if ($this->MappingTradePromotion->save($this->request->data)) {
 				$this->Session->setFlash(__('The mapping trade promotion has been saved'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The mapping trade promotion could not be saved. Please, try again.'));
 			}
+                    }
 		} else {
 			$options = array('conditions' => array('MappingTradePromotion.' . $this->MappingTradePromotion->primaryKey => $id));
 			$this->request->data = $this->MappingTradePromotion->find('first', $options);
 		}
+                $outletTypes = $this->MappingTradePromotion->OutletType->getOutletTypes();
+                $programs = $this->MappingTradePromotion->Program->find('list');
+                $this->set('outletTypes', $outletTypes);
+                $this->set('programs', $programs);
 	}
 
 /**

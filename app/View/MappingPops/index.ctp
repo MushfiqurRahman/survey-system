@@ -11,11 +11,10 @@
 	<?php foreach ($mappingPops as $mappingPop): ?>
 	<tr>
 		<td><?php echo h($mappingPop['MappingPop']['id']); ?>&nbsp;</td>
-		<td><?php echo h($mappingPop['MappingPop']['outlet_type_id']); ?>&nbsp;</td>
-		<td><?php echo h($mappingPop['MappingPop']['pop_item_id']); ?>&nbsp;</td>
+		<td><?php echo h($mappingPop['OutletType']['title'].($mappingPop['OutletType']['class']==''?'':'_'.$mappingPop['OutletType']['class'])); ?>&nbsp;</td>
+		<td><?php echo h($mappingPop['PopItem']['head'].' - '.$mappingPop['PopItem']['descr']); ?>&nbsp;</td>
 		<td><?php echo h($mappingPop['MappingPop']['pop_order']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $mappingPop['MappingPop']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $mappingPop['MappingPop']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $mappingPop['MappingPop']['id']), null, __('Are you sure you want to delete # %s?', $mappingPop['MappingPop']['id'])); ?>
 		</td>

@@ -63,4 +63,24 @@ class HotSpot extends AppModel {
 			'insertQuery' => ''
 		),		
 	);
+        
+        public function getHotSpotList(){
+            $hotSpots = $this->find('all', array(
+                'fields' => array('id','head','descr','first_compliance','second_compliance'),
+                'recursive' => -1
+            ));
+            
+            $list = array();
+            
+            foreach($hotSpots as $hItm){
+                $list[$hItm['HotSpot']['id']] = $hItm['HotSpot']['head'].' - '.$hItm['HotSpot']['descr'].
+                    $hItm['HotSpot']['first_compliance'] ;
+                
+                if( $hItm['HotSpot']['second_compliance']!=''){
+                    $list[ $hItm['HotSpot']['id'] ] .= ( ' - '.$hItm['HotSpot']['second_compliance']);
+                }
+            }
+            
+            return $list;
+        }
 }

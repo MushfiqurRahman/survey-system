@@ -1,5 +1,5 @@
 <div class="mappingTradePromotions index">
-	<h2><?php echo __('Mapping Trade Promotions'); ?></h2>
+	<h2><?php  echo __('Mapping Trade Promotions'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
@@ -11,11 +11,10 @@
 	<?php foreach ($mappingTradePromotions as $mappingTradePromotion): ?>
 	<tr>
 		<td><?php echo h($mappingTradePromotion['MappingTradePromotion']['id']); ?>&nbsp;</td>
-		<td><?php echo h($mappingTradePromotion['MappingTradePromotion']['outlet_type_id']); ?>&nbsp;</td>
-		<td><?php echo h($mappingTradePromotion['MappingTradePromotion']['program_id']); ?>&nbsp;</td>
+		<td><?php echo h($mappingTradePromotion['OutletType']['title']. ($mappingTradePromotion['OutletType']['class']==''?'':('_'.$mappingTradePromotion['OutletType']['class']))); ?>&nbsp;</td>
+		<td><?php echo h($mappingTradePromotion['Program']['title']); ?>&nbsp;</td>
 		<td><?php echo h($mappingTradePromotion['MappingTradePromotion']['trade_promotion_order']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $mappingTradePromotion['MappingTradePromotion']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $mappingTradePromotion['MappingTradePromotion']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $mappingTradePromotion['MappingTradePromotion']['id']), null, __('Are you sure you want to delete # %s?', $mappingTradePromotion['MappingTradePromotion']['id'])); ?>
 		</td>

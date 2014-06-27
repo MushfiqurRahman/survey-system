@@ -64,4 +64,19 @@ class PopItem extends AppModel {
 			'insertQuery' => ''
 		),		
 	);
+        
+        public function getPopItemList(){
+            $popItems = $this->find('all', array(
+                'fields' => array('id','head','descr'),
+                'recursive' => -1
+            ));
+            
+            $list = array();
+            
+            foreach($popItems as $pItm){
+                $list[$pItm['PopItem']['id']] = $pItm['PopItem']['head'].' - '.$pItm['PopItem']['descr'];
+            }
+            
+            return $list;
+        }
 }

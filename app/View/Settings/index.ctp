@@ -46,10 +46,17 @@
         <li><?php echo $this->Html->link('Products', array('controller' => 'Products', 'action' => 'index'));?></li>
         <li><?php echo $this->Html->link('Survey Attributes', array('controller' => 'SurveyAttributes', 'action' => 'index'));?></li>
         <li><?php echo $this->Html->link('Tasks', array('controller' => 'Tasks', 'action' => 'index'));?></li>
-        <li><?php echo $this->Html->link('Parts', array('controller' => 'Parts', 'action' => 'index'));?></li>        
+        <li><?php echo $this->Html->link('Parts', array('controller' => 'Parts', 'action' => 'index'));?></li>   
+        
+        <li><?php echo $this->Html->link('New Products Mapping', array('controller' => 'MappingNewProducts', 'action' => 'index'));?></li>
+        
+        
         <li><?php echo $this->Html->link('Trade Promotion Items', array('controller' => 'Programs', 'action' => 'index'));?></li>
+        <li><?php echo $this->Html->link('Trade Promotion Mapping', array('controller' => 'MappingTradePromotions', 'action' => 'index'));?></li>
+        
         <li><?php echo $this->Html->link('HotSpots', array('controller' => 'HotSpots', 'action' => 'index'));?></li>
         <li><?php echo $this->Html->link('HotSpot Mapping', array('controller' => 'MappingHotSpots', 'action' => 'index'));?></li>
+        
         <li><?php echo $this->Html->link('Pop Items', array('controller' => 'PopItems', 'action' => 'index'));?></li>        
         <li><?php echo $this->Html->link('Pop Item Mapping', array('controller' => 'MappingPops', 'action' => 'index'));?></li>
         <li><?php echo $this->Html->link('SKU Subsets', array('controller' => 'Subsets', 'action' => 'index'));?></li>

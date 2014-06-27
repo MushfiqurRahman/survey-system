@@ -4,7 +4,7 @@
 		<legend><?php echo __('Add Mapping Hotspot'); ?></legend>
 	<?php
 		echo $this->Form->input('outlet_type_id');
-		echo $this->Form->input('hot_spot_id');
+		echo $this->Form->input('hot_spot_id', array('style' => 'width:420px;'));
 		echo $this->Form->input('hotspot_order');
 	?>
 	</fieldset>

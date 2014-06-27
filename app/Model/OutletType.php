@@ -65,7 +65,59 @@ class OutletType extends AppModel {
                 'exclusive' => '',
                 'finderQuery' => '',
                 'counterQuery' => ''
-            )
+            ),
+            'MappingTradePromotion' => array(
+                'className' => 'MappingTradePromotion',
+                'foreignKey' => 'outlet_type_id',
+                'dependent' => false,
+                'conditions' => '',
+                'fields' => '',
+                'order' => '',
+                'limit' => '',
+                'offset' => '',
+                'exclusive' => '',
+                'finderQuery' => '',
+                'counterQuery' => ''
+            ),
+            'MappingPop' => array(
+                'className' => 'MappingPop',
+                'foreignKey' => 'outlet_type_id',
+                'dependent' => false,
+                'conditions' => '',
+                'fields' => '',
+                'order' => '',
+                'limit' => '',
+                'offset' => '',
+                'exclusive' => '',
+                'finderQuery' => '',
+                'counterQuery' => ''
+            ),
+            'MappingHotspot' => array(
+                'className' => 'MappingHotspot',
+                'foreignKey' => 'outlet_type_id',
+                'dependent' => false,
+                'conditions' => '',
+                'fields' => '',
+                'order' => '',
+                'limit' => '',
+                'offset' => '',
+                'exclusive' => '',
+                'finderQuery' => '',
+                'counterQuery' => ''
+            ),
+            'MappingNewProduct' => array(
+                'className' => 'MappingNewProduct',
+                'foreignKey' => 'outlet_type_id',
+                'dependent' => false,
+                'conditions' => '',
+                'fields' => '',
+                'order' => '',
+                'limit' => '',
+                'offset' => '',
+                'exclusive' => '',
+                'finderQuery' => '',
+                'counterQuery' => ''
+            ),
 	);
         
         public $hasAndBelongsToMany = array(

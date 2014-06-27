@@ -11,11 +11,10 @@
 	<?php foreach ($mappingHotspots as $mappingHotspot): ?>
 	<tr>
 		<td><?php echo h($mappingHotspot['MappingHotspot']['id']); ?>&nbsp;</td>
-		<td><?php echo h($mappingHotspot['MappingHotspot']['outlet_type_id']); ?>&nbsp;</td>
-		<td><?php echo h($mappingHotspot['MappingHotspot']['hot_spot_id']); ?>&nbsp;</td>
+		<td><?php echo h($mappingHotspot['OutletType']['title'].($mappingHotspot['OutletType']['class']==''?'': (' - '.$mappingHotspot['OutletType']['class']))); ?>&nbsp;</td>
+		<td><?php echo h($mappingHotspot['HotSpot']['head']. ' - '.$mappingHotspot['HotSpot']['descr']. ' - '.$mappingHotspot['HotSpot']['first_compliance'] .' - '.$mappingHotspot['HotSpot']['second_compliance']); ?>&nbsp;</td>
 		<td><?php echo h($mappingHotspot['MappingHotspot']['hotspot_order']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $mappingHotspot['MappingHotspot']['id'])); ?>
+		<td class="actions">			
 			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $mappingHotspot['MappingHotspot']['id'])); ?>
 			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $mappingHotspot['MappingHotspot']['id']), null, __('Are you sure you want to delete # %s?', $mappingHotspot['MappingHotspot']['id'])); ?>
 		</td>

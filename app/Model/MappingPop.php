@@ -67,4 +67,46 @@ class MappingPop extends AppModel {
 			),
 		),
 	);
+        
+        public $belongsTo = array(
+		'OutletType' => array(
+			'className' => 'OutletType',
+			'foreignKey' => 'outlet_type_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'PopItem' => array(
+			'className' => 'PopItem',
+			'foreignKey' => 'pop_item_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
+        
+        /**
+         * check if the order value already exists 
+         * @uses : In MappingTradePromotionsController add method
+         */
+        public function isPopOrderExists($data) {
+            $existingOrder = $this->find('first', array(
+                'conditions' => array(
+                    'outlet_type_id' => $data['MappingPop']['outlet_type_id'],
+                    'pop_order' => $data['MappingPop']['pop_order']
+                )
+            ));
+            if(empty($existingOrder) || $existingOrder==false ){
+                return false;
+            }//following conditions are essential for edit time
+            else if( isset($data['MappingPop']['id']) &&
+                    $data['MappingPop']['id']!=$existingOrder['MappingPop']['id']){
+                return true;
+            }
+            else if( isset($data['MappingPop']['id']) &&
+                    $data['MappingPop']['id']==$existingOrder['MappingPop']['id']){
+                return false;
+            }
+            return true;
+        }
 }

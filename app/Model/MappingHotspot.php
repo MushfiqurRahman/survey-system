@@ -51,4 +51,46 @@ class MappingHotspot extends AppModel {
 			),
 		),
 	);
+        
+        public $belongsTo = array(
+		'OutletType' => array(
+			'className' => 'OutletType',
+			'foreignKey' => 'outlet_type_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'HotSpot' => array(
+			'className' => 'HotSpot',
+			'foreignKey' => 'hot_spot_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
+        
+        /**
+         * check if the order value already exists 
+         * @uses : In MappingTradePromotionsController add method
+         */
+        public function isHotSpotOrderExists($data) {
+            $existingOrder = $this->find('first', array(
+                'conditions' => array(
+                    'outlet_type_id' => $data['MappingHotspot']['outlet_type_id'],
+                    'hotspot_order' => $data['MappingHotspot']['hotspot_order']
+                )
+            ));
+            if(empty($existingOrder) || $existingOrder==false ){
+                return false;
+            }//following conditions are essential for edit time
+            else if( isset($data['MappingHotspot']['id']) &&
+                    $data['MappingHotspot']['id']!=$existingOrder['MappingHotspot']['id']){
+                return true;
+            }
+            else if( isset($data['MappingHotspot']['id']) &&
+                    $data['MappingHotspot']['id']==$existingOrder['MappingHotspot']['id']){
+                return false;
+            }
+            return true;
+        }
 }
