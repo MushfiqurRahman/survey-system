@@ -401,16 +401,16 @@ class Survey extends AppModel {
     
     protected function _getOutletTypeWiseTotalRow(){
         //Getting outlet type wise various mapping counting
-        $this->outletTypeWiseTotalRow['total_new_products'] = array();
+        $this->outletTypeWiseTotalRow['total_new_product'] = array();
         $this->outletTypeWiseTotalRow['total_trade_promotion'] = array();
         $this->outletTypeWiseTotalRow['total_pop'] = array();
         $this->outletTypeWiseTotalRow['total_hot_spot'] = array();
         
         foreach($this->newProductMaps as $np){
-            if(isset($this->outletTypeWiseTotalRow['total_new_products'][ $np['MappingNewProduct']['outlet_type_id'] ])){
-                $this->outletTypeWiseTotalRow['total_new_products'][ $np['MappingNewProduct']['outlet_type_id'] ]++;
+            if(isset($this->outletTypeWiseTotalRow['total_new_product'][ $np['MappingNewProduct']['outlet_type_id'] ])){
+                $this->outletTypeWiseTotalRow['total_new_product'][ $np['MappingNewProduct']['outlet_type_id'] ]++;
             }else{
-                $this->outletTypeWiseTotalRow['total_new_products'][ $np['MappingNewProduct']['outlet_type_id'] ] = 1;
+                $this->outletTypeWiseTotalRow['total_new_product'][ $np['MappingNewProduct']['outlet_type_id'] ] = 1;
             }
         }
         
@@ -513,8 +513,10 @@ class Survey extends AppModel {
      * 
      */
     protected function _get_mapping_order($mappingType, $itemId){
-        
-        $itemId = str_replace(substr($itemId, strpos($itemId,'_')),'',$itemId);
+        //since for pop there's no preceeding text like '_first' etc
+        if( $mappingType!='pop'){
+            $itemId = str_replace(substr($itemId, strpos($itemId,'_')),'',$itemId);
+        }
         switch ($mappingType){
             case 'new_product':                
                 foreach($this->newProductMaps as $np){
@@ -526,7 +528,7 @@ class Survey extends AppModel {
                 break;
             
             case 'trade_promotion':
-                foreach($this->newProductMaps as $np){
+                foreach($this->tradePromotionMaps as $np){
                     if( $np['MappingTradePromotion']['outlet_type_id']==$this->currentOutletTypeId &&
                         $np['MappingTradePromotion']['program_id']==$itemId){
                         return $np['MappingTradePromotion']['trade_promotion_order'];
@@ -535,7 +537,7 @@ class Survey extends AppModel {
                 break;
             
             case 'pop':
-                foreach($this->newProductMaps as $np){
+                foreach($this->popMaps as $np){
                     if( $np['MappingPop']['outlet_type_id']==$this->currentOutletTypeId &&
                         $np['MappingPop']['pop_item_id']==$itemId){
                         return $np['MappingPop']['pop_order'];
@@ -544,45 +546,67 @@ class Survey extends AppModel {
                 break;
             
             case 'hot_spot':
-                foreach($this->newProductMaps as $np){
+                foreach($this->hotSpotMaps as $np){
                     if( $np['MappingHotspot']['outlet_type_id']==$this->currentOutletTypeId &&
                         $np['MappingHotspot']['hot_spot_id']==$itemId){
                         return $np['MappingHotspot']['hotspot_order'];
                     }
                 }
                 break;
-        }
-            
+        }   
     }
 
 
     protected function _extractNewProduct(&$formatted, $data){
         $newProds = array();
+        
+        $formatted['NPD1'] = 0;
+        $formatted['NPD2'] = 0;
+        
         foreach($data as $dt){
             $temp = explode(":",$dt);
-            $newProds[] = $temp[1];
+            
+            $order = $this->_get_mapping_order('new_product', $temp[0]);
+            
+            if( $order>0) {
+                $formatted['NPD'.$order] = $temp[1];//==true ? 1 : 0;
+            }
+                      
+            
+//            $newProds[] = $temp[1];
         }
 //        foreach($newProds as $np){
 //            $npOrder = 
 //        }
         //since the data is coming is reversed order
-        $formatted['NPD1'] = isset($newProds[1]) ? $newProds[1] : 0;
-        $formatted['NPD2'] = isset($newProds[0]) ? $newProds[0] : 0;
+//        $formatted['NPD1'] = isset($newProds[1]) ? $newProds[1] : 0;
+//        $formatted['NPD2'] = isset($newProds[0]) ? $newProds[0] : 0;
     }
 
 
     protected function _extractTradePromotion(&$formatted, $data){
         $tradePromo = array();
+        
+        for($i=1;$i<=3;$i++){
+            $formatted['avail._trade_brochure'.$i] = 0;
+            $formatted['trade_brochure_update'.$i] = 0;
+        }
+        
         foreach($data as $dt){
             $temp = explode(":", $dt);
             
             $order = $this->_get_mapping_order('trade_promotion', $temp[0]);
             
-            if( strstr('avail') ){
-                $formatted['avail._trade_brochure'.$order] = $temp[1]==true ? 1 : 0;
-            }else{
-                $order = $order+$this->outletTypeWiseTotalRow['total_trade_promotion'][$this->currentOutletTypeId];
-                $formatted['avail._trade_brochure'.$order] = $temp[1]==true ? 1 : 0;
+            if( $order>0) {
+                $this->log('trade brocure orders:'.$order,'error');
+                if( strstr($temp[0], 'avail') ){
+                    $formatted['avail._trade_brochure'.$order] = $temp[1]==true ? 1 : 0;
+                }else{
+//                    if( isset($this->outletTypeWiseTotalRow['total_trade_promotion'][$this->currentOutletTypeId])){
+//                        $order = $order+$this->outletTypeWiseTotalRow['total_trade_promotion'][$this->currentOutletTypeId];
+//                    }
+                    $formatted['trade_brochure_update'.$order] = $temp[1]==true ? 1 : 0;
+                }
             }
             
             
@@ -618,66 +642,96 @@ class Survey extends AppModel {
     
     protected function _extractHotSpots(&$formatted, $data){
         $hotSpots = array();
+        
+        for($i=1;$i<=8;$i++){
+            $formatted['hotspot'.$i] = 0;
+        }
+        
         foreach($data as $dt){
             $temp = explode(":", $dt);
-            switch( $temp[0] ){                
-                case '1_first':
-                    $hotSpots[1] = $temp[1]==true ? 1 : 0;
-                    break;
-                
-                case '1_second':
-                    $hotSpots[2] = $temp[1]==true ? 1 : 0;
-                    break;
-                
-                case '2_first':
-                    $hotSpots[3] = $temp[1]==true ? 1 : 0;
-                    break;
-                
-                case '2_second':
-                    $hotSpots[4] = $temp[1]==true ? 1 : 0;
-                    break;
-                
-                case '3_first':
-                    $hotSpots[5] = $temp[1]==true ? 1 : 0;
-                    break;
-                
-                case '3_second':
-                    $hotSpots[6] = $temp[1]==true ? 1 : 0;
-                    break;
-                
-                case '4_first':
-                    $hotSpots[7] = $temp[1]==true ? 1 : 0;
-                    break;
-                
-                case '4_second':
-                    $hotSpots[8] = $temp[1]==true ? 1 : 0;
-                    break;
+            
+            $order = $this->_get_mapping_order('hot_spot', $temp[0]);
+            if( $order>0) {
+                if( strstr($temp[0], 'first') ){
+                    $formatted['hotspot'.$order] = $temp[1]==true ? 1 : 0;
+                }else{
+    //                $this->log('current outlet type id'.$this->currentOutletTypeId,'error');
+                    if( isset($this->outletTypeWiseTotalRow['total_hot_spot'][$this->currentOutletTypeId]) ){
+                        $order = $order+$this->outletTypeWiseTotalRow['total_hot_spot'][$this->currentOutletTypeId];
+                    }
+                    $formatted['hotspot' . $order] = $temp[1]==true ? 1 : 0;
+                }
             }
+            
+//            switch( $temp[0] ){                
+//                case '1_first':
+//                    $hotSpots[1] = $temp[1]==true ? 1 : 0;
+//                    break;
+//                
+//                case '1_second':
+//                    $hotSpots[2] = $temp[1]==true ? 1 : 0;
+//                    break;
+//                
+//                case '2_first':
+//                    $hotSpots[3] = $temp[1]==true ? 1 : 0;
+//                    break;
+//                
+//                case '2_second':
+//                    $hotSpots[4] = $temp[1]==true ? 1 : 0;
+//                    break;
+//                
+//                case '3_first':
+//                    $hotSpots[5] = $temp[1]==true ? 1 : 0;
+//                    break;
+//                
+//                case '3_second':
+//                    $hotSpots[6] = $temp[1]==true ? 1 : 0;
+//                    break;
+//                
+//                case '4_first':
+//                    $hotSpots[7] = $temp[1]==true ? 1 : 0;
+//                    break;
+//                
+//                case '4_second':
+//                    $hotSpots[8] = $temp[1]==true ? 1 : 0;
+//                    break;
+//            }
         }        
-        for($i=1; $i<=8; $i++){
-            $formatted['hotspot'.$i] = isset($hotSpots[$i]) ? $hotSpots[$i] : 0;
-        }
+//        for($i=1; $i<=8; $i++){
+//            $formatted['hotspot'.$i] = isset($hotSpots[$i]) ? $hotSpots[$i] : 0;
+//        }
     }
     
     protected function _extractPopItems(&$formatted, $data){
         $pops = array();
+        
+        for($i=1;$i<=5;$i++){
+            $formatted['pop'.$i] = 0;
+        }
+        
         foreach($data as $dt){
             $temp = explode(":", $dt);
-            $pops[$temp[0]] = isset($temp[1]) && $temp[1]==true ? 1 : 0;
+            
+            $order = $this->_get_mapping_order('pop', $temp[0]); 
+            if( $order>0) {
+                $formatted['pop'.$order] = $temp[1]==true ? 1 : 0;
+            }
+            
+//            $pops[$temp[0]] = isset($temp[1]) && $temp[1]==true ? 1 : 0;
         }
-        $totalPopItems = $this->_get_total_pop_items();
-        for($i=1; $i<=$totalPopItems; $i++){
-            $formatted['pop'.$i] = isset($pops[$i]) ? $pops[$i] : 0;
-        }
+//        $totalPopItems = $this->_get_total_pop_items();
+//        for($i=1; $i<=$totalPopItems; $i++){
+//            $formatted['pop'.$i] = isset($pops[$i]) ? $pops[$i] : 0;
+//        }
     }
     
     /**
      * 
      */
-    protected function _get_total_pop_items(){
-        $PopItem = ClassRegistry::init('PopItem');
-        return $PopItem->find('count');
-    }
+//    protected function _get_total_pop_items(){
+//        $PopItem = ClassRegistry::init('PopItem');
+//        return $PopItem->find('count');
+//    }
     
     protected function _extractAdditionalInfo(&$formatted, $data){
         foreach($data as $dt){

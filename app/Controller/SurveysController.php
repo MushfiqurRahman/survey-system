@@ -95,6 +95,9 @@ class SurveysController extends AppController {
                         break;
                 }
                 $formattedData = $this->Survey->getReportData($this->request->query);                
+                
+//                $this->log(print_r($formattedData,true),'error');exit;
+                
                 $this->set('formattedData',$formattedData);
                 $this->set('fileName', $fileName);
             }
