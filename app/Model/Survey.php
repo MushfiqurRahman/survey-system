@@ -17,6 +17,16 @@ class Survey extends AppModel {
  * @var string
  */
 	public $displayField = 'id';
+        public $newProductMaps;
+        public $popMaps;
+        public $hotSpotMaps;
+        public $tradePromotionMaps;
+        public $currentOutletTypeId;
+        /**
+         * Suppose UGS_B has three row of hotspots, but UGS_G may has 4 rows of hotspot
+         * or pop etc. Data has been stored as $outletTypeWiseTotalRow['total_new_product']['outlet_type_id']['count']
+         */
+        public $outletTypeWiseTotalRow;
 
 /**
  * Validation rules
@@ -89,7 +99,7 @@ class Survey extends AppModel {
 	);
 
         
-        public function saveSurvey($data, $firstImage = '', $secondImage = ''){
+    public function saveSurvey($data, $firstImage = '', $secondImage = ''){
             
 //            $this->log(print_r($data, 'error'));
             
@@ -259,7 +269,7 @@ class Survey extends AppModel {
                         'DATE(date_time) <=' => $data['end_date']),
                     ));
         
-        $this->log(print_r($reportData,true),'error');
+//        $this->log(print_r($reportData,true),'error');
         
         if( $data['report_type']=='must_sku' ){            
             $formattedData = $this->_formatForMustSku($reportData);
@@ -389,17 +399,88 @@ class Survey extends AppModel {
         }        
     }
     
+    protected function _getOutletTypeWiseTotalRow(){
+        //Getting outlet type wise various mapping counting
+        $this->outletTypeWiseTotalRow['total_new_products'] = array();
+        $this->outletTypeWiseTotalRow['total_trade_promotion'] = array();
+        $this->outletTypeWiseTotalRow['total_pop'] = array();
+        $this->outletTypeWiseTotalRow['total_hot_spot'] = array();
+        
+        foreach($this->newProductMaps as $np){
+            if(isset($this->outletTypeWiseTotalRow['total_new_products'][ $np['MappingNewProduct']['outlet_type_id'] ])){
+                $this->outletTypeWiseTotalRow['total_new_products'][ $np['MappingNewProduct']['outlet_type_id'] ]++;
+            }else{
+                $this->outletTypeWiseTotalRow['total_new_products'][ $np['MappingNewProduct']['outlet_type_id'] ] = 1;
+            }
+        }
+        
+        foreach($this->tradePromotionMaps as $trdPr){
+            if(isset($this->outletTypeWiseTotalRow['total_trade_promotion'][ $trdPr['MappingTradePromotion']['outlet_type_id'] ])){
+                $this->outletTypeWiseTotalRow['total_trade_promotion'][ $trdPr['MappingTradePromotion']['outlet_type_id'] ]++;
+            }else{
+                $this->outletTypeWiseTotalRow['total_trade_promotion'][ $trdPr['MappingTradePromotion']['outlet_type_id'] ] = 1;
+            }
+        }
+        
+        foreach($this->popMaps as $np){
+            if(isset($this->outletTypeWiseTotalRow['total_pop'][ $np['MappingPop']['outlet_type_id'] ])){
+                $this->outletTypeWiseTotalRow['total_pop'][ $np['MappingPop']['outlet_type_id'] ]++;
+            }else{
+                $this->outletTypeWiseTotalRow['total_pop'][ $np['MappingPop']['outlet_type_id'] ] = 1;
+            }
+        }
+        
+        foreach($this->hotSpotMaps as $htSpt){
+            if(isset($this->outletTypeWiseTotalRow['total_hot_spot'][ $htSpt['MappingHotspot']['outlet_type_id'] ])){
+                $this->outletTypeWiseTotalRow['total_hot_spot'][ $htSpt['MappingHotspot']['outlet_type_id'] ]++;
+            }else{
+                $this->outletTypeWiseTotalRow['total_hot_spot'][ $htSpt['MappingHotspot']['outlet_type_id'] ] = 1;
+            }
+        }        
+//        $this->log(print_r($this->outletTypeWiseTotalRow, true),'error');exit;
+    }
+
+
+    /**
+     * Fetching all the mapped data
+     */
+    protected function _initialize_mappings(){
+        $mappingNewProduct = ClassRegistry::init('MappingNewProduct');
+        $mappingTradePromotion = ClassRegistry::init('MappingTradePromotion');
+        $mappingPop = ClassRegistry::init('MappingPop');
+        $mappingHotspot = ClassRegistry::init('MappingHotspot');
+        
+        $this->newProductMaps = $mappingNewProduct->find('all', array('recursive' => -1));
+        $this->tradePromotionMaps = $mappingTradePromotion->find('all', array('recursive' => -1));
+        $this->popMaps = $mappingPop->find('all', array('recursive' => -1));
+        $this->hotSpotMaps = $mappingHotspot->find('all', array('recursive' => -1));
+        
+        $this->_getOutletTypeWiseTotalRow();
+        
+//        $this->log(print_r($this->newProductMaps, true),'error');
+//        $this->log(print_r($this->tradePromotionMaps, true),'error');
+//        $this->log(print_r($this->popMaps, true),'error');
+//        $this->log(print_r($this->hotSpotMaps, true),'error');
+    }
+    
+    
     /**
      * Formats the New Product, Trade Promotion, HotSpots, Pop items and Additional info
      * @param type $data
      * @return array
      */
     protected function _formatOthers($data){
+        //fetching all the mapping first
+        $this->_initialize_mappings();       
+        
         $formatted = array();
         $count = 0;
         $slNo = 1;
         
         foreach($data as $dt){
+            //following value is essential for mapping. Used in method
+            $this->currentOutletTypeId = $dt['Outlet']['outlet_type_id'];
+            
             $dt['Survey']['new_product'] = $this->_removeQuoteNBrace($dt['Survey']['new_product']);
             $dt['Survey']['trade_promotion'] = $this->_removeQuoteNBrace($dt['Survey']['trade_promotion']);
             $dt['Survey']['pop'] = $this->_removeQuoteNBrace($dt['Survey']['pop']);
@@ -428,12 +509,62 @@ class Survey extends AppModel {
         return $formatted;
     }
     
+    /**
+     * 
+     */
+    protected function _get_mapping_order($mappingType, $itemId){
+        
+        $itemId = str_replace(substr($itemId, strpos($itemId,'_')),'',$itemId);
+        switch ($mappingType){
+            case 'new_product':                
+                foreach($this->newProductMaps as $np){
+                    if( $np['MappingNewProduct']['outlet_type_id']==$this->currentOutletTypeId &&
+                        $np['MappingNewProduct']['product_id']==$itemId){
+                        return $np['MappingNewProduct']['product_order'];
+                    }
+                }
+                break;
+            
+            case 'trade_promotion':
+                foreach($this->newProductMaps as $np){
+                    if( $np['MappingTradePromotion']['outlet_type_id']==$this->currentOutletTypeId &&
+                        $np['MappingTradePromotion']['program_id']==$itemId){
+                        return $np['MappingTradePromotion']['trade_promotion_order'];
+                    }
+                }
+                break;
+            
+            case 'pop':
+                foreach($this->newProductMaps as $np){
+                    if( $np['MappingPop']['outlet_type_id']==$this->currentOutletTypeId &&
+                        $np['MappingPop']['pop_item_id']==$itemId){
+                        return $np['MappingPop']['pop_order'];
+                    }
+                }
+                break;
+            
+            case 'hot_spot':
+                foreach($this->newProductMaps as $np){
+                    if( $np['MappingHotspot']['outlet_type_id']==$this->currentOutletTypeId &&
+                        $np['MappingHotspot']['hot_spot_id']==$itemId){
+                        return $np['MappingHotspot']['hotspot_order'];
+                    }
+                }
+                break;
+        }
+            
+    }
+
+
     protected function _extractNewProduct(&$formatted, $data){
         $newProds = array();
         foreach($data as $dt){
             $temp = explode(":",$dt);
             $newProds[] = $temp[1];
         }
+//        foreach($newProds as $np){
+//            $npOrder = 
+//        }
         //since the data is coming is reversed order
         $formatted['NPD1'] = isset($newProds[1]) ? $newProds[1] : 0;
         $formatted['NPD2'] = isset($newProds[0]) ? $newProds[0] : 0;
@@ -445,35 +576,44 @@ class Survey extends AppModel {
         foreach($data as $dt){
             $temp = explode(":", $dt);
             
-            switch( $temp[0] ){                
-                case '1_avail':
-                    $tradePromo[1] = $temp[1]==true ? 1 : 0;
-                    break;
-                
-                case '1_update':
-                    $tradePromo[2] = $temp[1]==true ? 1 : 0;
-                    break;
-                
-                case '2_avail':
-                    $tradePromo[3] = $temp[1]==true ? 1 : 0;
-                    break;
-                case '2_update':
-                    $tradePromo[4] = $temp[1]==true ? 1 : 0;
-                    break;                
-                
-                case '3_avail':
-                    $tradePromo[5] = $temp[1]==true ? 1 : 0;
-                    break;
-                case '3_update':
-                    $tradePromo[6] = $temp[1]==true ? 1 : 0;
-                    break;
+            $order = $this->_get_mapping_order('trade_promotion', $temp[0]);
+            
+            if( strstr('avail') ){
+                $formatted['avail._trade_brochure'.$order] = $temp[1]==true ? 1 : 0;
+            }else{
+                $order = $order+$this->outletTypeWiseTotalRow['total_trade_promotion'][$this->currentOutletTypeId];
+                $formatted['avail._trade_brochure'.$order] = $temp[1]==true ? 1 : 0;
             }
             
+            
+//            switch( $temp[0] ){                
+//                case '1_avail':
+//                    $tradePromo[1] = $temp[1]==true ? 1 : 0;
+//                    break;
+//                
+//                case '1_update':
+//                    $tradePromo[2] = $temp[1]==true ? 1 : 0;
+//                    break;
+//                
+//                case '2_avail':
+//                    $tradePromo[3] = $temp[1]==true ? 1 : 0;
+//                    break;
+//                case '2_update':
+//                    $tradePromo[4] = $temp[1]==true ? 1 : 0;
+//                    break;                
+//                
+//                case '3_avail':
+//                    $tradePromo[5] = $temp[1]==true ? 1 : 0;
+//                    break;
+//                case '3_update':
+//                    $tradePromo[6] = $temp[1]==true ? 1 : 0;
+//                    break;
+//            }            
         }
-        for($i=1; $i<=3; $i++){            
-            $formatted['avail._trade_brochure'.$i] = isset($tradePromo[($i*2)-1]) ? $tradePromo[$i] : 0;
-            $formatted['trade_brochure_update'.$i] = isset($tradePromo[$i*2]) ? $tradePromo[$i*2] : 0;
-        }
+//        for($i=1; $i<=3; $i++){            
+//            $formatted['avail._trade_brochure'.$i] = isset($tradePromo[($i*2)-1]) ? $tradePromo[$i] : 0;
+//            $formatted['trade_brochure_update'.$i] = isset($tradePromo[$i*2]) ? $tradePromo[$i*2] : 0;
+//        }
     }
     
     protected function _extractHotSpots(&$formatted, $data){
