@@ -17,7 +17,9 @@ class SurveysController extends AppController {
         public $helpers = array('Excel');
         
         public function beforeFilter() {
-            parent::beforeFilter();
+            parent::beforeFilter();            
+//            var_dump($this->Survey->isCurrentMonthSurveyExists(array('dms_code' => 'D03-2828')));exit;
+            
             $this->set('regions', $this->Survey->Outlet->Town->Territory->Region->find('list'));
         }
         

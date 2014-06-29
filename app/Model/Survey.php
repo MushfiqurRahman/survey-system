@@ -97,6 +97,40 @@ class Survey extends AppModel {
 			'order' => ''
 		)
 	);
+        
+    /**
+     * Since in a month an outlet can't be surveyed twice.
+     * This menthod has been used in ApiController.php
+     * 
+     * @param type $data
+     * @return boolean
+     */
+    public function isCurrentMonthSurveyExists($data){
+        $outletId = $this->Outlet->field('id', array('dms_code' => $data['dms_code']));
+        $currentMonth = date('M',  time());
+        $currentYear = date('Y', time());
+        
+        $lastSurvey = $this->find('first', array(
+            'conditions' => array(
+                'Survey.outlet_id' => $outletId
+            ),
+            'limit' => 1,
+            'order' => 'Survey.id DESC',
+            'recursive' => -1
+        ));
+//        $this->log(print_r($lastSurvey,true),'error');
+        
+        if( !empty($lastSurvey) ){
+            $lastMonth = date('M',strtotime($lastSurvey['Survey']['created']));
+            $lastYear = date('Y',strtotime($lastSurvey['Survey']['created']));
+            
+            if( $lastYear!=$currentYear ) return false;
+            if($lastMonth != $currentMonth ) return false;
+            
+            return true;
+        }
+        return false;
+    }
 
         
     public function saveSurvey($data, $firstImage = '', $secondImage = ''){
@@ -353,14 +387,14 @@ class Survey extends AppModel {
 				if( !isset($fv['availability']) ){
 					$formatted[$count]['availability'] = 0;
 				}else{
-					$formatted[$count]['availability'] = $fv['availability']==true ? 1 : 0;
+					$formatted[$count]['availability'] = $fv['availability']=='true' ? 1 : 0;
 				}                
                 $formatted[$count]['display_qty'] = $fv['display_count'];
                 $formatted[$count]['face_up'] = $fv['faceup_count'];
 				if( !isset($fv['sequence']) ){
 					$formatted[$count]['sequence'] = 0;
 				}else{
-					$formatted[$count]['sequence'] = $fv['sequence']==true ? 1 : 0;
+					$formatted[$count]['sequence'] = $fv['sequence']=='true' ? 1 : 0;
 				}
                 
                 $formatted[$count]['shop_type'] = $dt['Outlet']['OutletType']['title'];

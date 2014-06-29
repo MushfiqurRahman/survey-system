@@ -373,14 +373,21 @@ class ApiController extends AppController {
             
         if( !empty($this->request->data) ){
             
-            $imagePaths = $this->_upload_images();
-            if( $imagePaths ){
-                $this->request->data['first_image'] = $imagePaths['first_image'];
-                $this->request->data['second_image'] = $imagePaths['second_image'];
+            //first check survey already done in this month for the outlet
+            
+            if( $this->Survey->isCurrentMonthSurveyExists($this->request->data) ){
+                $response['message'] = 'This outlet has been already surveyed in this month.';
+                $response['success'] = false;
+            }else{            
+                $imagePaths = $this->_upload_images();
+                if( $imagePaths ){
+                    $this->request->data['first_image'] = $imagePaths['first_image'];
+                    $this->request->data['second_image'] = $imagePaths['second_image'];
+                }
+                $this->loadModel('Survey');
+                $result = $this->Survey->saveSurvey($this->request->data, $imagePaths['first_image'], $imagePaths['second_image']);
+                $response = $result;
             }
-            $this->loadModel('Survey');
-            $result = $this->Survey->saveSurvey($this->request->data, $imagePaths['first_image'], $imagePaths['second_image']);
-            $response = $result;
         }else{
             $response['message'] = 'Nothing found!';
             $response['success'] = false;
