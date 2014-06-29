@@ -69,6 +69,18 @@ class MappingNewProduct extends AppModel {
 		)
 	);
         
+        public function beforeSave($options = array()) {
+            parent::beforeSave($options);
+            
+            if( !empty($this->data['MappingNewProduct']) ){
+                $Product = ClassRegistry::init('Product');
+                $skuCode = $Product->field('sku',array('Product.id' => $this->data['MappingNewProduct']['product_id']));
+                $this->data['MappingNewProduct']['sku'] = $skuCode;                                
+                return true;
+            }
+            return false;
+        }
+        
         
         
         /**

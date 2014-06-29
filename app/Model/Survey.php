@@ -514,14 +514,14 @@ class Survey extends AppModel {
      */
     protected function _get_mapping_order($mappingType, $itemId){
         //since for pop there's no preceeding text like '_first' etc
-        if( $mappingType!='pop'){
+        if( $mappingType!='pop' && $mappingType!='new_product'){
             $itemId = str_replace(substr($itemId, strpos($itemId,'_')),'',$itemId);
         }
         switch ($mappingType){
             case 'new_product':                
                 foreach($this->newProductMaps as $np){
                     if( $np['MappingNewProduct']['outlet_type_id']==$this->currentOutletTypeId &&
-                        $np['MappingNewProduct']['product_id']==$itemId){
+                        $np['MappingNewProduct']['sku']==$itemId){
                         return $np['MappingNewProduct']['product_order'];
                     }
                 }
@@ -564,8 +564,7 @@ class Survey extends AppModel {
         $formatted['NPD2'] = 0;
         
         foreach($data as $dt){
-            $temp = explode(":",$dt);
-            
+            $temp = explode(":",$dt);           
             $order = $this->_get_mapping_order('new_product', $temp[0]);
             
             if( $order>0) {
@@ -585,7 +584,7 @@ class Survey extends AppModel {
 
 
     protected function _extractTradePromotion(&$formatted, $data){
-        $tradePromo = array();
+//        $tradePromo = array();
         
         for($i=1;$i<=3;$i++){
             $formatted['avail._trade_brochure'.$i] = 0;
@@ -598,17 +597,12 @@ class Survey extends AppModel {
             $order = $this->_get_mapping_order('trade_promotion', $temp[0]);
             
             if( $order>0) {
-                $this->log('trade brocure orders:'.$order,'error');
                 if( strstr($temp[0], 'avail') ){
-                    $formatted['avail._trade_brochure'.$order] = $temp[1]==true ? 1 : 0;
+                    $formatted['avail._trade_brochure'.$order] = $temp[1]== 'true' ? 1 : 0;
                 }else{
-//                    if( isset($this->outletTypeWiseTotalRow['total_trade_promotion'][$this->currentOutletTypeId])){
-//                        $order = $order+$this->outletTypeWiseTotalRow['total_trade_promotion'][$this->currentOutletTypeId];
-//                    }
-                    $formatted['trade_brochure_update'.$order] = $temp[1]==true ? 1 : 0;
+                    $formatted['trade_brochure_update'.$order] = $temp[1]== 'true' ? 1 : 0;
                 }
-            }
-            
+            }          
             
 //            switch( $temp[0] ){                
 //                case '1_avail':
@@ -650,16 +644,20 @@ class Survey extends AppModel {
         foreach($data as $dt){
             $temp = explode(":", $dt);
             
+            //$this->log(print_r($temp,true),'error');
+            
+            //var_
+            
             $order = $this->_get_mapping_order('hot_spot', $temp[0]);
             if( $order>0) {
                 if( strstr($temp[0], 'first') ){
-                    $formatted['hotspot'.$order] = $temp[1]==true ? 1 : 0;
+                    $formatted['hotspot'.$order] = $temp[1]=='true' ? 1 : 0;
                 }else{
     //                $this->log('current outlet type id'.$this->currentOutletTypeId,'error');
                     if( isset($this->outletTypeWiseTotalRow['total_hot_spot'][$this->currentOutletTypeId]) ){
                         $order = $order+$this->outletTypeWiseTotalRow['total_hot_spot'][$this->currentOutletTypeId];
                     }
-                    $formatted['hotspot' . $order] = $temp[1]==true ? 1 : 0;
+                    $formatted['hotspot' . $order] = $temp[1]=='true' ? 1 : 0;
                 }
             }
             
@@ -714,7 +712,7 @@ class Survey extends AppModel {
             
             $order = $this->_get_mapping_order('pop', $temp[0]); 
             if( $order>0) {
-                $formatted['pop'.$order] = $temp[1]==true ? 1 : 0;
+                $formatted['pop'.$order] = $temp[1]== 'true' ? 1 : 0;
             }
             
 //            $pops[$temp[0]] = isset($temp[1]) && $temp[1]==true ? 1 : 0;
