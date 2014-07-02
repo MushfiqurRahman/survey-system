@@ -373,8 +373,6 @@ class ApiController extends AppController {
             
         if( !empty($this->request->data) ){
             
-            $this->loadModel('Survey');
-            
             //first check survey already done in this month for the outlet
             
             if( $this->Survey->isCurrentMonthSurveyExists($this->request->data) ){
@@ -386,7 +384,7 @@ class ApiController extends AppController {
                     $this->request->data['first_image'] = $imagePaths['first_image'];
                     $this->request->data['second_image'] = $imagePaths['second_image'];
                 }
-                
+                $this->loadModel('Survey');
                 $result = $this->Survey->saveSurvey($this->request->data, $imagePaths['first_image'], $imagePaths['second_image']);
                 $response = $result;
             }
