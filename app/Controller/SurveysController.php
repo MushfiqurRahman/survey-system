@@ -27,8 +27,12 @@ class SurveysController extends AppController {
          * Used in /View/Surveys/index.ctp file
          */
         public function ajaxGetListData(){
-            $this->layout = $this->autoRender = false;
+            
             if($this->request->is('ajax')){
+                
+                $this->layout = 'ajax';
+                $this->autoRender = false;
+                
                 $response = array();
                 $response['success'] = true;
                 if( isset($this->request->data['region_id'])){
@@ -44,6 +48,7 @@ class SurveysController extends AppController {
                     $response['data'] = 'Failed to retrieve data';
                 }
                 echo json_encode($response);
+                return;
             }
         }
 

@@ -245,6 +245,8 @@ class Survey extends AppModel {
                 $outletIds = $this->id_from_list($outletIds);
             }
             
+            //$this->log(print_r($outletIds,true),'error');
+            
             if( !empty($outletIds) ){
                 $conditions['outlet_id'] = $outletIds;
             }
@@ -286,12 +288,12 @@ class Survey extends AppModel {
         $this->Behaviors->load('Containable');
         
         if( $data['report_type']=='must_sku' ){            
-            $fields = array('Survey.id','Survey.outlet_id','Survey.must_sku');            
+            $fields = array('Survey.id','Survey.outlet_id','Survey.must_sku','Survey.is_failure');            
         }else if( $data['report_type']=='fixed_display'){
-            $fields = array('Survey.id','Survey.outlet_id','Survey.fixed_display');
+            $fields = array('Survey.id','Survey.outlet_id','Survey.fixed_display','Survey.is_failure');
         }else{
             $fields = array('Survey.id','Survey.outlet_id','Survey.new_product','Survey.trade_promotion',
-                'Survey.pop','Survey.hot_spot','Survey.additional_info');
+                'Survey.pop','Survey.hot_spot','Survey.additional_info','Survey.is_failure');
         }        
         $reportData = $this->find('all', array(
                     'fields' => $fields,
@@ -324,23 +326,25 @@ class Survey extends AppModel {
         $slNo = 1;
         
         foreach($data as $dt){
-            $dt['Survey']['must_sku'] = $this->_removeQuoteNBrace($dt['Survey']['must_sku']);
-            $skus = explode(",", $dt['Survey']['must_sku']);
-            
-            foreach($skus as $sku){
-                $codeNcount = explode(":",$sku);
-                
-                $formatted[$count]['Slno'] =  $slNo;
-                $formatted[$count]['Outlet_id'] = $dt['Outlet']['dms_code'];
-                $formatted[$count]['Shop_Type'] = $dt['Outlet']['OutletType']['title'];
-                $formatted[$count]['Shop_Class'] = $dt['Outlet']['OutletType']['class'];
-                $formatted[$count]['Outlet_Name'] = $dt['Outlet']['name'];
-                $formatted[$count]['Product_Code'] = $codeNcount[0];
-                $formatted[$count]['Qty'] = $codeNcount[1];
-                
-                $count++;
+            if(!$dt['Survey']['is_failure']){
+                $dt['Survey']['must_sku'] = $this->_removeQuoteNBrace($dt['Survey']['must_sku']);
+                $skus = explode(",", $dt['Survey']['must_sku']);
+
+                foreach($skus as $sku){
+                    $codeNcount = explode(":",$sku);
+
+                    $formatted[$count]['Slno'] =  $slNo;
+                    $formatted[$count]['Outlet_id'] = $dt['Outlet']['dms_code'];
+                    $formatted[$count]['Shop_Type'] = $dt['Outlet']['OutletType']['title'];
+                    $formatted[$count]['Shop_Class'] = $dt['Outlet']['OutletType']['class'];
+                    $formatted[$count]['Outlet_Name'] = $dt['Outlet']['name'];
+                    $formatted[$count]['Product_Code'] = $codeNcount[0];
+                    $formatted[$count]['Qty'] = $codeNcount[1];
+
+                    $count++;
+                }
+                $slNo++;
             }
-            $slNo++;
         }
         return $formatted;
     }
@@ -362,48 +366,51 @@ class Survey extends AppModel {
                         
         foreach($data as $dt){
             
-            $dt['Survey']['fixed_display'] = $this->_removeQuoteNBrace($dt['Survey']['fixed_display']);
-            $fixedDisplay = explode(",", $dt['Survey']['fixed_display']);
-            
-            $fixedDisplayValues = array();
-            
-            foreach($fixedDisplay as $v){
-                $tmp = explode(":",$v);
-                //extracting the sku code from string
-                preg_match_all('/^([0-9]{3})/', $tmp[0], $skuCode);
-                
-                //$tmp[0] contains a string like: 158_dis_count
-                $this->_extractValues($fixedDisplayValues, $skuCode[0][0], $tmp[0], $tmp[1]);
-            }
-                
-            
-            //now formatting for xls export
-            foreach($fixedDisplayValues as $k => $fv){
-                $formatted[$count]['slno'] =  $slNo;
-                $formatted[$count]['outlet_id'] = $dt['Outlet']['dms_code'];//though column name is id but actually it's dms_code
-                $formatted[$count]['item_desc'] = $productlist[$k];
-                $formatted[$count]['category_name'] = $categoryList[ $productsListWithCategoryId[$k] ];
-                $formatted[$count]['item_code'] = $k;
-				if( !isset($fv['availability']) ){
-					$formatted[$count]['availability'] = 0;
-				}else{
-					$formatted[$count]['availability'] = $fv['availability']=='true' ? 1 : 0;
-				}                
-                $formatted[$count]['display_qty'] = $fv['display_count'];
-                $formatted[$count]['face_up'] = $fv['faceup_count'];
-				if( !isset($fv['sequence']) ){
-					$formatted[$count]['sequence'] = 0;
-				}else{
-					$formatted[$count]['sequence'] = $fv['sequence']=='true' ? 1 : 0;
-				}
-                
-                $formatted[$count]['shop_type'] = $dt['Outlet']['OutletType']['title'];
-                $formatted[$count]['shop_class'] = $dt['Outlet']['OutletType']['class'];
-                $formatted[$count]['outlet_name'] = $dt['Outlet']['name'];
+            if(!$dt['Survey']['is_failure']){
 
-                $count++;
+                $dt['Survey']['fixed_display'] = $this->_removeQuoteNBrace($dt['Survey']['fixed_display']);
+                $fixedDisplay = explode(",", $dt['Survey']['fixed_display']);
+
+                $fixedDisplayValues = array();
+
+                foreach($fixedDisplay as $v){
+                    $tmp = explode(":",$v);
+                    //extracting the sku code from string
+                    preg_match_all('/^([0-9]{3})/', $tmp[0], $skuCode);
+
+                    //$tmp[0] contains a string like: 158_dis_count
+                    $this->_extractValues($fixedDisplayValues, $skuCode[0][0], $tmp[0], $tmp[1]);
+                }
+
+
+                //now formatting for xls export
+                foreach($fixedDisplayValues as $k => $fv){
+                    $formatted[$count]['slno'] =  $slNo;
+                    $formatted[$count]['outlet_id'] = $dt['Outlet']['dms_code'];//though column name is id but actually it's dms_code
+                    $formatted[$count]['item_desc'] = $productlist[$k];
+                    $formatted[$count]['category_name'] = $categoryList[ $productsListWithCategoryId[$k] ];
+                    $formatted[$count]['item_code'] = $k;
+                                    if( !isset($fv['availability']) ){
+                                            $formatted[$count]['availability'] = 0;
+                                    }else{
+                                            $formatted[$count]['availability'] = $fv['availability']=='true' ? 1 : 0;
+                                    }                
+                    $formatted[$count]['display_qty'] = $fv['display_count'];
+                    $formatted[$count]['face_up'] = $fv['faceup_count'];
+                                    if( !isset($fv['sequence']) ){
+                                            $formatted[$count]['sequence'] = 0;
+                                    }else{
+                                            $formatted[$count]['sequence'] = $fv['sequence']=='true' ? 1 : 0;
+                                    }
+
+                    $formatted[$count]['shop_type'] = $dt['Outlet']['OutletType']['title'];
+                    $formatted[$count]['shop_class'] = $dt['Outlet']['OutletType']['class'];
+                    $formatted[$count]['outlet_name'] = $dt['Outlet']['name'];
+
+                    $count++;
+                }
+                $slNo++;
             }
-            $slNo++;
         }
         //$this->log(print_r($formatted, true),'error');
         return $formatted;
@@ -532,11 +539,17 @@ class Survey extends AppModel {
             $formatted[$count]['shop_type'] = $dt['Outlet']['OutletType']['title'];
             $formatted[$count]['slab'] = $dt['Outlet']['OutletType']['class'];
             
-            $this->_extractHotSpots($formatted[$count], $hotSpot);
-            $this->_extractPopItems($formatted[$count], $pop);
+            if(!$dt['Survey']['is_failure']){
+                $this->_extractHotSpots($formatted[$count], $hotSpot);
+                $this->_extractPopItems($formatted[$count], $pop);
+            }
+            
             $this->_extractAdditionalInfo($formatted[$count], $additionalInfo);
-            $this->_extractNewProduct($formatted[$count], $newProduct);
-            $this->_extractTradePromotion($formatted[$count], $tradePromotion);
+            
+            if(!$dt['Survey']['is_failure']){
+                $this->_extractNewProduct($formatted[$count], $newProduct);
+                $this->_extractTradePromotion($formatted[$count], $tradePromotion);
+            }
             $slNo++;
             $count++;
         }

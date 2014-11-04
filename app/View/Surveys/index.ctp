@@ -160,39 +160,39 @@
         });
         function populate_territory(regionId){
             $.ajax({
-                    url: base_url + "/surveys/ajaxGetListData",
-                    data: "region_id="+regionId,
-                    type: "post",
-                    success: function(response){
-                        var decodedData = $.parseJSON(response);
-                        if( decodedData['success']!=true){
-                            alert(decodedData['data']);
-                        }else{                        
-                            $.each(decodedData['data'], function(i,v){
-                                $("#territoryId").append('<option value="'+i+'">'+v+'</option>');
-                            });
-                        }
+                url: base_url + "/surveys/ajaxGetListData",
+                data: "region_id="+regionId,
+                type: "post",
+                success: function(response){
+                    var decodedData = $.parseJSON(response);
+                    if( decodedData['success']!=true){
+                        alert(decodedData['data']);
+                    }else{                        
+                        $.each(decodedData['data'], function(i,v){
+                            $("#territoryId").append('<option value="'+i+'">'+v+'</option>');
+                        });
                     }
-                });
+                }
+            });
         }
         
         function populate_town(territoryId){
             $.ajax({
-                    url: base_url + "/surveys/ajaxGetListData",
-                    data: "territory_id="+territoryId,
-                    type: "post",
-                    success: function(response){
-                        //alert(response);
-                        var decodedData = $.parseJSON(response);
-                        if( decodedData['success']!=true){
-                            alert(decodedData['data']);
-                        }else{                        
-                            $.each(decodedData['data'], function(i,v){
-                                $("#townId").append('<option value="'+i+'">'+v+'</option>');
-                            });
-                        }
+                url: base_url + "/surveys/ajaxGetListData",
+                data: "territory_id="+territoryId,
+                type: "post",
+                success: function(response){
+                    //alert(response);
+                    var decodedData = $.parseJSON(response);
+                    if( decodedData['success']!=true){
+                        alert(decodedData['data']);
+                    }else{                        
+                        $.each(decodedData['data'], function(i,v){
+                            $("#townId").append('<option value="'+i+'">'+v+'</option>');
+                        });
                     }
-                });
+                }
+            });
         }
         
         

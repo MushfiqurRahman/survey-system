@@ -109,4 +109,4 @@ CakeLog::config('error', array(
 ));
 
 //Configure::write('base_url','http://app.feratech.net');
-Configure::write('base_url','http://localhost/mushfique/2014/survey-system');
+Configure::write('base_url','http://localhost/2014/survey-system');
